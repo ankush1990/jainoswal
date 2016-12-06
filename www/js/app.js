@@ -29,6 +29,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
   
   $ionicConfigProvider.views.transition('none');
+  $ionicConfigProvider.tabs.position('bottom'); 
   $stateProvider
 
   .state('app', {

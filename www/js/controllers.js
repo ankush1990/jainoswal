@@ -1,5 +1,5 @@
 var global_login_id = "";
-
+var global_officers = "";
 angular.module('starter.controllers', [])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
@@ -59,16 +59,22 @@ angular.module('starter.controllers', [])
 
 /** Dashboard Controller**/
 .controller('dashboardCtrl',function($scope,$ionicSlideBoxDelegate,$ionicLoading,$http,$state) {
-	/* National Officers */ /* http://makerits.com/jainoswalsajnanfedration/webservice/?action=national_officers */
-	$ionicLoading.show({template: '<ion-spinner icon="crescent"></ion-spinner>'});
-	var action = "national_officers";
-	var data_parameters = "action="+action;
-	$http.post(globalip,data_parameters, {
-		headers: {'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'}
-	})
-	.success(function(response) {
-		$scope.officers = response;
-	});
+	if(global_officers == ''){
+		/* National Officers */ /* http://makerits.com/jainoswalsajnanfedration/webservice/?action=national_officers */
+		$ionicLoading.show({template: '<ion-spinner icon="crescent"></ion-spinner>'});
+		var action = "national_officers";
+		var data_parameters = "action="+action;
+		$http.post(globalip,data_parameters, {
+			headers: {'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'}
+		})
+		.success(function(response) {
+			$scope.officers = response;
+			global_officers = response;
+		});
+	}
+	else{
+		$scope.officers = global_officers;
+	}
 	/* HomeSlider */ /* http://makerits.com/jainoswalsajnanfedration/webservice/?action=home_slider */
 	var action1 = "home_slider";
 	var data_parameters1 = "action="+action1;
@@ -116,6 +122,12 @@ angular.module('starter.controllers', [])
 			$scope.sajnan_times = response4[0];
 		}
 	});
+	$scope.GotoLink = function(url){
+	  console.log(url);
+	  //var ref = window.open(url,'_blank','location=no'); 
+	  var ref = window.open(url,'_blank','location=no'); 
+	  return false;
+	 }
 })
 /** Contact Controller**/
 .controller('contactCtrl',function($scope,$http,$state,$ionicLoading,$ionicPopup) {

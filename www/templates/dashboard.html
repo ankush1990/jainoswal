@@ -31,7 +31,7 @@
                 <h2 style="margin-top:0px;">{{ data.title }}</h2>
             	<p style="font-size:11px;">{{ data.short_deas }}</p>
                 <a href="#/app/business_directory" ng-if="data.slug == 'business-form'"><button class="button button-outline button-positive button-block">{{ data.title }}</button></a>
-				<a href="#" onclick="window.open('http://makerits.com/jainoswalsajnanfedration/wp-content/uploads/2016/11/003.jpg', '_self'); return false;" ng-if="data.slug == '003.jpg'"><button class="button button-outline button-positive button-block">{{ data.title }}</button></a>
+				<a href="#" ng-click="GotoLink('http://makerits.com/jainoswalsajnanfedration/wp-content/uploads/2016/11/003.jpg')" ng-if="data.slug == '003.jpg'"><button class="button button-outline button-positive button-block">{{ data.title }}</button></a>
 				<a href="#/app/jain-thirth-yatra" ng-if="data.slug == 'एकल खिड़की'"><button class="button button-outline button-positive button-block">{{ data.title }}</button></a>
                 <a href="" ng-if="data.slug != 'business-form' && data.slug != '003.jpg' && data.slug != 'एकल खिड़की' "><button class="button button-outline button-positive button-block">{{ data.title }}</button></a>
             </div>
@@ -59,7 +59,7 @@
                 </div>
                 <div class="row">
                     <div class="col col-100">
-                        <a href="{{ sajnan_times.pdf_url }}"><button class="button button-outline button-small button-assertive button-block">{{ sajnan_times.pdf_title }}</button></a>
+                        <a href="#" ng-click="GotoLink(sajnan_times.pdf_url);"><button class="button button-outline button-small button-assertive button-block">{{ sajnan_times.pdf_title }}</button></a>
                     </div>
                 </div>
             </div>
