@@ -1,0 +1,68 @@
+<ion-view title="Worldofsteel">
+	<ion-header-bar class="bar-subheader">
+    	<h4 class="text-center ">{{heading}}</h4>
+  	</ion-header-bar>
+	<ion-content class="center">
+	 	<div class="list">
+			<div class="row item">
+              <div class="col col-40"><b>Origin</b></div>
+              <div class="col col-10">:</div>
+              <div class="col col-50">{{origin}}</div>
+            </div>
+            <div class="row item">
+              <div class="col col-40"><b>Classification</b></div>
+              <div class="col col-10">:</div>
+              <div class="col col-50">{{classification}}</div>
+            </div>
+            <div class="row item">
+              <div class="col col-40"><b>Quantity</b></div>
+              <div class="col col-10">:</div>
+              <div class="col col-50">{{quantity}}</div>
+            </div>
+            <div class="row item">
+              <div class="col col-40"><b>Steel Type</b></div>
+              <div class="col col-10">:</div>
+              <div class="col col-50 item-text-wrap">{{steel_type}}</div>
+            </div>
+            <div class="row item">
+              <div class="col col-40"><b>Form</b></div>
+              <div class="col col-10">:</div>
+              <div class="col col-50">{{forms}}</div>
+            </div>
+            <div class="row item">
+              <div class="col col-40"><b>Thickness(mm)</b></div>
+              <div class="col col-10">:</div>
+              <div class="col col-50">{{thickness}}</div>
+            </div>
+            <div class="row item">
+              <div class="col col-40"><b>Width(mm)</b></div>
+              <div class="col col-10">:</div>
+              <div class="col col-50">{{width}}</div>
+            </div>
+            <div class="row item">
+              <div class="col col-40"><b>Length(mm)</b></div>
+              <div class="col col-10">:</div>
+              <div class="col col-50">{{length}}</div>
+            </div>
+            <div class="row item">
+              <div class="col col-40"><b>Currency</b></div>
+              <div class="col col-10">:</div>
+              <div class="col col-50">{{currency}}</div>
+            </div>
+            <div class="row item">
+              <div class="col col-40"><b>Unit Price</b></div>
+              <div class="col col-10">:</div>
+              <div class="col col-50">{{price}}</div>
+            </div>
+        </div>
+        <div class = "row">
+         	<div class = "col col-30"></div>
+            <div class = "col col-45"> 
+            	<button class="button button-small button-assertive" ng-click="sendresponse(heading,origin,classification,quantity,steel_type,forms,thickness,width,length,currency,price)">
+          			Send Response
+        		</button>
+            </div>
+           	<div class = "col col-30"></div>
+        </div>
+    </ion-content>
+</ion-view>
