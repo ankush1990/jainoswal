@@ -229,6 +229,8 @@ static CFIndex WriteDataToStream(NSData* data, CFWriteStreamRef stream)
         totalPayloadLength += [postBodyBeforeFile length] + [postBodyAfterFile length];
     }
 
+    [req setValue:[[NSNumber numberWithLongLong:totalPayloadLength] stringValue] forHTTPHeaderField:@"Content-Length"];
+
     if (chunkedMode) {
         CFReadStreamRef readStream = NULL;
         CFWriteStreamRef writeStream = NULL;
@@ -253,11 +255,7 @@ static CFIndex WriteDataToStream(NSData* data, CFWriteStreamRef stream)
                         }
                     }
                 } else {
-                    if (totalPayloadLength > 0) {
-                        WriteDataToStream(fileData, writeStream);
-                    } else {
-                        NSLog(@"Uploading of an empty file is not supported for chunkedMode=true and multipart=false");
-                    }
+                    WriteDataToStream(fileData, writeStream);
                 }
             } else {
                 NSLog(@"FileTransfer: Failed to open writeStream");
@@ -266,7 +264,6 @@ static CFIndex WriteDataToStream(NSData* data, CFWriteStreamRef stream)
             CFRelease(writeStream);
         }];
     } else {
-        [req setValue:[[NSNumber numberWithLongLong:totalPayloadLength] stringValue] forHTTPHeaderField:@"Content-Length"];
         if (multipartFormUpload) {
             [postBodyBeforeFile appendData:fileData];
             [postBodyBeforeFile appendData:postBodyAfterFile];
@@ -284,7 +281,6 @@ static CFIndex WriteDataToStream(NSData* data, CFWriteStreamRef stream)
     NSString* server = [command argumentAtIndex:1];
     BOOL trustAllHosts = [[command argumentAtIndex:6 withDefault:[NSNumber numberWithBool:NO]] boolValue]; // allow self-signed certs
     NSString* objectId = [command argumentAtIndex:9];
-    BOOL chunkedMode = [[command argumentAtIndex:7 withDefault:[NSNumber numberWithBool:YES]] boolValue];
 
     CDVFileTransferDelegate* delegate = [[CDVFileTransferDelegate alloc] init];
 
@@ -296,7 +292,6 @@ static CFIndex WriteDataToStream(NSData* data, CFWriteStreamRef stream)
     delegate.target = server;
     delegate.trustAllHosts = trustAllHosts;
     delegate.filePlugin = [self.commandDelegate getCommandInstance:@"File"];
-    delegate.chunkedMode = chunkedMode;
 
     return delegate;
 }
@@ -814,7 +809,7 @@ static CFIndex WriteDataToStream(NSData* data, CFWriteStreamRef stream)
     if (self.direction == CDV_TRANSFER_UPLOAD) {
         NSMutableDictionary* uploadProgress = [NSMutableDictionary dictionaryWithCapacity:3];
 
-        [uploadProgress setObject:[NSNumber numberWithBool:(!self.chunkedMode)] forKey:@"lengthComputable"];
+        [uploadProgress setObject:[NSNumber numberWithBool:true] forKey:@"lengthComputable"];
         [uploadProgress setObject:[NSNumber numberWithLongLong:totalBytesWritten] forKey:@"loaded"];
         [uploadProgress setObject:[NSNumber numberWithLongLong:totalBytesExpectedToWrite] forKey:@"total"];
         CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:uploadProgress];
