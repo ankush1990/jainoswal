@@ -30,15 +30,18 @@
 
   <body ng-app="starter">
     <ion-nav-view></ion-nav-view>
-	
 	<!-- New -->
 	<!-- जैन तीर्थ यात्रा -->
 	<script id="jain-thirth-yatra.html" type="text/ng-template">
-	  <ion-view title="{{ jain_thirth_yatra_tab_title }}" hide-back-button="true">
+	  <ion-view title="अ. भा. जैन ओसवाल साजनान फेडरेशन ( रजि. )" hide-back-button="true">
+		<div class="bar bar-subheader bar-secondary">
+		  <h2 class="title secondary">{{ jain_thirth_yatra_tab_title }}</h2>
+		</div>
 		<ion-nav-buttons side="left">
 		  <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
 		</ion-nav-buttons>
 		<ion-content has-header="true" padding="true">
+		  <div class="pagesubheader"></div>
 		  <h3 class="text-center">{{ jain_thirth_yatra_tab_title }}</h3>
 		  <h5 style="color:#3a3aa5">{{ jain_thirth_yatra_tab_deas }}</h5>
 		  <div class="list">
@@ -63,11 +66,15 @@
 	</script>
 	<!-- महातीर्थ धर्मशाला -->  
 	<script id="mahathirth-dharmshala.html" type="text/ng-template">
-	  <ion-view title="{{ mahathirth_dharmshala_tab_title }}" hide-back-button="true">
+	  <ion-view title="अ. भा. जैन ओसवाल साजनान फेडरेशन ( रजि. )" hide-back-button="true">
+		<div class="bar bar-subheader bar-secondary">
+		  <h2 class="title secondary">{{ mahathirth_dharmshala_tab_title }}</h2>
+		</div>
 		<ion-nav-buttons side="left">
 		  <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
 		</ion-nav-buttons>
 		<ion-content has-header="true" padding="true">
+		  <div class="pagesubheader"></div>
 		  <h3 class="text-center">{{ mahathirth_dharmshala_tab_title }}</h3>
 		  <h5 class="text-center" style="color:#3a3aa5">{{ mahathirth_dharmshala_tab_deas }}</h5>
 		  <div class="list">
@@ -91,11 +98,15 @@
 	</script>
 	<!-- शिक्षा -->    
 	<script id="shiksha.html" type="text/ng-template">
-	  <ion-view title="शिक्षा" hide-back-button="true">
+	  <ion-view title="अ. भा. जैन ओसवाल साजनान फेडरेशन ( रजि. )" hide-back-button="true">
+		<div class="bar bar-subheader bar-secondary">
+		  <h2 class="title secondary">शिक्षा</h2>
+		</div>
 		<ion-nav-buttons side="left">
 		  <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
 		</ion-nav-buttons>
 		<ion-content has-header="true" padding="true">
+		  <div class="pagesubheader"></div>
 		  <h2>Coming Soon</h2>
 		</ion-content>
 		<ion-tabs class="tabs-icon-top tabs-striped">
@@ -108,11 +119,15 @@
 	</script>
 	<!-- स्वास्थ -->
 	<script id="swasthya.html" type="text/ng-template">
-	  <ion-view title="स्वास्थ" hide-back-button="true">
+	<ion-view title="अ. भा. जैन ओसवाल साजनान फेडरेशन ( रजि. )" hide-back-button="true">
+		<div class="bar bar-subheader bar-secondary">
+		  <h2 class="title secondary">स्वास्थ</h2>
+		</div>
 		<ion-nav-buttons side="left">
 		  <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
 		</ion-nav-buttons>
 		<ion-content has-header="true" padding="true">
+		  	<div class="pagesubheader"></div>
 		  <h2>Coming Soon</h2>
 		</ion-content>
 		<ion-tabs class="tabs-icon-top tabs-striped">
@@ -125,11 +140,15 @@
 	</script>
 	<!-- प्रोफाइल -->
 	<script id="myprofile.html" type="text/ng-template">
-	  <ion-view title="प्रोफाइल" hide-back-button="true">
+	  <ion-view title="अ. भा. जैन ओसवाल साजनान फेडरेशन ( रजि. )" hide-back-button="true">
+		<div class="bar bar-subheader bar-secondary">
+		  <h2 class="title secondary">प्रोफाइल</h2>
+		</div>
 		<ion-nav-buttons side="left">
 		  <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
 		</ion-nav-buttons>
 		<ion-content has-header="true" >
+			<div class="pagesubheader"></div>
 			<form ng-submit="submitprofileForm();" ng-controller="profileCtrl" name="profileForm" novalidate>
 				<div class="cover_profile">
 					<img src="{{ cover_image }}" style="height:175px;width:100%" alt="profilecover" class="coverimg" />	
@@ -209,7 +228,7 @@
 				</div>
 			</form>
 			<div class="row">
-			  <div class="col col-100" style="margin-bottom:90px;">
+			  <div class="col col-100" style="margin-bottom:110px;">
 			  </div>
 			</div>
 		</ion-content>
@@ -223,12 +242,15 @@
 	</script>
 	<!-- अकाउंट -->
 	<script id="account.html" type="text/ng-template">
-	  <ion-view title="अकाउंट" hide-back-button="true">
+	  <ion-view title="अ. भा. जैन ओसवाल साजनान फेडरेशन ( रजि. )" hide-back-button="true">
+		<div class="bar bar-subheader bar-secondary">
+		  <h2 class="title secondary">अकाउंट</h2>
+		</div>
 		<ion-nav-buttons side="left">
 		  <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
 		</ion-nav-buttons>
 		<ion-content has-header="true" >
-			<div class="row">
+			<div class="row pagesubheader">
 				<div class="col col-100">
 					<h3 style="margin-bottom:0px;"><i class="ion-ios-person"></i> Account</h3>
 					<form ng-submit="submitaccountForm();" ng-controller="profileCtrl" name="accountForm" novalidate>
@@ -262,12 +284,15 @@
 	</script>
 	<!-- चेंज-पासवर्ड -->
 	<script id="change-password.html" type="text/ng-template">
-	  <ion-view title="चेंज-पासवर्ड" hide-back-button="true">
+	  <ion-view title="अ. भा. जैन ओसवाल साजनान फेडरेशन ( रजि. )" hide-back-button="true">
+		<div class="bar bar-subheader bar-secondary">
+		  <h2 class="title secondary">चेंज-पासवर्ड</h2>
+		</div>
 		<ion-nav-buttons side="left">
 		  <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
 		</ion-nav-buttons>
 		<ion-content has-header="true">
-		  <div class="row">
+		  <div class="row pagesubheader">
 			<div class="col col-100">
 				<h3 style="margin-bottom:0px;"><i class="ion-ios-locked"></i> Change Password</h3>
 				<form ng-submit="submitchgpasswordForm();" ng-controller="profileCtrl" name="chgpasswordForm" novalidate>
@@ -301,12 +326,15 @@
 	</script>
 	<!-- प्राइवेसी -->
 	<script id="privacy.html" type="text/ng-template">
-	  <ion-view title="प्राइवेसी" hide-back-button="true">
+	  <ion-view title="अ. भा. जैन ओसवाल साजनान फेडरेशन ( रजि. )" hide-back-button="true">
+		<div class="bar bar-subheader bar-secondary">
+		  <h2 class="title secondary">प्राइवेसी</h2>
+		</div>
 		<ion-nav-buttons side="left">
 		  <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
 		</ion-nav-buttons>
 		<ion-content has-header="true">
-		  <div class="row">
+		  <div class="row pagesubheader">
 			<div class="col col-100">
 				<h3 style="margin-bottom:0px;"><i class="ion-ios-gear"></i> Privacy</h3>
 				<form ng-submit="submitprivacyForm();" ng-controller="profileCtrl" name="chgpasswordForm" novalidate>
@@ -346,8 +374,5 @@
 	  </ion-view>
 	</script>
 	<!--/ New -->
-	
-	
-	
-  </body>
+ </body>
 </html>

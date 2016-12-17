@@ -1,5 +1,6 @@
 // Ionic Starter App
 var globalip = "http://makerits.com/jainoswalsajnanfedration/webservice/";
+var globalip_2 = "http://makerits.com/jainoswalsajnanfedration/matrimonial/matrimonial_web";
 
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
@@ -47,6 +48,42 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     }
   })
+  .state('app.sanvidhaan', {
+    url: '/sanvidhaan',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/sanvidhaan.html',
+		/*controller: 'dashboardCtrl'*/
+      }
+    }
+  })
+  .state('app.padadhikari', {
+    url: '/padadhikari',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/padadhikari.html',
+		/*controller: 'dashboardCtrl'*/
+      }
+    }
+  })
+  .state('app.karyakarini', {
+    url: '/karyakarini',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/karyakarini.html',
+		/*controller: 'dashboardCtrl'*/
+      }
+    }
+  })
+  .state('app.uddeshya', {
+    url: '/uddeshya',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/uddeshya.html',
+		/*controller: 'dashboardCtrl'*/
+      }
+    }
+  })
   .state('app.login', {
     url: '/login',
     views: {
@@ -76,6 +113,23 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     views: {
       'menuContent': {
         templateUrl: 'templates/contact.html',
+      }
+    }
+  })
+  .state('app.matrimonial_contact', {
+    url: '/matrimonial_contact',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/matrimonial_contact.html',
+      }
+    }
+  })
+  .state('app.jankari', {
+    url: '/jankari',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/jankari.html',
+		controller: 'jankariCtrl'
       }
     }
   })
@@ -176,6 +230,67 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 				templateUrl: 'privacy.html',
 				/*controller: 'ekal_khidkiCtrl'*/
 			}
+		}
+	})
+	.state('app.matrimonial', {
+		url: '/matrimonial',
+		views: {
+			'menuContent': {
+				templateUrl: 'templates/matrimonial.html',
+				controller: 'matrimonialCtrl'
+			}
+		}
+	})
+	.state('app.member-login', {
+		url: '/member-login',
+		views: {
+		  'menuContent': {
+			templateUrl: 'templates/member-login.html'
+		  }
+		}
+	})
+	.state('app.member-registration', {
+		url: '/member-registration',
+		views: {
+			'menuContent': {
+				templateUrl: 'templates/member-registration.html',
+				/*controller: 'profileCtrl'*/
+			}
+		}
+	})
+	.state('app.forgot-password-member', {
+		url: '/forgot-password-member',
+		views: {
+			'menuContent': {
+				templateUrl: 'templates/forgot-password-member.html',
+			}
+		}
+	})
+	.state('app.member-list', {
+		url: '/member-list',
+		views: {
+			'menuContent': {
+				templateUrl: 'templates/member-list.html',
+				controller: 'memberlistCtrl'
+			}
+		}
+	})
+	.state('app.member-profile', {
+		url: '/member-profile/:user_id',
+		views: {
+		  'menuContent': {
+			templateUrl: 'templates/member-profile.html',
+			controller: 'memberprofileCtrl'
+		  }
+		}
+	})
+	.state('app.profile-edit', {
+		url: '/profile-edit',
+		views: {
+		  'menuContent': {
+			templateUrl: 'templates/profile-edit.html',
+			/*controller: 'profileCtrl'*/
+		  }
 		}
 	})
   // if none of the above states are matched, use this as the fallback

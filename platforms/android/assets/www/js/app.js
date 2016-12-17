@@ -1,5 +1,8 @@
 // Ionic Starter App
-var globalip = "http://makerits.com/worldofsteel/get_hint.php";
+var globalip = "http://makerits.com/jainoswalsajnanfedration/webservice/";
+var globalip_2 = "http://makerits.com/jainoswalsajnanfedration/matrimonial/matrimonial_web";
+
+
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
@@ -20,72 +23,64 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       StatusBar.styleDefault();
     }
 	
-	//show a confirm modal on exit app 
-	$ionicPlatform.registerBackButtonAction(function(event) {
-    	if(true) { // your check here
-			// check if there is back opiton to go back in application 
-			if ($ionicHistory.backView()) {
-				$ionicHistory.backView().go();
- 			}
-			else{
-				$ionicPopup.confirm({
-					title: 'World Of Steel',
-					template: 'Are you sure you want to exit?'
-				}).then(function(res) {
-					if (res) {
-						ionic.Platform.exitApp();
-					}
-				})
-			}
-    	}
-  	},100);
-	
-	//check internt connection
-	/*if(window.Connection) {
-		if(navigator.connection.type == Connection.NONE) {
-			$ionicPopup.confirm({
-				title: "Internet Disconnected",
-				content: "The internet is disconnected on your device."
-			})
-			.then(function(result) {
-				if(!result) {
-					//ionic.Platform.exitApp();
-				}
-			});
-		}
-	}*/
-	
-	//one signal code
-	var notificationOpenedCallback = function(jsonData) {
-		//console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
-		var data = { origin:jsonData.additionalData.origin, quantity:jsonData.additionalData.quantity, thickness:jsonData.additionalData.thickness, width:jsonData.additionalData.width, length:jsonData.additionalData.length, currency:jsonData.additionalData.currency, price:jsonData.additionalData.price,heading:jsonData.additionalData.heading,classification:jsonData.additionalData.classification,steel_type:jsonData.additionalData.steel_type,forms:jsonData.additionalData.forms};
-		$state.go('app.offers-detail',data);
-	};
 
-	window.plugins.OneSignal.init("1eb095de-4015-4a67-899b-e38da22ae0df",
-									{googleProjectNumber: "600906789732"},
-									notificationOpenedCallback);
-  
-	// Show an alert box if a notification comes in when the user is in your app.
-	window.plugins.OneSignal.enableInAppAlertNotification(true);
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+  
+  $ionicConfigProvider.views.transition('none');
+  $ionicConfigProvider.tabs.position('bottom'); 
   $stateProvider
 
-    .state('app', {
+  .state('app', {
     url: '/app',
     abstract: true,
     templateUrl: 'templates/menu.html',
     controller: 'AppCtrl'
   })
-
   .state('app.dashboard', {
     url: '/dashboard',
     views: {
       'menuContent': {
-        templateUrl: 'templates/dashboard.html'
+        templateUrl: 'templates/dashboard.html',
+		controller: 'dashboardCtrl'
+      }
+    }
+  })
+  .state('app.sanvidhaan', {
+    url: '/sanvidhaan',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/sanvidhaan.html',
+		/*controller: 'dashboardCtrl'*/
+      }
+    }
+  })
+  .state('app.padadhikari', {
+    url: '/padadhikari',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/padadhikari.html',
+		/*controller: 'dashboardCtrl'*/
+      }
+    }
+  })
+  .state('app.karyakarini', {
+    url: '/karyakarini',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/karyakarini.html',
+		/*controller: 'dashboardCtrl'*/
+      }
+    }
+  })
+  .state('app.uddeshya', {
+    url: '/uddeshya',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/uddeshya.html',
+		/*controller: 'dashboardCtrl'*/
       }
     }
   })
@@ -97,68 +92,207 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     }
   })
-
-  .state('app.about', {
-      url: '/about',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/about.html'
-        }
+  .state('app.register', {
+    url: '/register',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/register.html'
       }
-    })
-    .state('app.offers', {
-      url: '/offers',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/offers.html',
-          controller: 'offersCtrl'
-        }
+    }
+  })
+  .state('app.forgot-password', {
+    url: '/forgot-password',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/forgot-password.html'
       }
-    })
-	.state('app.offers-detail', {
-      url: "/offers-detail/:origin?quantity?thickness?width?length?currency?heading?price?classification?steel_type?forms",
-      views: {
-        'menuContent' :{
-          templateUrl: "templates/offers-detail.html",
-		  controller: "offers_detailCtrl"
-        }
-      }
-    })
-	.state('app.offers-detail-response', {
-      url: '/offers-detail-response/:offer_refno?origin?classification?quantity?steel_type?forms?thickness?width?length?currency?price',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/offers-detail-response.html',
-          controller: 'offers_response_Ctrl'
-        }
-      }
-    })
+    }
+  })
   .state('app.contact', {
     url: '/contact',
     views: {
       'menuContent': {
         templateUrl: 'templates/contact.html',
-        controller: 'contactCtrl'
       }
     }
   })
-  .state('app.getinformation', {
-      url: "/getinformation",
-      views: {
-        'menuContent' :{
-          templateUrl: "templates/getinformation.html",
-        }
+  .state('app.matrimonial_contact', {
+    url: '/matrimonial_contact',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/matrimonial_contact.html',
       }
-    })
-	.state('app.emailus', {
-      url: "/emailus",
-      views: {
-        'menuContent' :{
-          templateUrl: "templates/emailus.html",
-		  controller: "emailCtrl"
-        }
+    }
+  })
+  .state('app.jankari', {
+    url: '/jankari',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/jankari.html',
+		controller: 'jankariCtrl'
       }
-    });
+    }
+  })
+  .state('app.sandesh', {
+    url: '/sandesh/:slug',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/sandesh.html',
+		controller: 'sandeshCtrl'
+      }
+    }
+  })
+  .state('app.parichaypatra', {
+    url: '/parichaypatra',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/parichaypatra.html',
+		controller: 'parichaypatraCtrl'
+      }
+    }
+  })
+  .state('app.business_directory', {
+    url: '/business_directory',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/business_directory.html',
+		/*controller: 'business_directoryCtrl'*/
+      }
+    }
+  })
+  .state('app.jain-thirth-yatra', {
+		url: '/jain-thirth-yatra',
+		views: {
+			'menuContent': {
+				templateUrl: 'jain-thirth-yatra.html',
+				controller: 'ekal_khidkiCtrl'
+			}
+		}
+	})
+	.state('app.mahathirth-dharmshala', {
+		url: '/mahathirth-dharmshala',
+		views: {
+			'menuContent': {
+				templateUrl: 'mahathirth-dharmshala.html',
+				controller: 'ekal_khidkiCtrl'
+			}
+		}
+	})
+	.state('app.shiksha', {
+		url: '/shiksha',
+		views: {
+			'menuContent': {
+				templateUrl: 'shiksha.html',
+				controller: 'ekal_khidkiCtrl'
+			}
+		}
+	})
+	.state('app.swasthya', {
+		url: '/swasthya',
+		views: {
+			'menuContent': {
+				templateUrl: 'swasthya.html',
+				controller: 'ekal_khidkiCtrl'
+			}
+		}
+	})
+	.state('app.myprofile', {
+		url: '/myprofile',
+		views: {
+			'menuContent': {
+				templateUrl: 'myprofile.html',
+				/*controller: 'ekal_khidkiCtrl'*/
+			}
+		}
+	})
+	.state('app.account', {
+		url: '/account',
+		views: {
+			'menuContent': {
+				templateUrl: 'account.html',
+				/*controller: 'ekal_khidkiCtrl'*/
+			}
+		}
+	})
+	.state('app.change-password', {
+		url: '/change-password',
+		views: {
+			'menuContent': {
+				templateUrl: 'change-password.html',
+				/*controller: 'ekal_khidkiCtrl'*/
+			}
+		}
+	})
+	.state('app.privacy', {
+		url: '/privacy',
+		views: {
+			'menuContent': {
+				templateUrl: 'privacy.html',
+				/*controller: 'ekal_khidkiCtrl'*/
+			}
+		}
+	})
+	.state('app.matrimonial', {
+		url: '/matrimonial',
+		views: {
+			'menuContent': {
+				templateUrl: 'templates/matrimonial.html',
+				controller: 'matrimonialCtrl'
+			}
+		}
+	})
+	.state('app.member-login', {
+		url: '/member-login',
+		views: {
+		  'menuContent': {
+			templateUrl: 'templates/member-login.html'
+		  }
+		}
+	})
+	.state('app.member-registration', {
+		url: '/member-registration',
+		views: {
+			'menuContent': {
+				templateUrl: 'templates/member-registration.html',
+				/*controller: 'profileCtrl'*/
+			}
+		}
+	})
+	.state('app.forgot-password-member', {
+		url: '/forgot-password-member',
+		views: {
+			'menuContent': {
+				templateUrl: 'templates/forgot-password-member.html',
+			}
+		}
+	})
+	.state('app.member-list', {
+		url: '/member-list',
+		views: {
+			'menuContent': {
+				templateUrl: 'templates/member-list.html',
+				controller: 'memberlistCtrl'
+			}
+		}
+	})
+	.state('app.member-profile', {
+		url: '/member-profile/:user_id',
+		views: {
+		  'menuContent': {
+			templateUrl: 'templates/member-profile.html',
+			controller: 'memberprofileCtrl'
+		  }
+		}
+	})
+	.state('app.profile-edit', {
+		url: '/profile-edit',
+		views: {
+		  'menuContent': {
+			templateUrl: 'templates/profile-edit.html',
+			/*controller: 'profileCtrl'*/
+		  }
+		}
+	})
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/dashboard');
 })
@@ -171,9 +305,9 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 		},
 		link: function ($scope, $element, $attr) {
 		  function initialize() {
-			var myLatLng = {lat:18.9492888, lng: 72.8403256};
+			var myLatLng = {lat:22.731573, lng: 75.875749};
 			var mapOptions = {
-			  center: new google.maps.LatLng(18.9492888, 72.8403256),
+			  center: new google.maps.LatLng(22.731573, 75.875749),
 			  zoom: 14,
 			  mapTypeId: google.maps.MapTypeId.ROADMAP
 			};
@@ -185,7 +319,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 				content:"Hello World!"
 			});
 			var infowindow = new google.maps.InfoWindow({
-			  content:"World Of Steel"
+			  content:"<p> अ. भा. जैन ओसवाल साजनान फेडरेशन ( रजि. ) , <p>19/16 – ई,विश्राम कालोनी, वाय इन रोड इंदौर (मध्यप्रदेश)</p>"
 			});
 			infowindow.open(map,marker);
 			
