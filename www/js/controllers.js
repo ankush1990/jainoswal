@@ -78,7 +78,7 @@ angular.module('starter.controllers', [])
 })
 
 /** Dashboard Controller**/
-.controller('dashboardCtrl',function($scope,$ionicSlideBoxDelegate,$ionicHistory,$ionicLoading,$http,$state,$rootScope) {
+.controller('dashboardCtrl',function($scope,$ionicSlideBoxDelegate,$ionicHistory,$ionicLoading,$http,$state,$rootScope,$window) {
 	/* National Officers */ /* http://makerits.com/jainoswalsajnanfedration/webservice/?action=national_officers */
 	if(window.localStorage.getItem("login_var_local") !== undefined) {
 		$rootScope.$broadcast('login_var',{global_login:window.localStorage.getItem("login_var_local")});
@@ -304,7 +304,7 @@ angular.module('starter.controllers', [])
 	});
 })
 /** Login Controller**/
-.controller('loginCtrl',function($scope,$http,$state,$ionicLoading,$ionicPopup,$ionicHistory,$rootScope) {
+.controller('loginCtrl',function($scope,$http,$state,$ionicLoading,$ionicPopup,$ionicHistory,$rootScope,$window) {
 	/* Login */ /* http://makerits.com/jainoswalsajnanfedration/webservice/?action=login */
 	$scope.submitloginForm = function() {
 		var action = "login";
@@ -373,7 +373,7 @@ angular.module('starter.controllers', [])
 	};
 })
 /** Member Login Controller**/
-.controller('memberloginCtrl',function($scope,$http,$state,$ionicLoading,$ionicPopup,$ionicHistory,$rootScope) {
+.controller('memberloginCtrl',function($scope,$http,$state,$ionicLoading,$ionicPopup,$ionicHistory,$rootScope,$window) {
 	/* Member Login */ /* http://makerits.com/jainoswalsajnanfedration/matrimonial/matrimonial_web/?action=login&username=gautam&password=41014101@rG */
 	$scope.submitmemberloginForm = function() {
 		var action = "login";
