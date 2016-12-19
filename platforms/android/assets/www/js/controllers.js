@@ -80,11 +80,12 @@ angular.module('starter.controllers', [])
 /** Dashboard Controller**/
 .controller('dashboardCtrl',function($scope,$ionicSlideBoxDelegate,$ionicHistory,$ionicLoading,$http,$state,$rootScope,$window) {
 	/* National Officers */ /* http://makerits.com/jainoswalsajnanfedration/webservice/?action=national_officers */
+	//alert(window.localStorage.getItem("login_var_local"));
 	if(window.localStorage.getItem("login_var_local") !== undefined) {
-		$rootScope.$broadcast('login_var',{global_login:window.localStorage.getItem("login_var_local")});
+		$rootScope.$broadcast('login_var',window.localStorage.getItem("login_var_local"));
 	} 
 	if(window.localStorage.getItem("login_var_2_local") !== undefined) {
-		$rootScope.$broadcast('login_var_2',{global_login:window.localStorage.getItem("login_var_2_local")});
+		$rootScope.$broadcast('login_var_2',window.localStorage.getItem("login_var_2_local"));
 	} 
 	$ionicLoading.show({template: '<ion-spinner icon="crescent"></ion-spinner>'});
 	var action = "national_officers";
@@ -351,7 +352,7 @@ angular.module('starter.controllers', [])
 						disableBack: true
 					});
 					$rootScope.$broadcast('login_var',{global_login:response[0].result.user_id});
-					window.localStorage.setItem("login_var_local",{global_login:response[0].result.user_id});
+					window.localStorage.setItem("login_var_local",response[0].result.user_id);
 					$state.go("app.dashboard");
 				}
 				else{
@@ -420,7 +421,7 @@ angular.module('starter.controllers', [])
 						disableBack: true
 					});
 					$rootScope.$broadcast('login_var_2',{global_login:response[0].user_id});
-					window.localStorage.setItem("login_var_2_local",{global_login:response[0].user_id});
+					window.localStorage.setItem("login_var_2_local",response[0].user_id);
 					$state.go("app.matrimonial");
 				}
 				else{
