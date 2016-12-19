@@ -266,6 +266,14 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 			}
 		}
 	})
+	.state('app.introductionform', {
+		url: '/introductionform',
+		views: {
+			'menuContent': {
+				templateUrl: 'templates/introductionform.html'
+			}
+		}
+	})
 	.state('app.member-list', {
 		url: '/member-list',
 		views: {

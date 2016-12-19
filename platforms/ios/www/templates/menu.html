@@ -20,13 +20,28 @@
         <ion-item menu-close class="item item-icon-left" ng-if="site_view == 'site'" ng-click="switch_site('site');" href="#/app/dashboard">
           <i class="icon ion-home"></i>होम
         </ion-item>
+		<ion-item menu-close class="item item-icon-left" ng-if="site_view == 'matrimonial'" href="#/app/matrimonial">
+          <i class="icon ion-heart"></i>Home
+        </ion-item>
 		<div class="list" style="margin-bottom:0px;" ng-if="site_view == 'site'" >
-			<div class="item" ng-init="showSub1 = false" ng-click="showSub1 = !showSub1"><span style="float:left"><i class="icon  ion-ios-information" ></i> जानकारी </span> <i class="ion-chevron-right" style="float:right" ng-show="!showSub1"></i> <i class="ion-chevron-down" style="float:right" ng-show="showSub1" ></i></div>
+			<div class="item item-custom" ng-init="showSub1 = false" ng-click="showSub1 = !showSub1"><span style="float:left"><i class="icon  ion-ios-information my" ></i> जानकारी </span> <i class="ion-chevron-right" style="float:right" ng-show="!showSub1"></i> <i class="ion-chevron-down" style="float:right" ng-show="showSub1" ></i></div>
 			<a href="" ng-click="GotoSanvidhaan();" ><div class="item child-item" ng-show="showSub1" >संविधान</div></a>
 			<a href="" ng-click="GotoPadadhikari();"><div class="item child-item" ng-show="showSub1">पदाधिकारी</div></a>
 			<a href="" ng-click="GotoKaryakarini();"><div class="item child-item" ng-show="showSub1">राष्ट्र कार्यकारिणी</div></a>
 			<a href="" ng-click="GotoUddeshya();"><div class="item child-item" ng-show="showSub1">उद्देश्य</div></a>
 		</div>
+		<div class="list" style="margin-bottom:0px;" ng-if="site_view == 'site'" >
+			<div class="item item-custom" ng-init="showSub2 = false" ng-click="showSub2 = !showSub2"><span style="float:left"><i class="icon ion-android-calendar my" ></i> गतिविधियाँ </span> <i class="ion-chevron-right" style="float:right" ng-show="!showSub2"></i> <i class="ion-chevron-down" style="float:right" ng-show="showSub2" ></i></div>
+			<a href="" ng-click="GotoBusiness_directory();"><div class="item child-item" ng-show="showSub2" >बिजनेस डायरेक्ट्री</div></a>
+			<a href="" ng-click="GotoMatrimonial();"><div class="item child-item" ng-show="showSub2">वैवाहिक परिचय</div></a>
+			<a href="" ng-click="GotoLink('http://makerits.com/jainoswalsajnanfedration/wp-content/uploads/2016/11/003.jpg')"><div class="item child-item" ng-show="showSub2">अल्पसंख्यक प्रमाण पत्र</div></a>
+			<a href=""><div class="item child-item" ng-show="showSub2">जाने संघ के बारे में</div></a>
+			<a href="" ng-click="GotoEkal_khidki();"><div class="item child-item" ng-show="showSub2">एकल खिड़की</div></a>
+			<a href=""><div class="item child-item" ng-show="showSub2">साजनान टाइम्स</div></a>
+		</div>
+		<ion-item menu-close class="item item-icon-left" href="#/app/jain-thirth-yatra" ng-show="site_view == 'site'"> 
+          <i class="icon ion-ios-book"></i>एकल खिड़की
+        </ion-item>
         <!--<ion-item menu-close class="item item-icon-left" ng-if="site_view == 'matrimonial'" href="#/app/parichaypatra">
           <i class="icon ion-clipboard"></i>परिचय-पत्र
         </ion-item>-->
@@ -35,6 +50,9 @@
         </ion-item>
 		<ion-item menu-close class="item item-icon-left" href="#/app/profile-edit" ng-controller="LogoutCtrl_2" ng-show="login_2 != '' && site_view == 'matrimonial'"> 
           <i class="icon ion-person"></i>Profile
+        </ion-item>
+		<ion-item menu-close class="item item-icon-left" ng-if="site_view == 'matrimonial'" href="#/app/introductionform">
+          <i class="icon ion-ios-paper"></i>Introduction Form
         </ion-item>
 		<ion-item menu-close class="item item-icon-left" ng-if="site_view == 'matrimonial'" href="#/app/member-list">
           <i class="icon ion-person-stalker"></i>Member List

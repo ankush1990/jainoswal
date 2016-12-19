@@ -80,6 +80,12 @@ angular.module('starter.controllers', [])
 /** Dashboard Controller**/
 .controller('dashboardCtrl',function($scope,$ionicSlideBoxDelegate,$ionicHistory,$ionicLoading,$http,$state,$rootScope) {
 	/* National Officers */ /* http://makerits.com/jainoswalsajnanfedration/webservice/?action=national_officers */
+	if(window.localStorage.getItem("login_var_local") !== undefined) {
+		$rootScope.$broadcast('login_var',{global_login:window.localStorage.getItem("login_var_local")});
+	} 
+	if(window.localStorage.getItem("login_var_2_local") !== undefined) {
+		$rootScope.$broadcast('login_var_2',{global_login:window.localStorage.getItem("login_var_2_local")});
+	} 
 	$ionicLoading.show({template: '<ion-spinner icon="crescent"></ion-spinner>'});
 	var action = "national_officers";
 	var data_parameters = "action="+action;
@@ -345,6 +351,7 @@ angular.module('starter.controllers', [])
 						disableBack: true
 					});
 					$rootScope.$broadcast('login_var',{global_login:response[0].result.user_id});
+					window.localStorage.setItem("login_var_local",{global_login:response[0].result.user_id});
 					$state.go("app.dashboard");
 				}
 				else{
@@ -390,7 +397,7 @@ angular.module('starter.controllers', [])
 		else if(!filter.test(email)){
 			$ionicPopup.show({
 			  template: '',
-			  title: 'ई-मेल अमान्य है |',
+			  title: 'Invalid E-Mail Format',
 			  scope: $scope,
 			  buttons: [
 				{ 
@@ -413,6 +420,7 @@ angular.module('starter.controllers', [])
 						disableBack: true
 					});
 					$rootScope.$broadcast('login_var_2',{global_login:response[0].user_id});
+					window.localStorage.setItem("login_var_2_local",{global_login:response[0].user_id});
 					$state.go("app.matrimonial");
 				}
 				else{
@@ -608,7 +616,7 @@ angular.module('starter.controllers', [])
 	});
 })
 /** Parichay Patra Controller **/
-.controller('parichaypatraCtrl',function($scope,$http,$state,$ionicLoading,$ionicPopup) {
+.controller('parichaypatraCtrl',function($scope,$http,$state,$ionicLoading,$ionicPopup,$ionicModal) {
 	/* Parichay Patra */ /* http://makerits.com/jainoswalsajnanfedration/webservice/?action=parichay_patr */
 	$scope.daysarr = global_daysarr;
 	$scope.monthsarr = global_monthsarr;
@@ -667,12 +675,12 @@ angular.module('starter.controllers', [])
 		if(typeof pratayasi_name === "undefined" || typeof gottr === "undefined" || typeof Address === "undefined" || typeof Phone_number === "undefined" || typeof Mobile_number === "undefined" || typeof Suchna_number === "undefined" || typeof year === "undefined" || typeof month === "undefined" || typeof day === "undefined" || typeof Birth_time === "undefined" || typeof samyakaal === "undefined" || typeof Birth_place === "undefined" || typeof Types_vard === "undefined" || typeof Hight === "undefined" || typeof Wait === "undefined" || typeof Blood_group === "undefined" || typeof Education === "undefined" || typeof email162 === "undefined" || typeof Business === "undefined" || typeof Income === "undefined" || typeof Intrested === "undefined" || typeof Important_details === "undefined" || typeof Father_name === "undefined" || typeof Father_mobile_number === "undefined" || typeof Mother_name_work === "undefined" || typeof gotter_soyam === "undefined" || typeof gotter_mama === "undefined" || typeof gotter_dadi === "undefined" || typeof gotter_nani === "undefined" || typeof manglik === "undefined" || typeof Patrika_milan === "undefined" || typeof Dharmik_manyata === "undefined" || typeof residentsinc === "undefined" || typeof upstithiti === "undefined" || typeof Other_contact === "undefined" || typeof other_adderess === "undefined" || typeof other_Mobile_number === "undefined" || typeof Pratyashi_relationship === "undefined" || pratayasi_name == "" || gottr == "" || Address == "" || Phone_number == "" || Mobile_number == "" || Suchna_number == "" || year == "" || month == "" || day == "" || Birth_time == "" || samyakaal == "" || Birth_place == "" || Types_vard == "" || Hight == "" || Wait == "" || Blood_group == "" || Education == "" || email162 == "" || Business == "" || Income == "" || Intrested == "" || Important_details == "" || Father_name == "" || Father_mobile_number == "" || Mother_name_work == "" || gotter_soyam == "" || gotter_mama == "" || gotter_dadi == "" || gotter_nani == "" || manglik == "" || Patrika_milan == "" || Dharmik_manyata == "" || residentsinc == "" || upstithiti == "" || Other_contact == "" || other_adderess == "" || other_Mobile_number == "" || Pratyashi_relationship == ""){
 			$ionicPopup.show({
 			  template: '',
-			  title: 'सभी (*) चिन्हित फील्ड अनिवार्य है |',
+			  title: 'All (*) Marked Fields Are Compulsory',
 			  scope: $scope,
 			  buttons: [
 				{ 
 				  text: 'Ok',
-				  type: 'button-balanced'
+				  type: 'button-positive'
 				},
 			  ]
 			});
@@ -680,12 +688,12 @@ angular.module('starter.controllers', [])
 		else if(!filter.test(email162)){
 			$ionicPopup.show({
 			  template: '',
-			  title: 'ई-मेल अमान्य है |',
+			  title: 'Invalid E-Mail Format',
 			  scope: $scope,
 			  buttons: [
 				{ 
 				  text: 'Ok',
-				  type: 'button-balanced'
+				  type: 'button-positive'
 				},
 			  ]
 			});
@@ -704,7 +712,7 @@ angular.module('starter.controllers', [])
 				  buttons: [
 					{ 
 					  text: 'Ok',
-					  type: 'button-balanced'
+					  type: 'button-positive'
 					},
 				  ]
 				});
@@ -715,6 +723,31 @@ angular.module('starter.controllers', [])
 			});
 		}
 	};
+	// ionic Modal
+	$ionicModal.fromTemplateUrl('termsandconditions.html', {
+		scope: $scope,
+		animation: 'slide-in-up'
+	}).then(function(modal) {
+		$scope.modal = modal;
+	});
+	$scope.openModal = function() {
+		$scope.modal.show();
+	};
+	$scope.closeModal = function() {
+		$scope.modal.hide();
+	};
+	// Cleanup the modal when we're done with it!
+	$scope.$on('$destroy', function() {
+		$scope.modal.remove();
+	});
+	// Execute action on hide modal
+	$scope.$on('modal.hidden', function() {
+		// Execute action
+	});
+	// Execute action on remove modal
+	$scope.$on('modal.removed', function() {
+		// Execute action
+	});
 })
 /** Profile Controller **/
 .controller('profileCtrl',function($scope,$http,$state,$ionicLoading,$ionicPopup,$rootScope,$ionicHistory) {
@@ -1107,6 +1140,7 @@ angular.module('starter.controllers', [])
 	})
 	.success(function(response2) {
 		$scope.gallery = response2;
+		console.log(response2.length);
 	});
 	/* Creative Ideas */ /* http://makerits.com/jainoswalsajnanfedration/matrimonial/matrimonial_web/?action=creative_ideas */
 	var action3 = "creative_ideas";
@@ -1458,6 +1492,32 @@ angular.module('starter.controllers', [])
 			disableBack: true
 		});
 		$state.go('app.uddeshya');
+		$ionicSideMenuDelegate.toggleLeft();
+	}
+	$scope.GotoBusiness_directory = function(){ 
+		$ionicHistory.nextViewOptions({
+			disableBack: true
+		});
+		$state.go('app.business_directory');
+		$ionicSideMenuDelegate.toggleLeft();
+	}
+	$scope.GotoMatrimonial = function(){ 
+		$ionicHistory.nextViewOptions({
+			disableBack: true
+		});
+		$rootScope.$broadcast('site_view',{global_site_view:'matrimonial'});
+		$state.go('app.matrimonial');
+		$ionicSideMenuDelegate.toggleLeft();
+	}
+	$scope.GotoLink = function(url){
+	  var ref = window.open(url,'_blank','location=no'); 
+	  return false;
+	}
+	$scope.GotoEkal_khidki = function(){ 
+		$ionicHistory.nextViewOptions({
+			disableBack: true
+		});
+		$state.go('app.jain-thirth-yatra');
 		$ionicSideMenuDelegate.toggleLeft();
 	}
 });

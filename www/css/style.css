@@ -38,3 +38,13 @@ map { display: block;width: 100%;height: 100%; }
 .bar.bar-secondary .button , .bar.bar-secondary h1 , .bar.bar-secondary h2 , .bar.bar-secondary h3 { color: #800000 !important;  }
 .secondary { color: #f2ef9b; }
 /** End New Class **/
+
+.item-custom {
+    padding-left: 55px;
+}
+.icon.ion-ios-information.my  , .icon.ion-android-calendar.my{
+    font-size: 30px;
+    left: 15px;
+    position: absolute;
+    top: 10px;
+}

@@ -44,10 +44,10 @@
         </div>-->
 		<div ng-repeat="data in gallery">
 			<div class="row" ng-if="$even">
-				<div class="col col-50 text-center">
+				<div ng-if="gallery[$index].image_url" class="col col-50 text-center">
 					<img src="{{ gallery[$index].image_url }}" alt="sliderimg" style="height:140px;width:100%;">
 				</div>
-				<div class="col col-50 text-center">
+				<div ng-if="gallery[$index + 1].image_url" class="col col-50 text-center">
 					<img src="{{  gallery[$index + 1].image_url }}" alt="sliderimg" style="height:140px;width:100%;">
 				</div>
 			</div>
