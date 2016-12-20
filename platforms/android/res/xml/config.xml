@@ -46,18 +46,18 @@
     <icon density="xhdpi" src="resources/android/icon/drawable-xhdpi-icon.png" />
     <icon density="xxhdpi" src="resources/android/icon/drawable-xxhdpi-icon.png" />
     <icon density="xxxhdpi" src="resources/android/icon/drawable-xxxhdpi-icon.png" />
-    <splash qualifier="land-ldpi" src="resources/android/splash/drawable-land-ldpi-screen.png" />
-    <splash qualifier="land-mdpi" src="resources/android/splash/drawable-land-mdpi-screen.png" />
-    <splash qualifier="land-hdpi" src="resources/android/splash/drawable-land-hdpi-screen.png" />
-    <splash qualifier="land-xhdpi" src="resources/android/splash/drawable-land-xhdpi-screen.png" />
-    <splash qualifier="land-xxhdpi" src="resources/android/splash/drawable-land-xxhdpi-screen.png" />
-    <splash qualifier="land-xxxhdpi" src="resources/android/splash/drawable-land-xxxhdpi-screen.png" />
-    <splash qualifier="port-ldpi" src="resources/android/splash/drawable-port-ldpi-screen.png" />
-    <splash qualifier="port-mdpi" src="resources/android/splash/drawable-port-mdpi-screen.png" />
-    <splash qualifier="port-hdpi" src="resources/android/splash/drawable-port-hdpi-screen.png" />
-    <splash qualifier="port-xhdpi" src="resources/android/splash/drawable-port-xhdpi-screen.png" />
-    <splash qualifier="port-xxhdpi" src="resources/android/splash/drawable-port-xxhdpi-screen.png" />
-    <splash qualifier="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
+    <splash qualifier="land-ldpi" src="platforms/android/res/drawable-land-ldpi/screen.png" />
+    <splash qualifier="land-mdpi" src="platforms/android/res/drawable-land-mdpi/screen.png" />
+    <splash qualifier="land-hdpi" src="platforms/android/res/drawable-land-hdpi/screen.png" />
+    <splash qualifier="land-xhdpi" src="platforms/android/res/drawable-land-xhdpi/screen.png" />
+    <splash qualifier="land-xxhdpi" src="platforms/android/res/drawable-land-xxhdpi/screen.png" />
+    <splash qualifier="land-xxxhdpi" src="platforms/android/res/drawable-land-xxxhdpi/screen.png" />
+    <splash qualifier="port-ldpi" src="platforms/android/res/drawable-port-ldpi/screen.png" />
+    <splash qualifier="port-mdpi" src="platforms/android/res/drawable-port-mdpi/screen.png" />
+    <splash qualifier="port-hdpi" src="platforms/android/res/drawable-port-hdpi/screen.png" />
+    <splash qualifier="port-xhdpi" src="platforms/android/res/drawable-port-xhdpi/screen.png" />
+    <splash qualifier="port-xxhdpi" src="platforms/android/res/drawable-port-xxhdpi/screen.png" />
+    <splash qualifier="port-xxxhdpi" src="platforms/android/res/drawable-port-xxxhdpi/screen.png" />
     <name>Jainoswalfederation</name>
     <description>
         Jainoswalfederation Sample Application.
@@ -71,10 +71,12 @@
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
     <preference name="DisallowOverscroll" value="true" />
-    <preference name="SplashScreenDelay" value="2000" />
-    <preference name="FadeSplashScreenDuration" value="2000" />
     <preference name="android-minSdkVersion" value="16" />
     <preference name="BackupWebStorage" value="none" />
     <preference name="SplashScreen" value="screen" />
+    <preference name="SplashScreenDelay" value="4000" />
+    <preference name="show-splash-screen-spinner" value="true" />
+    <preference name="auto-hide-splash-screen" value="true" />
+    <preference name="ShowSplashScreen" value="true" />
     <icon src="resources/android/icon/drawable-xhdpi-icon.png" />
 </widget>
