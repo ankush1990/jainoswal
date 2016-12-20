@@ -9,8 +9,6 @@
     </author>
   <content src="index.html"/>
   <access origin="*"/>
-  <preference name="target-device" value="universal"/>
-  <preference name="fullscreen" value="true"/>
   <preference name="orientation" value="portrait"/>
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
