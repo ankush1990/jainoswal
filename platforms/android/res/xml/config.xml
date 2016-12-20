@@ -46,18 +46,14 @@
     <icon density="xhdpi" src="resources/android/icon/drawable-xhdpi-icon.png" />
     <icon density="xxhdpi" src="resources/android/icon/drawable-xxhdpi-icon.png" />
     <icon density="xxxhdpi" src="resources/android/icon/drawable-xxxhdpi-icon.png" />
-    <splash qualifier="land-ldpi" src="platforms/android/res/drawable-land-ldpi/screen.png" />
-    <splash qualifier="land-mdpi" src="platforms/android/res/drawable-land-mdpi/screen.png" />
-    <splash qualifier="land-hdpi" src="platforms/android/res/drawable-land-hdpi/screen.png" />
-    <splash qualifier="land-xhdpi" src="platforms/android/res/drawable-land-xhdpi/screen.png" />
-    <splash qualifier="land-xxhdpi" src="platforms/android/res/drawable-land-xxhdpi/screen.png" />
-    <splash qualifier="land-xxxhdpi" src="platforms/android/res/drawable-land-xxxhdpi/screen.png" />
-    <splash qualifier="port-ldpi" src="platforms/android/res/drawable-port-ldpi/screen.png" />
-    <splash qualifier="port-mdpi" src="platforms/android/res/drawable-port-mdpi/screen.png" />
-    <splash qualifier="port-hdpi" src="platforms/android/res/drawable-port-hdpi/screen.png" />
-    <splash qualifier="port-xhdpi" src="platforms/android/res/drawable-port-xhdpi/screen.png" />
-    <splash qualifier="port-xxhdpi" src="platforms/android/res/drawable-port-xxhdpi/screen.png" />
-    <splash qualifier="port-xxxhdpi" src="platforms/android/res/drawable-port-xxxhdpi/screen.png" />
+    <splash density="land-hdpi" src="res/screen/android/splash-land-hdpi.png" />
+    <splash density="land-ldpi" src="res/screen/android/splash-land-ldpi.png" />
+    <splash density="land-mdpi" src="res/screen/android/splash-land-mdpi.png" />
+    <splash density="land-xhdpi" src="res/screen/android/splash-land-xhdpi.png" />
+    <splash density="port-hdpi" src="res/screen/android/splash-port-hdpi.png" />
+    <splash density="port-ldpi" src="res/screen/android/splash-port-ldpi.png" />
+    <splash density="port-mdpi" src="res/screen/android/splash-port-mdpi.png" />
+    <splash density="port-xhdpi" src="res/screen/android/splash-port-xhdpi.png" />
     <name>Jainoswalfederation</name>
     <description>
         Jainoswalfederation Sample Application.
@@ -67,6 +63,8 @@
     </author>
     <content src="index.html" />
     <access origin="*" />
+    <preference name="permissions" value="none" />
+    <preference name="phonegap-version" value="3.7.0" />
     <preference name="orientation" value="portrait" />
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
