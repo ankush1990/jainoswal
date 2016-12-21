@@ -4,22 +4,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title></title>
-
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">-->
-    
-	<!-- ionic/angularjs js -->
+ 	<!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
-
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
-	
     <!-- your app's js -->
     <script src="js/app.js"></script>
     <script src="js/controllers.js"></script>
+	<script src="lib/ngCordova/dist/ng-cordova.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB16sGmIekuGIvYOfNoW9T44377IU2d2Es&sensor=true"></script>
 	<style>
 		.tabs{
@@ -28,7 +24,7 @@
 	</style>
   </head>
 
-  <body ng-app="starter" class="platform-ios platform-cordova platform-webview">
+  <body ng-app="starter">
     <ion-nav-view></ion-nav-view>
 	<!-- New -->
 	<!-- जैन तीर्थ यात्रा -->
@@ -151,8 +147,12 @@
 			<div class="pagesubheader"></div>
 			<form ng-submit="submitprofileForm();" ng-controller="profileCtrl" name="profileForm" novalidate>
 				<div class="cover_profile">
-					<img src="{{ cover_image }}" style="height:175px;width:100%" alt="profilecover" class="coverimg" />	
-					<img src="{{ profile_image }}" alt="profilecover" class="profileimg" />
+					<img src="{{ cover_image }}" style="height:175px;width:100%" alt="profilecover" class="coverimg" />
+					<a class="button button-small button-calm button-outline icon ion-ios-compose cover_icon" ng-click="chooseOption4Cover();"></a>
+					<div class="profile123">
+						<img src="{{ profile_image }}" alt="profilecover" class="profileimg" />
+						<a class="button button-small button-royal button-outline icon ion-ios-compose profile_icon" ng-click="chooseOption4Profile();"></a>
+					</div>
 				</div>
 				<div class="row">
 					<div class="col col-100" style="margin-top:40px;">
@@ -221,6 +221,18 @@
 						  <label class="item item-input item-input-custom">
 							<textarea placeholder="About" rows="4" name="description" ng-model="description"></textarea>
 						  </label>
+						  <label class="item item-input item-input-custom">
+							<textarea placeholder="एड्रेस लाइन 1 (*)" rows="4" name="address_1" ng-model="address_1"></textarea>
+						  </label>
+						  <label class="item item-input item-input-custom">
+							<textarea placeholder="एड्रेस लाइन 2" rows="4" name="address_2" ng-model="address_2"></textarea>
+						  </label>
+						  <label class="item item-input item-input-custom">मेम्बरशिप टाइप : </label>
+						  <ion-list>
+							<ion-radio ng-model="membership_type" name="membership_type" value="FCP (Founder Chief Patron)">फाउंडर चीफ पत्रों </ion-radio>
+							<ion-radio ng-model="membership_type" name="membership_type" value="Patron">पत्रों</ion-radio>
+							<ion-radio ng-model="membership_type" name="membership_type" value="User">यूजर</ion-radio>
+						  </ion-list>
 						  <button class="button button-balanced button-block" >
 							  Submit
 						  </button>

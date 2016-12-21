@@ -13,9 +13,6 @@
         "cordova-plugin-device": {
             "PACKAGE_NAME": "demo"
         },
-        "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "demo"
-        },
         "cordova-plugin-statusbar": {
             "PACKAGE_NAME": "demo"
         },
@@ -53,6 +50,9 @@
             "PACKAGE_NAME": "Jainoswalfederation"
         },
         "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "Jainoswalfederation"
+        },
+        "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "Jainoswalfederation"
         }
     },

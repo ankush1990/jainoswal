@@ -32,6 +32,10 @@
   <feature name="StatusBar">
     <param name="ios-package" onload="true" value="CDVStatusBar"/>
   </feature>
+  <feature name="SplashScreen" >
+    <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
+	<param name="onload" value="true" />
+  </feature>
   
   <plugin name="cordova-plugin-device" spec="~1.1.4"/>
   <plugin name="cordova-plugin-console" spec="~1.0.5"/>

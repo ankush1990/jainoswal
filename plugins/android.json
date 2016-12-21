@@ -13,9 +13,6 @@
         "cordova-plugin-device": {
             "PACKAGE_NAME": "com.ionicframework.demo186432"
         },
-        "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "com.ionicframework.demo186432"
-        },
         "cordova-plugin-statusbar": {
             "PACKAGE_NAME": "com.ionicframework.demo186432"
         },
@@ -53,6 +50,9 @@
             "PACKAGE_NAME": "com.ionicframework.demo186432"
         },
         "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "com.ionicframework.demo186432"
+        },
+        "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "com.ionicframework.demo186432"
         }
     },
