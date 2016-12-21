@@ -623,7 +623,7 @@ angular.module('starter.controllers', [])
 	});
 })
 /** Parichay Patra Controller **/
-.controller('parichaypatraCtrl',function($scope,$http,$state,$ionicLoading,$ionicPopup,$ionicModal) {
+.controller('parichaypatraCtrl',function($scope,$http,$state,$ionicLoading,$ionicPopup,$ionicModal,$cordovaCamera) {
 	/* Parichay Patra */ /* http://makerits.com/jainoswalsajnanfedration/webservice/?action=parichay_patr */
 	$scope.daysarr = global_daysarr;
 	$scope.monthsarr = global_monthsarr;
@@ -730,6 +730,59 @@ angular.module('starter.controllers', [])
 			});
 		}
 	};
+	$scope.chooseOption4PPhoto = function() {
+		$ionicPopup.show({
+		  template: '<div class="row text-center"><div class="col col-50"><button class="button button-royal icon ion-camera" ng-click="takePhoto()"></button></div><div class="col col-50"><button class="button button-energized icon ion-images" ng-click="choosePhoto()" ></button></div></div>',
+		  //templateUrl: 'templates/uploadmemberregistration.html',
+		  title: 'Choose Option',
+		  scope: $scope,
+		  buttons: [
+			{ 
+			  text: 'Cancel',
+			  type: 'button-positive'
+			},
+		  ]
+		});
+	};
+	// open PhotoLibrary
+    $scope.takePhoto = function () {
+		console.log('takePhoto');
+		var options = {
+			quality: 75,
+			destinationType: Camera.DestinationType.DATA_URL,
+			sourceType: Camera.PictureSourceType.CAMERA,
+			allowEdit: true,
+			encodingType: Camera.EncodingType.JPEG,
+			targetWidth: 300,
+			targetHeight: 300,
+			popoverOptions: CameraPopoverOptions,
+			saveToPhotoAlbum: false
+		};
+		$cordovaCamera.getPicture(options).then(function (imageData) {
+			$scope.imgURI = "data:image/jpeg;base64," + imageData;
+		}, function (err) {
+			// An error occured. Show a message to the user
+		});
+	}
+	$scope.choosePhoto = function () {
+		console.log('choosePhoto');
+		var options = {
+			quality: 75,
+			destinationType: Camera.DestinationType.DATA_URL,
+			sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+			allowEdit: true,
+			encodingType: Camera.EncodingType.JPEG,
+			targetWidth: 300,
+			targetHeight: 300,
+			popoverOptions: CameraPopoverOptions,
+			saveToPhotoAlbum: false
+		};
+		$cordovaCamera.getPicture(options).then(function (imageData) {
+			$scope.imgURI = "data:image/jpeg;base64," + imageData;
+		}, function (err) {
+			// An error occured. Show a message to the user
+		});
+	}
 	// ionic Modal
 	$ionicModal.fromTemplateUrl('termsandconditions.html', {
 		scope: $scope,
@@ -757,7 +810,7 @@ angular.module('starter.controllers', [])
 	});
 })
 /** Profile Controller **/
-.controller('profileCtrl',function($scope,$http,$state,$ionicLoading,$ionicPopup,$rootScope,$ionicHistory) {
+.controller('profileCtrl',function($scope,$http,$state,$ionicLoading,$ionicPopup,$rootScope,$ionicHistory,$cordovaCamera) {
 	/* User Profile */ 
 	/* http://makerits.com/jainoswalsajnanfedration/webservice/?action=update_profile&action_1=update_user_profile&ID=115&description=helloheretimepass&gender=Male&birth_date=1995/01/11&country=Aruba&mobile_number=9165679898&user_email=timepass10237@gmail.com */
 	$scope.daysarr = global_daysarr;
@@ -1029,9 +1082,75 @@ angular.module('starter.controllers', [])
 			});
 		}
 	};
+	$scope.chooseOption4Cover = function() {
+		$ionicPopup.show({
+		  template: '<div class="row text-center"><div class="col col-50"><button class="button button-royal icon ion-camera" ng-click="takePhoto()"></button></div><div class="col col-50"><button class="button button-energized icon ion-images" ng-click="choosePhoto()" ></button></div></div>',
+		  //templateUrl: 'templates/uploadmemberregistration.html',
+		  title: 'Choose Option',
+		  scope: $scope,
+		  buttons: [
+			{ 
+			  text: 'Cancel',
+			  type: 'button-positive'
+			},
+		  ]
+		});
+	};
+	// open PhotoLibrary
+    $scope.takePhoto = function () {
+		console.log('takePhoto');
+		var options = {
+			quality: 75,
+			destinationType: Camera.DestinationType.DATA_URL,
+			sourceType: Camera.PictureSourceType.CAMERA,
+			allowEdit: true,
+			encodingType: Camera.EncodingType.JPEG,
+			targetWidth: 300,
+			targetHeight: 300,
+			popoverOptions: CameraPopoverOptions,
+			saveToPhotoAlbum: false
+		};
+		$cordovaCamera.getPicture(options).then(function (imageData) {
+			$scope.imgURI = "data:image/jpeg;base64," + imageData;
+		}, function (err) {
+			// An error occured. Show a message to the user
+		});
+	}
+	$scope.choosePhoto = function () {
+		console.log('choosePhoto');
+		var options = {
+			quality: 75,
+			destinationType: Camera.DestinationType.DATA_URL,
+			sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+			allowEdit: true,
+			encodingType: Camera.EncodingType.JPEG,
+			targetWidth: 300,
+			targetHeight: 300,
+			popoverOptions: CameraPopoverOptions,
+			saveToPhotoAlbum: false
+		};
+		$cordovaCamera.getPicture(options).then(function (imageData) {
+			$scope.imgURI = "data:image/jpeg;base64," + imageData;
+		}, function (err) {
+			// An error occured. Show a message to the user
+		});
+	}
+	$scope.chooseOption4Profile = function() {
+		$ionicPopup.show({
+		  template: '<div class="row text-center"><div class="col col-50"><button class="button button-royal icon ion-camera" ng-click="takePhoto()"></button></div><div class="col col-50"><button class="button button-energized icon ion-images" ng-click="choosePhoto()" ></button></div></div>',
+		  title: 'Choose Option',
+		  scope: $scope,
+		  buttons: [
+			{ 
+			  text: 'Cancel',
+			  type: 'button-positive'
+			},
+		  ]
+		});
+	};
 })
 /** Business Directory Controller **/
-.controller('business_directoryCtrl',function($scope,$http,$state,$ionicLoading,$ionicPopup) {
+.controller('business_directoryCtrl',function($scope,$http,$state,$ionicLoading,$ionicPopup,$cordovaCamera) {
 	/* Business Directory */ /* http://makerits.com/jainoswalsajnanfedration/webservice/?action=business_directory */
 	$scope.submitBusinessdirForm = function() {
 		$scope.businessdirForm = {};
@@ -1111,6 +1230,72 @@ angular.module('starter.controllers', [])
 				$ionicLoading.hide();
 			});
 		}
+	};
+	$scope.chooseOption4PPhoto = function() {
+		$ionicPopup.show({
+		  template: '<div class="row text-center"><div class="col col-50"><button class="button button-royal icon ion-camera" ng-click="takePhoto()"></button></div><div class="col col-50"><button class="button button-energized icon ion-images" ng-click="choosePhoto()" ></button></div></div>',
+		  //templateUrl: 'templates/uploadmemberregistration.html',
+		  title: 'Choose Option',
+		  scope: $scope,
+		  buttons: [
+			{ 
+			  text: 'Cancel',
+			  type: 'button-positive'
+			},
+		  ]
+		});
+	};
+	// open PhotoLibrary
+    $scope.takePhoto = function () {
+		console.log('takePhoto');
+		var options = {
+			quality: 75,
+			destinationType: Camera.DestinationType.DATA_URL,
+			sourceType: Camera.PictureSourceType.CAMERA,
+			allowEdit: true,
+			encodingType: Camera.EncodingType.JPEG,
+			targetWidth: 300,
+			targetHeight: 300,
+			popoverOptions: CameraPopoverOptions,
+			saveToPhotoAlbum: false
+		};
+		$cordovaCamera.getPicture(options).then(function (imageData) {
+			$scope.imgURI = "data:image/jpeg;base64," + imageData;
+		}, function (err) {
+			// An error occured. Show a message to the user
+		});
+	}
+	$scope.choosePhoto = function () {
+		console.log('choosePhoto');
+		var options = {
+			quality: 75,
+			destinationType: Camera.DestinationType.DATA_URL,
+			sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+			allowEdit: true,
+			encodingType: Camera.EncodingType.JPEG,
+			targetWidth: 300,
+			targetHeight: 300,
+			popoverOptions: CameraPopoverOptions,
+			saveToPhotoAlbum: false
+		};
+		$cordovaCamera.getPicture(options).then(function (imageData) {
+			$scope.imgURI = "data:image/jpeg;base64," + imageData;
+		}, function (err) {
+			// An error occured. Show a message to the user
+		});
+	}
+	$scope.chooseOption4VCard = function() {
+		$ionicPopup.show({
+		  template: '<div class="row text-center"><div class="col col-50"><button class="button button-royal icon ion-camera" ng-click="takePhoto()"></button></div><div class="col col-50"><button class="button button-energized icon ion-images" ng-click="choosePhoto()" ></button></div></div>',
+		  title: 'Choose Option',
+		  scope: $scope,
+		  buttons: [
+			{ 
+			  text: 'Cancel',
+			  type: 'button-positive'
+			},
+		  ]
+		});
 	};
 })
 /** Matrimonial Controller**/
@@ -1258,60 +1443,6 @@ angular.module('starter.controllers', [])
 			});
 		}
 	};
-	$scope.chooseOption = function() {
-		$ionicPopup.show({
-		  template: '<div class="row text-center"><div class="col col-50"><button class="button button-royal icon ion-camera" ng-click="takePhoto()"></button></div><div class="col col-50"><button class="button button-energized icon ion-images" ng-click="choosePhoto()" ></button></div></div>',
-		  //templateUrl: 'templates/uploadmemberregistration.html',
-		  title: 'Choose Option',
-		  scope: $scope,
-		  buttons: [
-			{ 
-			  text: 'Cancel',
-			  type: 'button-positive'
-			},
-		  ]
-		});
-	};
-	// open PhotoLibrary
-    $scope.takePhoto = function () {
-		console.log('takePhoto');
-		var options = {
-			quality: 75,
-			destinationType: Camera.DestinationType.DATA_URL,
-			sourceType: Camera.PictureSourceType.CAMERA,
-			allowEdit: true,
-			encodingType: Camera.EncodingType.JPEG,
-			targetWidth: 300,
-			targetHeight: 300,
-			popoverOptions: CameraPopoverOptions,
-			saveToPhotoAlbum: false
-		};
-		$cordovaCamera.getPicture(options).then(function (imageData) {
-			$scope.imgURI = "data:image/jpeg;base64," + imageData;
-		}, function (err) {
-			// An error occured. Show a message to the user
-		});
-	}
-		
-	$scope.choosePhoto = function () {
-		console.log('choosePhoto');
-		var options = {
-			quality: 75,
-			destinationType: Camera.DestinationType.DATA_URL,
-			sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-			allowEdit: true,
-			encodingType: Camera.EncodingType.JPEG,
-			targetWidth: 300,
-			targetHeight: 300,
-			popoverOptions: CameraPopoverOptions,
-			saveToPhotoAlbum: false
-		};
-		$cordovaCamera.getPicture(options).then(function (imageData) {
-			$scope.imgURI = "data:image/jpeg;base64," + imageData;
-		}, function (err) {
-			// An error occured. Show a message to the user
-		});
-	}
 })
 /** Member Profile Controller**/
 .controller('memberprofileCtrl',function($scope,$http,$state,$ionicLoading,$stateParams) {
@@ -1329,7 +1460,7 @@ angular.module('starter.controllers', [])
 	});
 })
 /** Member Profile Update Controller**/
-.controller('memberupdateCtrl',function($scope,$http,$state,$ionicLoading,$ionicPopup) {
+.controller('memberupdateCtrl',function($scope,$http,$state,$ionicLoading,$ionicPopup,$cordovaCamera) {
 	/* Update */ /* http://makerits.com/jainoswalsajnanfedration/matrimonial/matrimonial_web?action=single_user&user_id=41 */
 	/* http://makerits.com/jainoswalsajnanfedration/matrimonial/matrimonial_web/?action=update_profile&user_id=50&user_email=gautammakerits@gmail.com&firstname=gautam&lastname=raghuwanshi&description=i%20am%20pghp%20developer&country=France&dob=10/10/1995&mother_tongue=Gujrati&professiona=Sales%20Manager */
 	$scope.daysarr = global_daysarr;
@@ -1439,6 +1570,59 @@ angular.module('starter.controllers', [])
 			});
 		}
 	};
+	$scope.chooseOption4Cover = function() {
+		$ionicPopup.show({
+		  template: '<div class="row text-center"><div class="col col-50"><button class="button button-royal icon ion-camera" ng-click="takePhoto()"></button></div><div class="col col-50"><button class="button button-energized icon ion-images" ng-click="choosePhoto()" ></button></div></div>',
+		  //templateUrl: 'templates/uploadmemberregistration.html',
+		  title: 'Choose Option',
+		  scope: $scope,
+		  buttons: [
+			{ 
+			  text: 'Cancel',
+			  type: 'button-positive'
+			},
+		  ]
+		});
+	};
+	// open PhotoLibrary
+    $scope.takePhoto = function () {
+		console.log('takePhoto');
+		var options = {
+			quality: 75,
+			destinationType: Camera.DestinationType.DATA_URL,
+			sourceType: Camera.PictureSourceType.CAMERA,
+			allowEdit: true,
+			encodingType: Camera.EncodingType.JPEG,
+			targetWidth: 300,
+			targetHeight: 300,
+			popoverOptions: CameraPopoverOptions,
+			saveToPhotoAlbum: false
+		};
+		$cordovaCamera.getPicture(options).then(function (imageData) {
+			$scope.imgURI = "data:image/jpeg;base64," + imageData;
+		}, function (err) {
+			// An error occured. Show a message to the user
+		});
+	}
+	$scope.choosePhoto = function () {
+		console.log('choosePhoto');
+		var options = {
+			quality: 75,
+			destinationType: Camera.DestinationType.DATA_URL,
+			sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+			allowEdit: true,
+			encodingType: Camera.EncodingType.JPEG,
+			targetWidth: 300,
+			targetHeight: 300,
+			popoverOptions: CameraPopoverOptions,
+			saveToPhotoAlbum: false
+		};
+		$cordovaCamera.getPicture(options).then(function (imageData) {
+			$scope.imgURI = "data:image/jpeg;base64," + imageData;
+		}, function (err) {
+			// An error occured. Show a message to the user
+		});
+	}
 })
 /** Forgot Password Member Controller**/
 .controller('forgotpasswordmemberCtrl',function($scope,$http,$ionicLoading,$state,$ionicPopup) {
