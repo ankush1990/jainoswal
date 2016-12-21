@@ -452,6 +452,7 @@ angular.module('starter.controllers', [])
 /** Registration Controller**/
 .controller('registrationCtrl',function($scope,$http,$state,$ionicLoading,$ionicPopup) {
 	/* Login */ /* http://makerits.com/jainoswalsajnanfedration/webservice/?action=register */
+	$scope.countryarr =  global_countryarr;
 	$scope.submitregistrationForm = function() {
 		var error = '';
 		var action = "register";
@@ -460,10 +461,16 @@ angular.module('starter.controllers', [])
 		var user_email = $scope.user_email;
 		var password = $scope.password;
 		var con_password = $scope.con_password;
+		var address_1 = $scope.address_1;
+		var address_2 = $scope.address_2 != undefined ? $scope.address_2 : '';
+		var mobile_number = $scope.mobile_number;
+		var country = $scope.country;
+		var gender = $scope.gender;
+		var membership_type = $scope.membership_type;
 		var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z\-])+\.)+([a-zA-Z]{2,4})+$/;
 		var pass_filter = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/;
-		var data_parameters = "action="+action+"&firstname="+firstname+"&lastname="+lastname+"&user_email="+user_email+"&password="+password;
-		if(typeof firstname === "undefined" || typeof lastname === "undefined" || typeof user_email === "undefined" || typeof password === "undefined" || typeof con_password === "undefined" || firstname == "" || lastname == "" || user_email == "" || password == "" || con_password == ""){
+		var data_parameters = "action="+action+"&firstname="+firstname+"&lastname="+lastname+"&user_email="+user_email+"&password="+password+"&address_1="+address_1+"&address_2="+address_2+"&mobile_number="+mobile_number+"&country="+country+"&gender="+gender+"&membership-type="+membership_type;
+		if(typeof firstname === "undefined" || typeof lastname === "undefined" || typeof user_email === "undefined" || typeof password === "undefined" || typeof con_password === "undefined" || typeof address_1 === "undefined" || typeof mobile_number === "undefined" || typeof country === "undefined" || typeof gender === "undefined" || typeof membership_type === "undefined" || firstname == "" || lastname == "" || user_email == "" || password == "" || con_password == "" || address_1 == "" || mobile_number == "" || country == "" || gender == "" || membership_type == ""){
 			error += '<p>सभी (*) चिन्हित फील्ड अनिवार्य है |</p>';
 		}
 		if(user_email != '' && user_email != undefined){
@@ -513,7 +520,7 @@ angular.module('starter.controllers', [])
 				  ]
 				});
 				if(response[0].success == "Y"){
-					$scope.firstname = $scope.lastname = $scope.user_email = $scope.password = $scope.con_password = '' ;
+					$scope.firstname = $scope.lastname = $scope.user_email = $scope.password = $scope.con_password = $scope.address_1 = $scope.address_2 = $scope.mobile_number = $scope.country = $scope.gender = $scope.membership_type = '' ;
 				}
 				$ionicLoading.hide();
 			});
@@ -839,6 +846,9 @@ angular.module('starter.controllers', [])
 				$scope.country = response[0].country;
 				$scope.mobile_number = response[0].mobile_number;
 				$scope.description = response[0].description;
+				$scope.address_1 = response[0].address_1;
+				$scope.address_2 = response[0].address_2;
+				$scope.membership_type = response[0].membership_type;
 				$scope.first_name = response[0].first_name;
 				$scope.last_name = response[0].last_name;
 				$scope.profile_privacy = response[0].profile_privacy;

@@ -20,6 +20,36 @@
               <label class="item item-input item-input-custom">
                 <input type="text" placeholder="ईमेल (*)" ng-model="user_email" name="user_email">
               </label>
+			  <label class="item item-input item-input-custom">
+                <input type="text" placeholder="मोबाइल (*)" ng-model="mobile_number" name="mobile_number">
+              </label>
+			  <label class="item item-input item-input-custom">
+				<textarea placeholder="एड्रेस लाइन 1 (*)" rows="4" name="address_1" ng-model="address_1"></textarea>
+			  </label>
+			  <label class="item item-input item-input-custom">
+				<textarea placeholder="एड्रेस लाइन 2" rows="4" name="address_2" ng-model="address_2"></textarea>
+			  </label>
+			  <div class="list" style="margin-top:10px;margin-bottom:10px;">
+				 <label class="item item-input item-select">
+					<div class="input-label">
+					  देश (*)
+					</div>
+					<select name="country" ng-model="country">
+					  <option ng-repeat = "countryname in countryarr" value="{{ countryname.name }}">{{ countryname.name }}</option>
+					</select>
+				  </label>
+			  </div>
+			  <label class="item item-input item-input-custom">जेंडर : </label>
+			  <ion-list>
+				<ion-radio ng-model="gender" name="gender" value="Male">मेल</ion-radio>
+				<ion-radio ng-model="gender" name="gender" value="Female">फीमेल</ion-radio>
+			  </ion-list>
+			  <label class="item item-input item-input-custom">मेम्बरशिप टाइप : </label>
+			  <ion-list>
+				<ion-radio ng-model="membership_type" name="membership_type" value="FCP (Founder Chief Patron)">फाउंडर चीफ पत्रों </ion-radio>
+				<ion-radio ng-model="membership_type" name="membership_type" value="Patron">पत्रों</ion-radio>
+				<ion-radio ng-model="membership_type" name="membership_type" value="User">यूजर</ion-radio>
+			  </ion-list>
               <label class="item item-input item-input-custom">
                 <input type="password" placeholder="पासवर्ड (*)" ng-model="password" name="password">
               </label>

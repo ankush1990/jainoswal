@@ -6,13 +6,11 @@
 		<div class="row pagesubheader">
           <div class="col col-100">
             <form ng-submit="submitmemberupdateForm();" ng-controller="memberupdateCtrl" name="memberupdateForm" novalidate>
-			  <div class="banner ">
+			  <div class="banner">
 				  <div class="banner_img">
 					<img src="{{ image_url }}" alt="avatar" style="height:200px;width:100%;">			
 				  </div>
-				  <div class="banner_text">
-					
-				  </div>
+				  <a class="button button-small button-calm button-outline icon ion-ios-compose banner_icon" ng-click="chooseOption4Cover();"></a>  
 			  </div>
               <label class="item item-input item-input-custom">
                 <input type="text" placeholder="Firstname (*)" ng-model="firstname" name="firstname">

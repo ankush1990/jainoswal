@@ -187,7 +187,10 @@
             <input type="text" placeholder="Relation With Candidate (*)" name="Pratyashi_relationship" ng-model="Pratyashi_relationship">
           </label>
           <h5 style="width:80%">Passport Size Color Photo Of Candidate</h5>
-          <input type="file" ng-model="photo" valid-file >
+          <img ng-if="imgURI" ng-src="{{imgURI}}" style="width: 100%; height: 150px;">
+		  <a style="margin-top:10px;" class="button button-small button-calm" ng-click="chooseOption4PPhoto();">
+			  Upload Photo
+		  </a>
           <p class="primary" style="width:80%">All the information given by me are absolutely true.The entire responsibility on me.</p>
           <a style="cursor:pointer;" ng-click="openModal();">Terms & Conditions</a>
           <button class="button button-positive button-block" >
