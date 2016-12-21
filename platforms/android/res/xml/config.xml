@@ -95,5 +95,4 @@
     <preference name="AutoHideSplashScreen" value="true" />
     <preference name="ShowSplashScreen" value="true" />
     <icon src="resources/android/icon/drawable-xhdpi-icon.png" />
-    <splash src="resources/splash.png" />
 </widget>
