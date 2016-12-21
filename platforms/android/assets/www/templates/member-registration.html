@@ -98,7 +98,10 @@
               <label class="item item-input item-input-custom">
                 <input type="password" placeholder="Confirm Password (*)" ng-model="con_password" name="con_password">
               </label>
-			  <input type="file" ng-model="photo" valid-file >
+			  <img ng-if="imgURI" ng-src="{{imgURI}}" style="width: 100%; height: 150px;">
+			  <a style="margin-top:10px;" class="button button-small button-energized" ng-click="chooseOption();">
+				  Upload Photo
+			  </a>
               <button class="button button-positive button-block">
              	 Register
               </button>

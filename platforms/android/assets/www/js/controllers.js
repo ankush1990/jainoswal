@@ -49,44 +49,51 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('LogoutCtrl', function($scope,$rootScope,$ionicHistory,$state,$timeout) {
+.controller('LogoutCtrl', function($scope,$rootScope,$ionicHistory,$state,$timeout,$window) {
  $scope.login = "";
  $rootScope.$on('login_var', function (event, args) {
 	$scope.login = args.global_login;
 	global_login_id = args.global_login;
  });
  $scope.logout = function(){
-		//$ionicHistory.clearCache();
 		var login_var = "";
 		$rootScope.$broadcast('login_var',{global_login:login_var});
+		window.localStorage.removeItem("login_var_local");
+		//$ionicHistory.clearCache();
 		$ionicHistory.clearHistory();
     };
 })
 
-.controller('LogoutCtrl_2', function($scope,$rootScope,$ionicHistory,$state,$timeout) {
+.controller('LogoutCtrl_2', function($scope,$rootScope,$ionicHistory,$state,$timeout,$window) {
  $scope.login_2 = "";
  $rootScope.$on('login_var_2', function (event, args) {
 	$scope.login_2 = args.global_login;
 	global_login_id_2 = args.global_login;
  });
  $scope.logout = function(){
-		//$ionicHistory.clearCache();
 		var login_var_2 = "";
 		$rootScope.$broadcast('login_var_2',{global_login:login_var_2});
+		window.localStorage.removeItem("login_var_2_local");
+		//$ionicHistory.clearCache();
 		$ionicHistory.clearHistory();
     };
 })
 
 /** Dashboard Controller**/
-.controller('dashboardCtrl',function($scope,$ionicSlideBoxDelegate,$ionicHistory,$ionicLoading,$http,$state,$rootScope,$window) {
+.controller('dashboardCtrl',function($scope,$ionicSlideBoxDelegate,$ionicHistory,$ionicLoading,$http,$state,$rootScope,$window,$timeout) {
 	/* National Officers */ /* http://makerits.com/jainoswalsajnanfedration/webservice/?action=national_officers */
-	//alert(window.localStorage.getItem("login_var_local"));
-	if(window.localStorage.getItem("login_var_local") !== undefined) {
-		$rootScope.$broadcast('login_var',window.localStorage.getItem("login_var_local"));
-	} 
-	if(window.localStorage.getItem("login_var_2_local") !== undefined) {
-		$rootScope.$broadcast('login_var_2',window.localStorage.getItem("login_var_2_local"));
-	} 
+	$timeout(function(){
+		var login_var_local = window.localStorage.getItem("login_var_local");
+		var login_var_2_local = window.localStorage.getItem("login_var_2_local");
+		if(login_var_local !== undefined && login_var_local != null) {
+			console.log(login_var_local);
+			$rootScope.$broadcast('login_var',{global_login:login_var_local});
+		} 
+		if(login_var_2_local !== undefined && login_var_2_local != null) {
+			console.log(login_var_2_local);
+			$rootScope.$broadcast('login_var_2',{global_login:login_var_2_local});
+		} 
+	},500);
 	$ionicLoading.show({template: '<ion-spinner icon="crescent"></ion-spinner>'});
 	var action = "national_officers";
 	var data_parameters = "action="+action;
@@ -575,7 +582,6 @@ angular.module('starter.controllers', [])
 	$ionicLoading.show({template: '<ion-spinner icon="crescent"></ion-spinner>'});
 	var action = "special_detalis";
 	var officer_title = $stateParams.slug;
-	console.log(officer_title);
 	var data_parameters = "action="+action+"&officer_title="+officer_title;
 	$http.post(globalip,data_parameters, {
 		headers: {'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'}
@@ -1141,7 +1147,6 @@ angular.module('starter.controllers', [])
 	})
 	.success(function(response2) {
 		$scope.gallery = response2;
-		console.log(response2.length);
 	});
 	/* Creative Ideas */ /* http://makerits.com/jainoswalsajnanfedration/matrimonial/matrimonial_web/?action=creative_ideas */
 	var action3 = "creative_ideas";
@@ -1253,6 +1258,60 @@ angular.module('starter.controllers', [])
 			});
 		}
 	};
+	$scope.chooseOption = function() {
+		$ionicPopup.show({
+		  template: '<div class="row text-center"><div class="col col-50"><button class="button button-royal icon ion-camera" ng-click="takePhoto()"></button></div><div class="col col-50"><button class="button button-energized icon ion-images" ng-click="choosePhoto()" ></button></div></div>',
+		  //templateUrl: 'templates/uploadmemberregistration.html',
+		  title: 'Choose Option',
+		  scope: $scope,
+		  buttons: [
+			{ 
+			  text: 'Cancel',
+			  type: 'button-positive'
+			},
+		  ]
+		});
+	};
+	// open PhotoLibrary
+    $scope.takePhoto = function () {
+		console.log('takePhoto');
+		var options = {
+			quality: 75,
+			destinationType: Camera.DestinationType.DATA_URL,
+			sourceType: Camera.PictureSourceType.CAMERA,
+			allowEdit: true,
+			encodingType: Camera.EncodingType.JPEG,
+			targetWidth: 300,
+			targetHeight: 300,
+			popoverOptions: CameraPopoverOptions,
+			saveToPhotoAlbum: false
+		};
+		$cordovaCamera.getPicture(options).then(function (imageData) {
+			$scope.imgURI = "data:image/jpeg;base64," + imageData;
+		}, function (err) {
+			// An error occured. Show a message to the user
+		});
+	}
+		
+	$scope.choosePhoto = function () {
+		console.log('choosePhoto');
+		var options = {
+			quality: 75,
+			destinationType: Camera.DestinationType.DATA_URL,
+			sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+			allowEdit: true,
+			encodingType: Camera.EncodingType.JPEG,
+			targetWidth: 300,
+			targetHeight: 300,
+			popoverOptions: CameraPopoverOptions,
+			saveToPhotoAlbum: false
+		};
+		$cordovaCamera.getPicture(options).then(function (imageData) {
+			$scope.imgURI = "data:image/jpeg;base64," + imageData;
+		}, function (err) {
+			// An error occured. Show a message to the user
+		});
+	}
 })
 /** Member Profile Controller**/
 .controller('memberprofileCtrl',function($scope,$http,$state,$ionicLoading,$stateParams) {
@@ -1295,7 +1354,7 @@ angular.module('starter.controllers', [])
 	.success(function(response2) {
 		$scope.professionals = response2;
 	});*/
-	var data_parameters13 = "action=single_user&user_id="+global_login_id+"";
+	var data_parameters13 = "action=single_user&user_id="+global_login_id_2+"";
 		$ionicLoading.show({template: '<ion-spinner icon="crescent"></ion-spinner>'});
 		$http.post(globalip_2,data_parameters13, {
 			headers: {'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'}

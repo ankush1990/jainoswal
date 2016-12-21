@@ -1,6 +1,6 @@
 // Ionic Starter App
-var globalip = "http://makerits.com/jainoswalsajnanfedration/webservice/";
-var globalip_2 = "http://makerits.com/jainoswalsajnanfedration/matrimonial/matrimonial_web";
+var globalip = "http://makerites.com/wordpress/jainoswalsajnanfedration/webservice/";
+var globalip_2 = "http://makerites.com/wordpress/jainoswalsajnanfedration/matrimonial/matrimonial_web";
 
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
