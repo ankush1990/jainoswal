@@ -15,15 +15,15 @@
         </div>
 		<div ng-repeat="data in officers">
 			<div class="row" ng-if="$even">
-				<div ng-if="officers[$index].image_url"  class="col col-50 text-center">
+				<div ng-if="officers[$index].officer_name" class="col col-50 text-center">
 					<img src="{{ officers[$index].image_url }}" alt="sliderimg" style="height:140px;width:100%;">
 					<a ng-if="officers[$index].slug" ui-sref="app.sandesh({slug:officers[$index].slug})">{{ officers[$index].officer_name }}</a>
 					<a ng-if="officers[$index].slug == ''">{{ officers[$index].officer_name }}</a>
 					<p style="font-size:10px;">{{ officers[$index].designation }}</p>
 				</div>
-				<div ng-if="officers[$index + 1].image_url"  class="col col-50 text-center">
+				<div ng-if="officers[$index + 1].officer_name"  class="col col-50 text-center">
 					<img src="{{  officers[$index + 1].image_url }}" alt="sliderimg" style="height:140px;width:100%;">
-					<a ng-if="officers[$index + 1].slug" ui-sref="app.sandesh({slug: officers[$index + 1].slug})">{{ officers[$index + 1].officer_name }}</a>
+					<a ng-if="officers[$index + 1].slug" ui-sref="app.sandesh({slug:officers[$index + 1].slug})">{{ officers[$index + 1].officer_name }}</a>
 					<a ng-if="officers[$index + 1].slug == ''">{{ officers[$index + 1].officer_name }}</a>
 					<p style="font-size:10px;">{{ officers[$index + 1].designation }}</p>
 				</div>
@@ -62,7 +62,7 @@
                 </div>
                 <div class="row">
                     <div class="col col-25">
-                        <img src="http://makerits.com/jainoswalsajnanfedration/wp-content/uploads/2016/10/logo_new_1-150x150.png" alt="logo" style="height:60px;width:100%;">
+                        <img src="http://makerites.com/wordpress/jainoswalsajnanfedration/wp-content/uploads/2016/10/logo_new_1-150x150.png" alt="logo" style="height:60px;width:100%;">
                     </div>
                     <div class="col col-75">
                         <h3>{{ sajnan_times.heading }}</h3>

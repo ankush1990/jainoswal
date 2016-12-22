@@ -5,7 +5,7 @@
     <ion-content>
      <div class="row pagesubheader">
       <div class="col col-100">
-        <form ng-submit="submit();" ng-controller="parichaypatraCtrl" name="introductionformForm" novalidate>
+        <form ng-submit="submit();" ng-controller="introductionformCtrl" name="introductionformForm" novalidate>
           <label class="item item-input item-input-custom">
             <input type="text" placeholder="Full Name of Candidate (*)" name="pratayasi_name" ng-model="pratayasi_name">
           </label>
@@ -71,9 +71,9 @@
             <ion-radio ng-model="samyakaal" name="samyakaal" value="Night">Night</ion-radio>
        	  </ion-list>
           <label class="item item-input item-input-custom">
-           <input type="text" placeholder="Birth Place" name="Birth_place" ng-model="Birth_place">
+           <input type="text" placeholder="Birth Place (*)" name="Birth_place" ng-model="Birth_place">
           </label>
-          <label class="item item-input item-input-custom">Varn :</label>
+          <label class="item item-input item-input-custom">Varn (*):</label>
           <ion-list>
             <ion-radio ng-model="Types_vard" name="Types_vard" value="Light skin">Light skin</ion-radio>
             <ion-radio ng-model="Types_vard" name="Types_vard" value="Dark skin">Dark skin</ion-radio>
@@ -85,7 +85,7 @@
             <input type="text" placeholder="Weight (*)" name="Wait" ng-model="Wait">
           </label>
           <label class="item item-input item-input-custom">
-            <input type="text" placeholder="Blood Group" name="Blood_group" ng-model="Blood_group" required>
+            <input type="text" placeholder="Blood Group" name="Blood_group" ng-model="Blood_group">
           </label>
           <label class="item item-input item-input-custom">
             <input type="text" placeholder="Qualification (*)" name="Education" ng-model="Education">
@@ -139,7 +139,7 @@
           <label class="item item-input item-input-custom">
             <input type="text" placeholder="Other" name="other" ng-model="other">
           </label>
-          <label class="item item-input item-input-custom"> Religious Affiliation :</label>
+          <label class="item item-input item-input-custom"> Religious Affiliation (*) :</label>
           <ion-list>
             <ion-radio ng-model="Dharmik_manyata" name="Dharmik_manyata" value="Temple">Temple</ion-radio>
             <ion-radio ng-model="Dharmik_manyata" name="Dharmik_manyata" value="Placer">Placer</ion-radio>
@@ -191,7 +191,7 @@
 		  <a style="margin-top:10px;" class="button button-small button-calm" ng-click="chooseOption4PPhoto();">
 			  Upload Photo
 		  </a>
-          <p class="primary" style="width:80%">All the information given by me are absolutely true.The entire responsibility on me.</p>
+          <p class="primary" style="width:80%;margin-top:5px;">All the information given by me are absolutely true.The entire responsibility on me.</p>
           <a style="cursor:pointer;" ng-click="openModal();">Terms & Conditions</a>
           <button class="button button-positive button-block" >
               Submit

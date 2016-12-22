@@ -2,7 +2,7 @@ var global_login_id = "";
 var global_login_id_2 = "";
 var global_daysarr = [01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31];
 var global_monthsarr = [
-							{m1:01,M:'जनवरी'},{m1:02,M:'फ़रवरी'},{m1:03,M:'मार्च'},{m1:04,M:'अप्रैल'},{m1:05,M:'मई'},{m1:06,M:'जून'},{m1:07,M:'जुलाई'},{m1:08,M:'अगस्त'},{m1:09,M:'सितंबर'},{m1:10,M:'अक्टूबर'},{m1:11,M:'नवंबर'},{m1:12,M:'दिसंबर'}	
+							{m1:01,M:'जनवरी',M1:'January'},{m1:02,M:'फ़रवरी',M1:'February'},{m1:03,M:'मार्च',M1:'March'},{m1:04,M:'अप्रैल',M1:'April'},{m1:05,M:'मई',M1:'May'},{m1:06,M:'जून',M1:'June'},{m1:07,M:'जुलाई',M1:'July'},{m1:08,M:'अगस्त',M1:'August'},{m1:09,M:'सितंबर',M1:'September'},{m1:10,M:'अक्टूबर',M1:'October'},{m1:11,M:'नवंबर',M1:'November'},{m1:12,M:'दिसंबर',M1:'December'}	
 					   ];
 var global_yearsarr = [1950,1951,1952,1953,1954,1955,1956,1957,1958,1959,1960,1961,1962,1963,1964,1965,1966,1967,1968,1969,1970,1971,1972,1973,1974,1975,1976,1977,1978,1979,1980,1981,1982,1983,1984,1985,1986,1987,1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000];
 var global_countryarr = [{"name":"Afghanistan","dial_code":"+93","code":"AF"},{"name":"Åland Islands","dial_code":"+358","code":"AX"},{"name":"Albania","dial_code":"+355","code":"AL"},{"name":"Algeria","dial_code":"+213","code":"DZ"},{"name":"AmericanSamoa","dial_code":"+1 684","code":"AS"},{"name":"Andorra","dial_code":"+376","code":"AD"},{"name":"Angola","dial_code":"+244","code":"AO"},{"name":"Anguilla","dial_code":"+1 264","code":"AI"},{"name":"Antarctica","dial_code":"+672","code":"AQ"},{"name":"Antigua and Barbuda","dial_code":"+1268","code":"AG"},{"name":"Argentina","dial_code":"+54","code":"AR"},{"name":"Armenia","dial_code":"+374","code":"AM"},{"name":"Aruba","dial_code":"+297","code":"AW"},{"name":"Australia","dial_code":"+61","code":"AU"},{"name":"Austria","dial_code":"+43","code":"AT"},{"name":"Azerbaijan","dial_code":"+994","code":"AZ"},{"name":"Bahamas","dial_code":"+1 242","code":"BS"},{"name":"Bahrain","dial_code":"+973","code":"BH"},{"name":"Bangladesh","dial_code":"+880","code":"BD"},{"name":"Barbados","dial_code":"+1 246","code":"BB"},{"name":"Belarus","dial_code":"+375","code":"BY"},{"name":"Belgium","dial_code":"+32","code":"BE"},{"name":"Belize","dial_code":"+501","code":"BZ"},{"name":"Benin","dial_code":"+229","code":"BJ"},{"name":"Bermuda","dial_code":"+1 441","code":"BM"},{"name":"Bhutan","dial_code":"+975","code":"BT"},{"name":"Bolivia, Plurinational State of","dial_code":"+591","code":"BO"},{"name":"Bosnia and Herzegovina","dial_code":"+387","code":"BA"},{"name":"Botswana","dial_code":"+267","code":"BW"},{"name":"Brazil","dial_code":"+55","code":"BR"},{"name":"British Indian Ocean Territory","dial_code":"+246","code":"IO"},{"name":"Brunei Darussalam","dial_code":"+673","code":"BN"},{"name":"Bulgaria","dial_code":"+359","code":"BG"},{"name":"Burkina Faso","dial_code":"+226","code":"BF"},{"name":"Burundi","dial_code":"+257","code":"BI"},{"name":"Cambodia","dial_code":"+855","code":"KH"},{"name":"Cameroon","dial_code":"+237","code":"CM"},{"name":"Canada","dial_code":"+1","code":"CA"},{"name":"Cape Verde","dial_code":"+238","code":"CV"},{"name":"Cayman Islands","dial_code":"+ 345","code":"KY"},{"name":"Central African Republic","dial_code":"+236","code":"CF"},{"name":"Chad","dial_code":"+235","code":"TD"},{"name":"Chile","dial_code":"+56","code":"CL"},{"name":"China","dial_code":"+86","code":"CN"},{"name":"Christmas Island","dial_code":"+61","code":"CX"},{"name":"Cocos (Keeling) Islands","dial_code":"+61","code":"CC"},{"name":"Colombia","dial_code":"+57","code":"CO"},{"name":"Comoros","dial_code":"+269","code":"KM"},{"name":"Congo","dial_code":"+242","code":"CG"},{"name":"Congo, The Democratic Republic of the","dial_code":"+243","code":"CD"},{"name":"Cook Islands","dial_code":"+682","code":"CK"},{"name":"Costa Rica","dial_code":"+506","code":"CR"},{"name":"Cote d'Ivoire","dial_code":"+225","code":"CI"},{"name":"Croatia","dial_code":"+385","code":"HR"},{"name":"Cuba","dial_code":"+53","code":"CU"},{"name":"Cyprus","dial_code":"+357","code":"CY"},{"name":"Czech Republic","dial_code":"+420","code":"CZ"},{"name":"Denmark","dial_code":"+45","code":"DK"},{"name":"Djibouti","dial_code":"+253","code":"DJ"},{"name":"Dominica","dial_code":"+1 767","code":"DM"},{"name":"Dominican Republic","dial_code":"+1 849","code":"DO"},{"name":"Ecuador","dial_code":"+593","code":"EC"},{"name":"Egypt","dial_code":"+20","code":"EG"},{"name":"El Salvador","dial_code":"+503","code":"SV"},{"name":"Equatorial Guinea","dial_code":"+240","code":"GQ"},{"name":"Eritrea","dial_code":"+291","code":"ER"},{"name":"Estonia","dial_code":"+372","code":"EE"},{"name":"Ethiopia","dial_code":"+251","code":"ET"},{"name":"Falkland Islands (Malvinas)","dial_code":"+500","code":"FK"},{"name":"Faroe Islands","dial_code":"+298","code":"FO"},{"name":"Fiji","dial_code":"+679","code":"FJ"},{"name":"Finland","dial_code":"+358","code":"FI"},{"name":"France","dial_code":"+33","code":"FR"},{"name":"French Guiana","dial_code":"+594","code":"GF"},{"name":"French Polynesia","dial_code":"+689","code":"PF"},{"name":"Gabon","dial_code":"+241","code":"GA"},{"name":"Gambia","dial_code":"+220","code":"GM"},{"name":"Georgia","dial_code":"+995","code":"GE"},{"name":"Germany","dial_code":"+49","code":"DE"},{"name":"Ghana","dial_code":"+233","code":"GH"},{"name":"Gibraltar","dial_code":"+350","code":"GI"},{"name":"Greece","dial_code":"+30","code":"GR"},{"name":"Greenland","dial_code":"+299","code":"GL"},{"name":"Grenada","dial_code":"+1 473","code":"GD"},{"name":"Guadeloupe","dial_code":"+590","code":"GP"},{"name":"Guam","dial_code":"+1 671","code":"GU"},{"name":"Guatemala","dial_code":"+502","code":"GT"},{"name":"Guernsey","dial_code":"+44","code":"GG"},{"name":"Guinea","dial_code":"+224","code":"GN"},{"name":"Guinea-Bissau","dial_code":"+245","code":"GW"},{"name":"Guyana","dial_code":"+595","code":"GY"},{"name":"Haiti","dial_code":"+509","code":"HT"},{"name":"Holy See (Vatican City State)","dial_code":"+379","code":"VA"},{"name":"Honduras","dial_code":"+504","code":"HN"},{"name":"Hong Kong","dial_code":"+852","code":"HK"},{"name":"Hungary","dial_code":"+36","code":"HU"},{"name":"Iceland","dial_code":"+354","code":"IS"},{"name":"India","dial_code":"+91","code":"IN"},{"name":"Indonesia","dial_code":"+62","code":"ID"},{"name":"Iran, Islamic Republic of","dial_code":"+98","code":"IR"},{"name":"Iraq","dial_code":"+964","code":"IQ"},{"name":"Ireland","dial_code":"+353","code":"IE"},{"name":"Isle of Man","dial_code":"+44","code":"IM"},{"name":"Israel","dial_code":"+972","code":"IL"},{"name":"Italy","dial_code":"+39","code":"IT"},{"name":"Jamaica","dial_code":"+1 876","code":"JM"},{"name":"Japan","dial_code":"+81","code":"JP"},{"name":"Jersey","dial_code":"+44","code":"JE"},{"name":"Jordan","dial_code":"+962","code":"JO"},{"name":"Kazakhstan","dial_code":"+7 7","code":"KZ"},{"name":"Kenya","dial_code":"+254","code":"KE"},{"name":"Kiribati","dial_code":"+686","code":"KI"},{"name":"Korea, Democratic People's Republic of","dial_code":"+850","code":"KP"},{"name":"Korea, Republic of","dial_code":"+82","code":"KR"},{"name":"Kuwait","dial_code":"+965","code":"KW"},{"name":"Kyrgyzstan","dial_code":"+996","code":"KG"},{"name":"Lao People's Democratic Republic","dial_code":"+856","code":"LA"},{"name":"Latvia","dial_code":"+371","code":"LV"},{"name":"Lebanon","dial_code":"+961","code":"LB"},{"name":"Lesotho","dial_code":"+266","code":"LS"},{"name":"Liberia","dial_code":"+231","code":"LR"},{"name":"Libyan Arab Jamahiriya","dial_code":"+218","code":"LY"},{"name":"Liechtenstein","dial_code":"+423","code":"LI"},{"name":"Lithuania","dial_code":"+370","code":"LT"},{"name":"Luxembourg","dial_code":"+352","code":"LU"},{"name":"Macao","dial_code":"+853","code":"MO"},{"name":"Macedonia, The Former Yugoslav Republic of","dial_code":"+389","code":"MK"},{"name":"Madagascar","dial_code":"+261","code":"MG"},{"name":"Malawi","dial_code":"+265","code":"MW"},{"name":"Malaysia","dial_code":"+60","code":"MY"},{"name":"Maldives","dial_code":"+960","code":"MV"},{"name":"Mali","dial_code":"+223","code":"ML"},{"name":"Malta","dial_code":"+356","code":"MT"},{"name":"Marshall Islands","dial_code":"+692","code":"MH"},{"name":"Martinique","dial_code":"+596","code":"MQ"},{"name":"Mauritania","dial_code":"+222","code":"MR"},{"name":"Mauritius","dial_code":"+230","code":"MU"},{"name":"Mayotte","dial_code":"+262","code":"YT"},{"name":"Mexico","dial_code":"+52","code":"MX"},{"name":"Micronesia, Federated States of","dial_code":"+691","code":"FM"},{"name":"Moldova, Republic of","dial_code":"+373","code":"MD"},{"name":"Monaco","dial_code":"+377","code":"MC"},{"name":"Mongolia","dial_code":"+976","code":"MN"},{"name":"Montenegro","dial_code":"+382","code":"ME"},{"name":"Montserrat","dial_code":"+1664","code":"MS"},{"name":"Morocco","dial_code":"+212","code":"MA"},{"name":"Mozambique","dial_code":"+258","code":"MZ"},{"name":"Myanmar","dial_code":"+95","code":"MM"},{"name":"Namibia","dial_code":"+264","code":"NA"},{"name":"Nauru","dial_code":"+674","code":"NR"},{"name":"Nepal","dial_code":"+977","code":"NP"},{"name":"Netherlands","dial_code":"+31","code":"NL"},{"name":"Netherlands Antilles","dial_code":"+599","code":"AN"},{"name":"New Caledonia","dial_code":"+687","code":"NC"},{"name":"New Zealand","dial_code":"+64","code":"NZ"},{"name":"Nicaragua","dial_code":"+505","code":"NI"},{"name":"Niger","dial_code":"+227","code":"NE"},{"name":"Nigeria","dial_code":"+234","code":"NG"},{"name":"Niue","dial_code":"+683","code":"NU"},{"name":"Norfolk Island","dial_code":"+672","code":"NF"},{"name":"Northern Mariana Islands","dial_code":"+1 670","code":"MP"},{"name":"Norway","dial_code":"+47","code":"NO"},{"name":"Oman","dial_code":"+968","code":"OM"},{"name":"Pakistan","dial_code":"+92","code":"PK"},{"name":"Palau","dial_code":"+680","code":"PW"},{"name":"Palestinian Territory, Occupied","dial_code":"+970","code":"PS"},{"name":"Panama","dial_code":"+507","code":"PA"},{"name":"Papua New Guinea","dial_code":"+675","code":"PG"},{"name":"Paraguay","dial_code":"+595","code":"PY"},{"name":"Peru","dial_code":"+51","code":"PE"},{"name":"Philippines","dial_code":"+63","code":"PH"},{"name":"Pitcairn","dial_code":"+872","code":"PN"},{"name":"Poland","dial_code":"+48","code":"PL"},{"name":"Portugal","dial_code":"+351","code":"PT"},{"name":"Puerto Rico","dial_code":"+1 939","code":"PR"},{"name":"Qatar","dial_code":"+974","code":"QA"},{"name":"Romania","dial_code":"+40","code":"RO"},{"name":"Russia","dial_code":"+7","code":"RU"},{"name":"Rwanda","dial_code":"+250","code":"RW"},{"name":"Réunion","dial_code":"+262","code":"RE"},{"name":"Saint Barthélemy","dial_code":"+590","code":"BL"},{"name":"Saint Helena, Ascension and Tristan Da Cunha","dial_code":"+290","code":"SH"},{"name":"Saint Kitts and Nevis","dial_code":"+1 869","code":"KN"},{"name":"Saint Lucia","dial_code":"+1 758","code":"LC"},{"name":"Saint Martin","dial_code":"+590","code":"MF"},{"name":"Saint Pierre and Miquelon","dial_code":"+508","code":"PM"},{"name":"Saint Vincent and the Grenadines","dial_code":"+1 784","code":"VC"},{"name":"Samoa","dial_code":"+685","code":"WS"},{"name":"San Marino","dial_code":"+378","code":"SM"},{"name":"Sao Tome and Principe","dial_code":"+239","code":"ST"},{"name":"Saudi Arabia","dial_code":"+966","code":"SA"},{"name":"Senegal","dial_code":"+221","code":"SN"},{"name":"Serbia","dial_code":"+381","code":"RS"},{"name":"Seychelles","dial_code":"+248","code":"SC"},{"name":"Sierra Leone","dial_code":"+232","code":"SL"},{"name":"Singapore","dial_code":"+65","code":"SG"},{"name":"Slovakia","dial_code":"+421","code":"SK"},{"name":"Slovenia","dial_code":"+386","code":"SI"},{"name":"Solomon Islands","dial_code":"+677","code":"SB"},{"name":"Somalia","dial_code":"+252","code":"SO"},{"name":"South Africa","dial_code":"+27","code":"ZA"},{"name":"South Georgia and the South Sandwich Islands","dial_code":"+500","code":"GS"},{"name":"Spain","dial_code":"+34","code":"ES"},{"name":"Sri Lanka","dial_code":"+94","code":"LK"},{"name":"Sudan","dial_code":"+249","code":"SD"},{"name":"Suriname","dial_code":"+597","code":"SR"},{"name":"Svalbard and Jan Mayen","dial_code":"+47","code":"SJ"},{"name":"Swaziland","dial_code":"+268","code":"SZ"},{"name":"Sweden","dial_code":"+46","code":"SE"},{"name":"Switzerland","dial_code":"+41","code":"CH"},{"name":"Syrian Arab Republic","dial_code":"+963","code":"SY"},{"name":"Taiwan, Province of China","dial_code":"+886","code":"TW"},{"name":"Tajikistan","dial_code":"+992","code":"TJ"},{"name":"Tanzania, United Republic of","dial_code":"+255","code":"TZ"},{"name":"Thailand","dial_code":"+66","code":"TH"},{"name":"Timor-Leste","dial_code":"+670","code":"TL"},{"name":"Togo","dial_code":"+228","code":"TG"},{"name":"Tokelau","dial_code":"+690","code":"TK"},{"name":"Tonga","dial_code":"+676","code":"TO"},{"name":"Trinidad and Tobago","dial_code":"+1 868","code":"TT"},{"name":"Tunisia","dial_code":"+216","code":"TN"},{"name":"Turkey","dial_code":"+90","code":"TR"},{"name":"Turkmenistan","dial_code":"+993","code":"TM"},{"name":"Turks and Caicos Islands","dial_code":"+1 649","code":"TC"},{"name":"Tuvalu","dial_code":"+688","code":"TV"},{"name":"Uganda","dial_code":"+256","code":"UG"},{"name":"Ukraine","dial_code":"+380","code":"UA"},{"name":"United Arab Emirates","dial_code":"+971","code":"AE"},{"name":"United Kingdom","dial_code":"+44","code":"GB"},{"name":"United States","dial_code":"+1","code":"US"},{"name":"Uruguay","dial_code":"+598","code":"UY"},{"name":"Uzbekistan","dial_code":"+998","code":"UZ"},{"name":"Vanuatu","dial_code":"+678","code":"VU"},{"name":"Venezuela, Bolivarian Republic of","dial_code":"+58","code":"VE"},{"name":"Viet Nam","dial_code":"+84","code":"VN"},{"name":"Virgin Islands, British","dial_code":"+1 284","code":"VG"},{"name":"Virgin Islands, U.S.","dial_code":"+1 340","code":"VI"},{"name":"Wallis and Futuna","dial_code":"+681","code":"WF"},{"name":"Yemen","dial_code":"+967","code":"YE"},{"name":"Zambia","dial_code":"+260","code":"ZM"},{"name":"Zimbabwe","dial_code":"+263","code":"ZW"}];
@@ -629,18 +629,18 @@ angular.module('starter.controllers', [])
 		$ionicLoading.hide();
 	});
 })
-/** Parichay Patra Controller **/
-.controller('parichaypatraCtrl',function($scope,$http,$state,$ionicLoading,$ionicPopup,$ionicModal,$cordovaCamera) {
-	/* Parichay Patra */ /* http://makerits.com/jainoswalsajnanfedration/webservice/?action=parichay_patr */
+/** Introduction Form Controller **/
+.controller('introductionformCtrl',function($scope,$http,$state,$ionicLoading,$ionicPopup,$ionicModal,$cordovaCamera) {
+	/* Parichay Patra */ /* http://makerites.com/wordpress/jainoswalsajnanfedration/matrimonial/matrimonial_web */
 	$scope.daysarr = global_daysarr;
 	$scope.monthsarr = global_monthsarr;
 	$scope.yearsarr = global_yearsarr;
 	$scope.submit = function() {
-		var action = "parichay_patr";
+		var action = "introduction_form";
         var pratayasi_name = $scope.pratayasi_name;
 		var gottr = $scope.gottr;
 		var Address = $scope.Address;
-		var Phone_number = $scope.Phone_number;
+		var Phone_number = $scope.Phone_number != undefined ? $scope.Phone_number : '';
 		var Mobile_number = $scope.Mobile_number;
 		var Suchna_number = $scope.Suchna_number;
 		var year = $scope.year;
@@ -653,7 +653,7 @@ angular.module('starter.controllers', [])
 		var Types_vard = $scope.Types_vard;
 		var Hight = $scope.Hight;
 		var Wait = $scope.Wait;
-		var Blood_group = $scope.Blood_group;
+		var Blood_group = $scope.Blood_group != undefined ? $scope.Blood_group : '';
 		var Education = $scope.Education;
 		var email162 = $scope.email162;
 		var Business = $scope.Business;
@@ -686,7 +686,7 @@ angular.module('starter.controllers', [])
 		var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z\-])+\.)+([a-zA-Z]{2,4})+$/;
 		/** var photo = $scope.photo;*/
 		var data_parameters = "action="+action+"&pratayasi_name="+pratayasi_name+"&gottr="+gottr+"&Address="+Address+"&Phone_number="+Phone_number+"&Mobile_number="+Mobile_number+"&Suchna_number="+Suchna_number+"&Date_of_birth="+Date_of_birth+"&Birth_time="+Birth_time+"&samyakaal="+samyakaal+"&Birth_place="+Birth_place+"&Types_vard="+Types_vard+"&Hight="+Hight+"&Wait="+Wait+"&Blood_group="+Blood_group+"&Education="+Education+"&email162="+email162+"&Business="+Business+"&Income="+Income+"&Intrested="+Intrested+"&Important_details="+Important_details+"&Father_name="+Father_name+"&Father_mobile_number="+Father_mobile_number+"&Mother_name_work="+Mother_name_work+"&gotter_soyam="+gotter_soyam+"&gotter_mama="+gotter_mama+"&gotter_dadi="+gotter_dadi+"&gotter_nani="+gotter_nani+"&manglik="+manglik+"&Patrika_milan="+Patrika_milan+"&other="+other+"&Dharmik_manyata="+Dharmik_manyata+"&bhai_vivahit="+bhai_vivahit+"&bhai_avivahit="+bhai_avivahit+"&bahan_vivahit="+bahan_vivahit+"&bahan_avivahit="+bahan_avivahit+"&residentsinc="+residentsinc+"&vahan_2wheeler="+vahan_2wheeler+"&vahan_4wheeler="+vahan_4wheeler+"&upstithiti="+upstithiti+"&Other_contact="+Other_contact+"&other_adderess="+other_adderess+"&other_Mobile_number="+other_Mobile_number+"&Pratyashi_relationship="+Pratyashi_relationship;
-		if(typeof pratayasi_name === "undefined" || typeof gottr === "undefined" || typeof Address === "undefined" || typeof Phone_number === "undefined" || typeof Mobile_number === "undefined" || typeof Suchna_number === "undefined" || typeof year === "undefined" || typeof month === "undefined" || typeof day === "undefined" || typeof Birth_time === "undefined" || typeof samyakaal === "undefined" || typeof Birth_place === "undefined" || typeof Types_vard === "undefined" || typeof Hight === "undefined" || typeof Wait === "undefined" || typeof Blood_group === "undefined" || typeof Education === "undefined" || typeof email162 === "undefined" || typeof Business === "undefined" || typeof Income === "undefined" || typeof Intrested === "undefined" || typeof Important_details === "undefined" || typeof Father_name === "undefined" || typeof Father_mobile_number === "undefined" || typeof Mother_name_work === "undefined" || typeof gotter_soyam === "undefined" || typeof gotter_mama === "undefined" || typeof gotter_dadi === "undefined" || typeof gotter_nani === "undefined" || typeof manglik === "undefined" || typeof Patrika_milan === "undefined" || typeof Dharmik_manyata === "undefined" || typeof residentsinc === "undefined" || typeof upstithiti === "undefined" || typeof Other_contact === "undefined" || typeof other_adderess === "undefined" || typeof other_Mobile_number === "undefined" || typeof Pratyashi_relationship === "undefined" || pratayasi_name == "" || gottr == "" || Address == "" || Phone_number == "" || Mobile_number == "" || Suchna_number == "" || year == "" || month == "" || day == "" || Birth_time == "" || samyakaal == "" || Birth_place == "" || Types_vard == "" || Hight == "" || Wait == "" || Blood_group == "" || Education == "" || email162 == "" || Business == "" || Income == "" || Intrested == "" || Important_details == "" || Father_name == "" || Father_mobile_number == "" || Mother_name_work == "" || gotter_soyam == "" || gotter_mama == "" || gotter_dadi == "" || gotter_nani == "" || manglik == "" || Patrika_milan == "" || Dharmik_manyata == "" || residentsinc == "" || upstithiti == "" || Other_contact == "" || other_adderess == "" || other_Mobile_number == "" || Pratyashi_relationship == ""){
+		if(typeof pratayasi_name === "undefined" || typeof gottr === "undefined" || typeof Address === "undefined" || typeof Mobile_number === "undefined" || typeof Suchna_number === "undefined" || typeof year === "undefined" || typeof month === "undefined" || typeof day === "undefined" || typeof Birth_time === "undefined" || typeof samyakaal === "undefined" || typeof Birth_place === "undefined" || typeof Types_vard === "undefined" || typeof Hight === "undefined" || typeof Wait === "undefined" || typeof Education === "undefined" || typeof email162 === "undefined" || typeof Business === "undefined" || typeof Income === "undefined" || typeof Intrested === "undefined" || typeof Important_details === "undefined" || typeof Father_name === "undefined" || typeof Father_mobile_number === "undefined" || typeof Mother_name_work === "undefined" || typeof gotter_soyam === "undefined" || typeof gotter_mama === "undefined" || typeof gotter_dadi === "undefined" || typeof gotter_nani === "undefined" || typeof manglik === "undefined" || typeof Patrika_milan === "undefined" || typeof Dharmik_manyata === "undefined" || typeof residentsinc === "undefined" || typeof upstithiti === "undefined" || typeof Other_contact === "undefined" || typeof other_adderess === "undefined" || typeof other_Mobile_number === "undefined" || typeof Pratyashi_relationship === "undefined" || pratayasi_name == "" || gottr == "" || Address == "" ||  Mobile_number == "" || Suchna_number == "" || year == "" || month == "" || day == "" || Birth_time == "" || samyakaal == "" || Birth_place == "" || Types_vard == "" || Hight == "" || Wait == "" || Education == "" || email162 == "" || Business == "" || Income == "" || Intrested == "" || Important_details == "" || Father_name == "" || Father_mobile_number == "" || Mother_name_work == "" || gotter_soyam == "" || gotter_mama == "" || gotter_dadi == "" || gotter_nani == "" || manglik == "" || Patrika_milan == "" || Dharmik_manyata == "" || residentsinc == "" || upstithiti == "" || Other_contact == "" || other_adderess == "" || other_Mobile_number == "" || Pratyashi_relationship == ""){
 			$ionicPopup.show({
 			  template: '',
 			  title: 'All (*) Marked Fields Are Compulsory',
@@ -714,7 +714,7 @@ angular.module('starter.controllers', [])
 		}
 		else{
 			$ionicLoading.show({template: '<ion-spinner icon="crescent"></ion-spinner>'});
-			$http.post(globalip,data_parameters, {
+			$http.post(globalip_2,data_parameters, {
 				headers: {'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'}
 			})
 			.success(function(response) {
@@ -817,7 +817,7 @@ angular.module('starter.controllers', [])
 	});
 })
 /** Profile Controller **/
-.controller('profileCtrl',function($scope,$http,$state,$ionicLoading,$ionicPopup,$rootScope,$ionicHistory,$cordovaCamera) {
+.controller('profileCtrl',function($scope,$http,$state,$ionicLoading,$ionicPopup,$rootScope,$ionicHistory,$cordovaCamera,$cordovaFileTransfer) {
 	/* User Profile */ 
 	/* http://makerits.com/jainoswalsajnanfedration/webservice/?action=update_profile&action_1=update_user_profile&ID=115&description=helloheretimepass&gender=Male&birth_date=1995/01/11&country=Aruba&mobile_number=9165679898&user_email=timepass10237@gmail.com */
 	$scope.daysarr = global_daysarr;
@@ -872,9 +872,12 @@ angular.module('starter.controllers', [])
 		var user_email = $scope.user_email;
 		var mobile_number = $scope.mobile_number;
 		var description = $scope.description != undefined ? $scope.description : '';
+		var address_1 = $scope.address_1;
+		var address_2 = $scope.address_2 != undefined ? $scope.address_2 : '';
+		var membership_type = $scope.membership_type;
 		var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z\-])+\.)+([a-zA-Z]{2,4})+$/;
-		var data_parameters = "action="+action+"&action_1="+action_1+"&ID="+global_login_id+"&gender="+gender+"&birth_date="+birth_date+"&country="+country+"&user_email="+user_email+"&mobile_number="+mobile_number+"&description="+description;
-		if(typeof global_login_id === "undefined" || typeof gender === "undefined" || typeof year === "undefined" || typeof month === "undefined" || typeof day === "undefined" || typeof country === "undefined" || typeof user_email === "undefined" || typeof mobile_number === "undefined" || global_login_id == "" || gender == "" || year == "" || month == "" || day == "" || country == "" || user_email == "" || mobile_number == ""){
+		var data_parameters = "action="+action+"&action_1="+action_1+"&ID="+global_login_id+"&gender="+gender+"&birth_date="+birth_date+"&country="+country+"&user_email="+user_email+"&mobile_number="+mobile_number+"&description="+description+"&address_1="+address_1+"&address_2="+address_2+"&membership-type="+membership_type;
+		if(typeof global_login_id === "undefined" || typeof gender === "undefined" || typeof year === "undefined" || typeof month === "undefined" || typeof day === "undefined" || typeof country === "undefined" || typeof address_1 === "undefined" || typeof membership_type === "undefined" || typeof user_email === "undefined" || typeof mobile_number === "undefined" || global_login_id == "" || gender == "" || year == "" || month == "" || day == "" || country == "" || address_1 == "" || membership_type == "" || user_email == "" || mobile_number == ""){
 			error += '<p>सभी (*) चिन्हित फील्ड अनिवार्य है |</p>';
 		}
 		if(user_email != '' && user_email != undefined){
@@ -1122,6 +1125,30 @@ angular.module('starter.controllers', [])
 		};
 		$cordovaCamera.getPicture(options).then(function (imageData) {
 			$scope.imgURI = "data:image/jpeg;base64," + imageData;
+			 var server = globalip_2+'?action=uploadTesting',
+                filePath = imageData;
+
+            var date = new Date();
+
+            var options = {
+                fileKey: "file",
+                fileName: imageData.substr(imageData.lastIndexOf('/') + 1),
+                chunkedMode: false,
+                mimeType: "image/jpg"
+            };
+
+            $cordovaFileTransfer.upload(server, filePath, options).then(function(result) {
+                console.log("SUCCESS: " + JSON.stringify(result));
+                console.log('Result_' + result + '_ending');
+                //alert("success");
+                //alert(JSON.stringify(result.response));
+
+            }, function(err) {
+                console.log("ERROR: " + JSON.stringify(err));
+                //alert(JSON.stringify(err));
+            }, function (progress) {
+                // constant progress updates
+            });
 		}, function (err) {
 			// An error occured. Show a message to the user
 		});
@@ -1141,6 +1168,12 @@ angular.module('starter.controllers', [])
 		};
 		$cordovaCamera.getPicture(options).then(function (imageData) {
 			$scope.imgURI = "data:image/jpeg;base64," + imageData;
+			var ft = new FileTransfer();
+			 ft.upload(imgURI, globalip_2+"?action=uploadTesting", function(result){
+			 console.log(JSON.stringify(result));
+			 }, function(error){
+			 console.log(JSON.stringify(error));
+			 }, options);
 		}, function (err) {
 			// An error occured. Show a message to the user
 		});
@@ -1369,20 +1402,18 @@ angular.module('starter.controllers', [])
 	.success(function(response1) {
 		$scope.mother_tongues = response1;
 	});
-	/* Professional */ /* http://makerits.com/jainoswalsajnanfedration/matrimonial/matrimonial_web?action=professional_list */
-	/*var action2 = "professional_list";
-	var data_parameters2 = "action="+action2;
-	$http.post(globalip_2,data_parameters2, {
-		headers: {'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'}
-	})
-	.success(function(response2) {
-		$scope.professionals = response2;
-	});*/
 	$scope.submitmemberregistrationForm = function() {
 		var error = '';
 		var action = "register";
+		var profile_created_by = $scope.profile_created_by;
 		var firstname = $scope.firstname;
 		var lastname = $scope.lastname;
+		var matri_gender = $scope.matri_gender;
+		var matri_marital_status = $scope.matri_marital_status;
+		var matri_Sect = $scope.matri_Sect;
+		var matri_sub_sect = $scope.matri_sub_sect;
+		var matri_castes = $scope.matri_castes;
+		var matri_mobile = $scope.matri_mobile;
 		var user_email = $scope.user_email;
 		var password = $scope.password;
 		var con_password = $scope.con_password;
@@ -1396,8 +1427,8 @@ angular.module('starter.controllers', [])
 		var month = $scope.month;
 		var day = $scope.day;
 		var dob = year+'-'+month+'-'+day;
-		var data_parameters = "action="+action+"&firstname="+firstname+"&lastname="+lastname+"&user_email="+user_email+"&password="+password+"&description="+description+"&country="+country+"&mother_tongue="+mother_tongue+"&professional="+professional+"&dob="+dob;
-		if(typeof firstname === "undefined" || typeof lastname === "undefined" || typeof country === "undefined" || typeof year === "undefined" || typeof month === "undefined" || typeof day === "undefined" || typeof user_email === "undefined" || typeof password === "undefined" || typeof con_password === "undefined" || firstname == "" || lastname == ""  || country == "" || country == null || year == "" || month == "" || day == "" || user_email == "" || password == "" || con_password == ""){
+		var data_parameters = "action="+action+"&profile_created_by="+profile_created_by+"&firstname="+firstname+"&lastname="+lastname+"&matri_gender="+matri_gender+"&matri_Sect="+matri_Sect+"&matri_sub_sect="+matri_sub_sect+"&matri_castes="+matri_castes+"&matri_mobile="+matri_mobile+"&matri_marital_status="+matri_marital_status+"&user_email="+user_email+"&password="+password+"&description="+description+"&matri_country="+country+"&mother_tongue="+mother_tongue+"&professional="+professional+"&matri_dob="+dob;
+		if(typeof profile_created_by === "undefined" || typeof firstname === "undefined" || typeof lastname === "undefined" || typeof matri_gender === "undefined" || typeof matri_Sect === "undefined" || typeof matri_sub_sect === "undefined" || typeof matri_castes === "undefined" || typeof matri_mobile === "undefined" || typeof matri_marital_status === "undefined" || typeof country === "undefined" || typeof year === "undefined" || typeof month === "undefined" || typeof day === "undefined" || typeof user_email === "undefined" || typeof password === "undefined" || typeof con_password === "undefined" || profile_created_by == "" || firstname == "" || lastname == "" || matri_gender == "" || matri_Sect == "" || matri_sub_sect == "" || matri_castes == "" || matri_mobile == "" || matri_marital_status == "" || country == "" || country == null || year == "" || month == "" || day == "" || user_email == "" || password == "" || con_password == ""){
 			error += '<p>All (*) Marked Fields Are Compulsory</p>';
 		}
 		if(user_email != '' && user_email != undefined){
@@ -1447,7 +1478,7 @@ angular.module('starter.controllers', [])
 				  ]
 				});
 				if(response[0].success_status == 1){
-					$scope.firstname = $scope.lastname = $scope.country = $scope.year = $scope.month = $scope.day = $scope.mother_tongue = $scope.professional = $scope.description = $scope.user_email = $scope.password = $scope.con_password = '' ;
+					$scope.profile_created_by = $scope.firstname = $scope.lastname = $scope.matri_gender = $scope.matri_marital_status = $scope.matri_Sect = $scope.matri_sub_sect = $scope.matri_caste = $scope.country = $scope.year = $scope.month = $scope.day = $scope.mother_tongue = $scope.matri_mobile = $scope.professional = $scope.description = $scope.user_email = $scope.password = $scope.con_password = '' ;
 				}
 				$ionicLoading.hide();
 			});
@@ -1471,13 +1502,13 @@ angular.module('starter.controllers', [])
 })
 /** Member Profile Update Controller**/
 .controller('memberupdateCtrl',function($scope,$http,$state,$ionicLoading,$ionicPopup,$cordovaCamera) {
-	/* Update */ /* http://makerits.com/jainoswalsajnanfedration/matrimonial/matrimonial_web?action=single_user&user_id=41 */
-	/* http://makerits.com/jainoswalsajnanfedration/matrimonial/matrimonial_web/?action=update_profile&user_id=50&user_email=gautammakerits@gmail.com&firstname=gautam&lastname=raghuwanshi&description=i%20am%20pghp%20developer&country=France&dob=10/10/1995&mother_tongue=Gujrati&professiona=Sales%20Manager */
+	/* Update */ /* http://makerites.com/wordpress/jainoswalsajnanfedration/matrimonial/matrimonial_web/?action=single_user&user_id=58 */
+	/* http://makerites.com/wordpress/jainoswalsajnanfedration/matrimonial/matrimonial_web/?action=update_profile&user_id=50&user_email=gautammakerits@gmail.com&firstname=gautam&lastname=raghuwanshi&description=i%20am%20pghp%20developer&country=France&dob=10/10/1995&mother_tongue=Gujrati&professiona=Sales%20Manager */
 	$scope.daysarr = global_daysarr;
 	$scope.monthsarr = global_monthsarr;
 	$scope.yearsarr = global_yearsarr;
 	$scope.countryarr =  global_countryarr;
-	/* Mother Tounge */ /* http://makerits.com/jainoswalsajnanfedration/matrimonial/matrimonial_web/?action=mother_tongue_list */
+	/* Mother Tounge */ /* http://makerites.com/wordpress/jainoswalsajnanfedration/matrimonial/matrimonial_web/?action=mother_tongue_list */
 	var action1 = "mother_tongue_list";
 	var data_parameters1 = "action="+action1;
 	$http.post(globalip_2,data_parameters1, {
@@ -1486,7 +1517,7 @@ angular.module('starter.controllers', [])
 	.success(function(response1) {
 		$scope.mother_tongues = response1;
 	});
-	/* Professional */ /* http://makerits.com/jainoswalsajnanfedration/matrimonial/matrimonial_web?action=professional_list */
+	/* Professional */ /* http://makerites.com/wordpress/jainoswalsajnanfedration/matrimonial/matrimonial_web?action=professional_list */
 	/*var action2 = "professional_list";
 	var data_parameters2 = "action="+action2;
 	$http.post(globalip_2,data_parameters2, {
@@ -1502,17 +1533,22 @@ angular.module('starter.controllers', [])
 		})
 		.success(function(response) {
 			if(response[0].status == "Y"){
+				$scope.profile_created_by = response[0].profile_created_by;
 				$scope.firstname = response[0].fname;
 				$scope.lastname = response[0].lname;
-				$scope.country = response[0].Country;
+				$scope.matri_gender = response[0].matri_gender;
 				var dob = response[0].dob;
 				var date = new Date(dob) ;
 				$scope.day = date.getDate();
 				$scope.month = date.getMonth()+1;
 				$scope.year = date.getFullYear();
+				$scope.matri_marital_status = response[0].matri_marital_status;
+				$scope.matri_Sect = response[0].matri_Sect;
+				$scope.matri_sub_sect = response[0].matri_sub_sect;
+				$scope.matri_castes = response[0].matri_castes;
+				$scope.country = response[0].Country;
 				$scope.mother_tongue = response[0].mother_tongue ? response[0].mother_tongue : '';
-				$scope.professional = response[0].Professional ? response[0].Professional : '';
-				$scope.description = response[0].description ? response[0].description : '';
+				$scope.matri_mobile = response[0].matri_mobile;
 				$scope.user_email = response[0].email;
 				$scope.image_url = response[0].image_url ? response[0].image_url : './img/siteimgs/boy-512.png';
 			}
@@ -1521,20 +1557,25 @@ angular.module('starter.controllers', [])
 	$scope.submitmemberupdateForm = function() {
 		var error = '';
 		var action = "update_profile";
+		var profile_created_by = $scope.profile_created_by;
 		var firstname = $scope.firstname;
 		var lastname = $scope.lastname;
+		var matri_gender = $scope.matri_gender;
 		var country = $scope.country;
 		var year = $scope.year;
 		var month = $scope.month;
 		var day = $scope.day;
 		var dob = year+'-'+month+'-'+day;
+		var matri_marital_status = $scope.matri_marital_status;
+		var matri_Sect = $scope.matri_Sect;
+		var matri_sub_sect = $scope.matri_sub_sect;
+		var matri_castes = $scope.matri_castes;
 		var mother_tongue = $scope.mother_tongue != undefined ? $scope.mother_tongue : '';
-		var professional = $scope.professional != undefined ? $scope.professional : '';
-		var description = $scope.description != undefined ? $scope.description : '';
+		var matri_mobile = $scope.matri_mobile;
 		var user_email = $scope.user_email;
 		var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z\-])+\.)+([a-zA-Z]{2,4})+$/;
-		var data_parameters = "action="+action+"&user_id="+global_login_id_2+"&user_email="+user_email+"&firstname="+firstname+"&lastname="+lastname+"&description="+description+"&country="+country+"&dob="+dob+"&mother_tongue="+mother_tongue+"&professional="+professional;
-		if(typeof global_login_id_2 === "undefined" || typeof user_email === "undefined" || typeof firstname === "undefined" || typeof lastname === "undefined" || typeof country === "undefined" || typeof year === "undefined" || typeof month === "undefined" || typeof day === "undefined" || global_login_id_2 == "" || firstname == "" || lastname == ""  || country == "" || country == null || year == "" || month == "" || day == "" || user_email == ""){
+		var data_parameters = "action="+action+"&user_id="+global_login_id_2+"&profile_created_by="+profile_created_by+"&user_email="+user_email+"&firstname="+firstname+"&lastname="+lastname+"&matri_gender="+matri_gender+"&matri_country="+country+"&matri_dob="+dob+"&matri_marital_status="+matri_marital_status+"&matri_Sect="+matri_Sect+"&matri_sub_sect="+matri_sub_sect+"&matri_castes="+matri_castes+"&matri_mobile="+matri_mobile+"&mother_tongue="+mother_tongue;
+		if(typeof global_login_id_2 === "undefined" || typeof profile_created_by === "undefined" || typeof user_email === "undefined" || typeof firstname === "undefined" || typeof lastname === "undefined" || typeof matri_gender === "undefined" || typeof matri_marital_status === "undefined" || typeof matri_Sect === "undefined" || typeof matri_sub_sect === "undefined" || typeof matri_castes === "undefined" || typeof matri_mobile === "undefined" || typeof country === "undefined" || typeof year === "undefined" || typeof month === "undefined" || typeof day === "undefined" || global_login_id_2 == "" || profile_created_by == "" || firstname == "" || lastname == "" || matri_gender == "" || matri_marital_status == "" || matri_marital_status == null || matri_Sect == "" || matri_Sect === null || matri_sub_sect == "" || matri_sub_sect == null || matri_castes == "" || matri_castes == null || matri_mobile == "" || country == "" || country == null || year == "" || month == "" || day == "" || user_email == ""){
 			error += '<p>All (*) Marked Fields Are Compulsory</p>';
 		}
 		if(user_email != '' && user_email != undefined){
@@ -1629,6 +1670,33 @@ angular.module('starter.controllers', [])
 		};
 		$cordovaCamera.getPicture(options).then(function (imageData) {
 			$scope.imgURI = "data:image/jpeg;base64," + imageData;
+			var formDataMultipart = new FormData();
+			var action = "uploadTesting";
+			var data_parameters = "action="+action+"&image="+imageData;
+			formDataMultipart.append(data_parameters);
+			$http.post(globalip_2,formDataMultipart, {
+				withCredentials: false,
+                headers: {
+                    'Content-Type': undefined
+                },
+				transformRequest: angular.identity,
+					params: {
+					formDataMultipart
+				}
+			})
+			.success(function(response) {
+				$ionicPopup.show({
+				  template: '',
+				  title: response,
+				  scope: $scope,
+				  buttons: [
+					{ 
+					  text: 'Ok',
+					  type: 'button-positive'
+					},
+				  ]
+				});
+			});
 		}, function (err) {
 			// An error occured. Show a message to the user
 		});

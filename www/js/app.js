@@ -142,7 +142,7 @@ angular.module('starter', ['ionic', 'starter.controllers','ngCordova'])
       }
     }
   })
-  .state('app.parichaypatra', {
+  /**.state('app.parichaypatra', {
     url: '/parichaypatra',
     views: {
       'menuContent': {
@@ -150,7 +150,7 @@ angular.module('starter', ['ionic', 'starter.controllers','ngCordova'])
 		controller: 'parichaypatraCtrl'
       }
     }
-  })
+  })*/
   .state('app.business_directory', {
     url: '/business_directory',
     views: {
