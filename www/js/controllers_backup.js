@@ -630,72 +630,11 @@ angular.module('starter.controllers', [])
 	});
 })
 /** Introduction Form Controller **/
-.controller('introductionformCtrl',function($scope,$http,$state,$ionicLoading,$ionicPopup,$ionicModal,$cordovaCamera,$cordovaFileTransfer) {
+.controller('introductionformCtrl',function($scope,$http,$state,$ionicLoading,$ionicPopup,$ionicModal,$cordovaCamera,$cordovaFile,$cordovaFileTransfer) {
 	/* Parichay Patra */ /* http://makerites.com/wordpress/jainoswalsajnanfedration/matrimonial/matrimonial_web */
 	$scope.daysarr = global_daysarr;
 	$scope.monthsarr = global_monthsarr;
 	$scope.yearsarr = global_yearsarr;
-	$scope.imageData = '';
-	var alertPopup; 
-	$scope.chooseOption4PPhoto = function() {
-		alertPopup = $ionicPopup.show({
-		  template: '<div class="row text-center"><div class="col col-50"><button class="button button-royal icon ion-camera" ng-click="takePhoto4UploadPPhotoM()"></button></div><div class="col col-50"><button class="button button-energized icon ion-images" ng-click="choosePhoto4UploadPPhotoM()" ></button></div></div>',
-		  //templateUrl: 'templates/uploadmemberregistration.html',
-		  title: 'Choose Option',
-		  scope: $scope,
-		  buttons: [
-			{ 
-			  text: 'Close',
-			  type: 'button-positive'
-			},
-		  ]
-		});
-	};
-	// open PhotoLibrary
-    $scope.takePhoto4UploadPPhotoM = function () {
-		alertPopup.close();
-		console.log('takePhoto');
-		var options = {
-			quality: 75,
-			destinationType: Camera.DestinationType.FILE_URI,
-			sourceType: Camera.PictureSourceType.CAMERA,
-			allowEdit: true,
-			encodingType: Camera.EncodingType.JPEG,
-			targetWidth: 300,
-			targetHeight: 300,
-			popoverOptions: CameraPopoverOptions,
-			saveToPhotoAlbum: false
-		};
-		$cordovaCamera.getPicture(options).then(function (imageData) {
-			$scope.imgURI = imageData;
-			$scope.imageData = imageData;
-			$scope.$apply();
-		}, function (err) {
-			// An error occured. Show a message to the user
-		});
-	}
-	$scope.choosePhoto4UploadPPhotoM = function () {
-		alertPopup.close();
-		console.log('choosePhoto');
-		var options = {
-			quality: 75,
-			destinationType: Camera.DestinationType.FILE_URI,
-			sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-			allowEdit: true,
-			encodingType: Camera.EncodingType.JPEG,
-			targetWidth: 300,
-			targetHeight: 300,
-			popoverOptions: CameraPopoverOptions,
-			saveToPhotoAlbum: false
-		};
-		$cordovaCamera.getPicture(options).then(function (imageData) {
-			$scope.imgURI = imageData;
-			$scope.imageData = imageData;
-			$scope.$apply();
-		}, function (err) {
-			// An error occured. Show a message to the user
-		});
-	}
 	$scope.submit = function() {
 		var action = "introduction_form";
         var pratayasi_name = $scope.pratayasi_name;
@@ -744,10 +683,9 @@ angular.module('starter.controllers', [])
 		var other_adderess = $scope.other_adderess;
 		var other_Mobile_number = $scope.other_Mobile_number;
 		var Pratyashi_relationship = $scope.Pratyashi_relationship;
-		var termsandconditions = $scope.termsandconditions;
 		var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z\-])+\.)+([a-zA-Z]{2,4})+$/;
 		/** var photo = $scope.photo;*/
-		/*var data_parameters = "action="+action+"&pratayasi_name="+pratayasi_name+"&gottr="+gottr+"&Address="+Address+"&Phone_number="+Phone_number+"&Mobile_number="+Mobile_number+"&Suchna_number="+Suchna_number+"&Date_of_birth="+Date_of_birth+"&Birth_time="+Birth_time+"&samyakaal="+samyakaal+"&Birth_place="+Birth_place+"&Types_vard="+Types_vard+"&Hight="+Hight+"&Wait="+Wait+"&Blood_group="+Blood_group+"&Education="+Education+"&email162="+email162+"&Business="+Business+"&Income="+Income+"&Intrested="+Intrested+"&Important_details="+Important_details+"&Father_name="+Father_name+"&Father_mobile_number="+Father_mobile_number+"&Mother_name_work="+Mother_name_work+"&gotter_soyam="+gotter_soyam+"&gotter_mama="+gotter_mama+"&gotter_dadi="+gotter_dadi+"&gotter_nani="+gotter_nani+"&manglik="+manglik+"&Patrika_milan="+Patrika_milan+"&other="+other+"&Dharmik_manyata="+Dharmik_manyata+"&bhai_vivahit="+bhai_vivahit+"&bhai_avivahit="+bhai_avivahit+"&bahan_vivahit="+bahan_vivahit+"&bahan_avivahit="+bahan_avivahit+"&residentsinc="+residentsinc+"&vahan_2wheeler="+vahan_2wheeler+"&vahan_4wheeler="+vahan_4wheeler+"&upstithiti="+upstithiti+"&Other_contact="+Other_contact+"&other_adderess="+other_adderess+"&other_Mobile_number="+other_Mobile_number+"&Pratyashi_relationship="+Pratyashi_relationship; */
+		var data_parameters = "action="+action+"&pratayasi_name="+pratayasi_name+"&gottr="+gottr+"&Address="+Address+"&Phone_number="+Phone_number+"&Mobile_number="+Mobile_number+"&Suchna_number="+Suchna_number+"&Date_of_birth="+Date_of_birth+"&Birth_time="+Birth_time+"&samyakaal="+samyakaal+"&Birth_place="+Birth_place+"&Types_vard="+Types_vard+"&Hight="+Hight+"&Wait="+Wait+"&Blood_group="+Blood_group+"&Education="+Education+"&email162="+email162+"&Business="+Business+"&Income="+Income+"&Intrested="+Intrested+"&Important_details="+Important_details+"&Father_name="+Father_name+"&Father_mobile_number="+Father_mobile_number+"&Mother_name_work="+Mother_name_work+"&gotter_soyam="+gotter_soyam+"&gotter_mama="+gotter_mama+"&gotter_dadi="+gotter_dadi+"&gotter_nani="+gotter_nani+"&manglik="+manglik+"&Patrika_milan="+Patrika_milan+"&other="+other+"&Dharmik_manyata="+Dharmik_manyata+"&bhai_vivahit="+bhai_vivahit+"&bhai_avivahit="+bhai_avivahit+"&bahan_vivahit="+bahan_vivahit+"&bahan_avivahit="+bahan_avivahit+"&residentsinc="+residentsinc+"&vahan_2wheeler="+vahan_2wheeler+"&vahan_4wheeler="+vahan_4wheeler+"&upstithiti="+upstithiti+"&Other_contact="+Other_contact+"&other_adderess="+other_adderess+"&other_Mobile_number="+other_Mobile_number+"&Pratyashi_relationship="+Pratyashi_relationship;
 		if(typeof pratayasi_name === "undefined" || typeof gottr === "undefined" || typeof Address === "undefined" || typeof Mobile_number === "undefined" || typeof Suchna_number === "undefined" || typeof year === "undefined" || typeof month === "undefined" || typeof day === "undefined" || typeof Birth_time === "undefined" || typeof samyakaal === "undefined" || typeof Birth_place === "undefined" || typeof Types_vard === "undefined" || typeof Hight === "undefined" || typeof Wait === "undefined" || typeof Education === "undefined" || typeof email162 === "undefined" || typeof Business === "undefined" || typeof Income === "undefined" || typeof Intrested === "undefined" || typeof Important_details === "undefined" || typeof Father_name === "undefined" || typeof Father_mobile_number === "undefined" || typeof Mother_name_work === "undefined" || typeof gotter_soyam === "undefined" || typeof gotter_mama === "undefined" || typeof gotter_dadi === "undefined" || typeof gotter_nani === "undefined" || typeof manglik === "undefined" || typeof Patrika_milan === "undefined" || typeof Dharmik_manyata === "undefined" || typeof residentsinc === "undefined" || typeof upstithiti === "undefined" || typeof Other_contact === "undefined" || typeof other_adderess === "undefined" || typeof other_Mobile_number === "undefined" || typeof Pratyashi_relationship === "undefined" || pratayasi_name == "" || gottr == "" || Address == "" ||  Mobile_number == "" || Suchna_number == "" || year == "" || month == "" || day == "" || Birth_time == "" || samyakaal == "" || Birth_place == "" || Types_vard == "" || Hight == "" || Wait == "" || Education == "" || email162 == "" || Business == "" || Income == "" || Intrested == "" || Important_details == "" || Father_name == "" || Father_mobile_number == "" || Mother_name_work == "" || gotter_soyam == "" || gotter_mama == "" || gotter_dadi == "" || gotter_nani == "" || manglik == "" || Patrika_milan == "" || Dharmik_manyata == "" || residentsinc == "" || upstithiti == "" || Other_contact == "" || other_adderess == "" || other_Mobile_number == "" || Pratyashi_relationship == ""){
 			$ionicPopup.show({
 			  template: '',
@@ -774,34 +712,8 @@ angular.module('starter.controllers', [])
 			  ]
 			});
 		}
-		else if(termsandconditions == false || typeof termsandconditions === "undefined" || termsandconditions == ""){
-			$ionicPopup.show({
-			  template: '',
-			  title: 'Please Accept Terms & Conditions',
-			  scope: $scope,
-			  buttons: [
-				{ 
-				  text: 'Ok',
-				  type: 'button-positive'
-				},
-			  ]
-			});
-		}
-		else if($scope.imageData == undefined || $scope.imageData == ""){
-			$ionicPopup.show({
-			  template: '',
-			  title: 'Please Upload Passport Size Photo',
-			  scope: $scope,
-			  buttons: [
-				{ 
-				  text: 'Ok',
-				  type: 'button-positive'
-				},
-			  ]
-			});
-		}
 		else{
-			/*$ionicLoading.show({template: '<ion-spinner icon="crescent"></ion-spinner>'});
+			$ionicLoading.show({template: '<ion-spinner icon="crescent"></ion-spinner>'});
 			$http.post(globalip_2,data_parameters, {
 				headers: {'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'}
 			})
@@ -822,69 +734,86 @@ angular.module('starter.controllers', [])
 					$scope.pratayasi_name = $scope.gottr = $scope.Address = $scope.Phone_number = $scope.Mobile_number = $scope.Suchna_number = $scope.Date_of_birth = $scope.Birth_time = $scope.samyakaal = $scope.Birth_place = $scope.Types_vard = $scope.Hight = $scope.Wait = $scope.Blood_group = $scope.Education = $scope.email162 = $scope.Business = $scope.Income = $scope.Intrested = $scope.Important_details = $scope.Father_name = $scope.Father_mobile_number = $scope.Mother_name_work = $scope.gotter_soyam = $scope.gotter_mama = $scope.gotter_dadi = $scope.gotter_nani = $scope.manglik = $scope.Patrika_milan = $scope.other = $scope.Dharmik_manyata = $scope.bhai_vivahit = $scope.bhai_avivahit = $scope.bahan_vivahit = $scope.bahan_avivahit = $scope.residentsinc = $scope.vahan_2wheeler = $scope.vahan_4wheeler = $scope.upstithiti = $scope.Other_contact = $scope.other_adderess = $scope.other_Mobile_number = $scope.Pratyashi_relationship = '' ;
 				}
 				$ionicLoading.hide();
-			}); */
-			$ionicLoading.show({template: '<ion-spinner icon="crescent"></ion-spinner>'});
-			var server = globalip_2;
-			var imageData = $scope.imageData;
-			var options = new FileUploadOptions();
-			options.fileKey = "passport_photo";
-			options.fileName = imageData.substr(imageData.lastIndexOf('/') + 1);
-			options.mimeType = "image/jpeg";
-			options.chunkedMode = false; // Transfer picture to server
-			var params = new Object(); 
-			params.action = action;
-			params.pratayasi_name = pratayasi_name;
-			params.gottr = gottr;
-			params.Address = Address;
-			params.Phone_number = Phone_number;
-			params.Mobile_number = Mobile_number;
-			params.Suchna_number = Suchna_number;
-			params.Date_of_birth = Date_of_birth;
-			params.Birth_time = Birth_time;
-			params.samyakaal = samyakaal;
-			params.Birth_place = Birth_place;
-			params.Types_vard = Types_vard;
-			params.Hight = Hight;
-			params.Wait = Wait;
-			params.Blood_group = Blood_group;
-			params.Education = Education;
-			params.email162 = email162;
-			params.Business = Business;
-			params.Income = Income;
-			params.Intrested = Intrested;
-			params.Important_details = Important_details;
-			params.Father_name = Father_name;
-			params.Father_mobile_number = Father_mobile_number;
-			params.Mother_name_work = Mother_name_work;
-			params.gotter_soyam = gotter_soyam;
-			params.gotter_mama = gotter_mama;
-			params.gotter_dadi = gotter_dadi;
-			params.gotter_nani = gotter_nani;
-			params.manglik = manglik;
-			params.Patrika_milan = Patrika_milan;
-			params.other = other;
-			params.Dharmik_manyata = Dharmik_manyata;
-			params.bhai_vivahit = bhai_vivahit;
-			params.bhai_avivahit = bhai_avivahit;
-			params.bahan_vivahit = bahan_vivahit;
-			params.bahan_avivahit = bahan_avivahit;
-			params.residentsinc = residentsinc;
-			params.vahan_2wheeler = vahan_2wheeler;
-			params.vahan_4wheeler = vahan_4wheeler;
-			params.upstithiti = upstithiti;
-			params.Other_contact = Other_contact;
-			params.other_adderess = other_adderess;
-			params.other_Mobile_number = other_Mobile_number;
-			params.Pratyashi_relationship = Pratyashi_relationship;
-			//Send Parameters			
-			options.params = params;
-			var ft = new FileTransfer();
-			ft.upload(imageData, server, function(r) {
-				var k = JSON.parse(r.response);
-				$ionicLoading.hide();
+			});
+		}
+	};
+	$scope.chooseOption4PPhoto = function() {
+		$ionicPopup.show({
+		  template: '<div class="row text-center"><div class="col col-50"><button class="button button-royal icon ion-camera" ng-click="takePhoto()"></button></div><div class="col col-50"><button class="button button-energized icon ion-images" ng-click="choosePhoto()" ></button></div></div>',
+		  //templateUrl: 'templates/uploadmemberregistration.html',
+		  title: 'Choose Option',
+		  scope: $scope,
+		  buttons: [
+			{ 
+			  text: 'Cancel',
+			  type: 'button-positive'
+			},
+		  ]
+		});
+	};
+	// open PhotoLibrary
+    $scope.takePhoto = function () {
+		console.log('takePhoto');
+		var options = {
+			quality: 75,
+			destinationType: Camera.DestinationType.FILE_URI,
+			sourceType: Camera.PictureSourceType.CAMERA,
+			allowEdit: true,
+			encodingType: Camera.EncodingType.JPEG,
+			targetWidth: 300,
+			targetHeight: 300,
+			popoverOptions: CameraPopoverOptions,
+			saveToPhotoAlbum: false
+		};
+		$cordovaCamera.getPicture(options).then(function (imageData) {
+			$scope.imgURI = "data:image/jpeg;base64," + imageData;
+			var currentName = imageData.replace(/^.*[\\\/]/, '');
+			var d = new Date(),
+			n = d.getTime(),
+			newFileName = n + ".jpg";
+			$cordovaFile.moveFile(cordova.file.tempDirectory, currentName, cordova.file.dataDirectory, newFileName).then(function(success){
+				
+		  }, function(error){
+			//an error occured
+		  });
+		}, function (err) {
+			// An error occured. Show a message to the user
+		});
+	};
+	$scope.choosePhoto = function () {
+		console.log('choosePhoto');
+		var options = {
+			quality: 75,
+			destinationType: Camera.DestinationType.FILE_URI,
+			sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+			allowEdit: true,
+			encodingType: Camera.EncodingType.JPEG,
+			targetWidth: 300,
+			targetHeight: 300,
+			popoverOptions: CameraPopoverOptions,
+			saveToPhotoAlbum: false
+		};
+		$cordovaCamera.getPicture(options).then(function (imageData) {
+			$scope.imgURI = "data:image/jpeg;base64," + imageData;
+			var url = $globalip_2;
+ 			//File for Upload
+			var targetPath = cordova.file.externalRootDirectory + "logo_radni.png";
+			 
+			// File name only
+			var filename = targetPath.split("/").pop();
+			 
+			var options = {
+				 fileKey: "file",
+				 fileName: filename,
+				 chunkedMode: false,
+				 mimeType: "image/jpg",
+				params : {'directory':'upload', 'fileName':filename, 'action':'uploadTesting'} 
+				};
+				  
+			 $cordovaFileTransfer.upload(url, targetPath, options).then(function (result) {
 				$ionicPopup.show({
 				  template: '',
-				  title: k[0].msg,
+				  title: result[0].msg,
 				  scope: $scope,
 				  buttons: [
 					{ 
@@ -893,15 +822,26 @@ angular.module('starter.controllers', [])
 					},
 				  ]
 				});
-				if(k[0].success_status == 1){
-					$scope.pratayasi_name = $scope.gottr = $scope.Address = $scope.Phone_number = $scope.Mobile_number = $scope.Suchna_number = $scope.Date_of_birth = $scope.Birth_time = $scope.samyakaal = $scope.Birth_place = $scope.Types_vard = $scope.Hight = $scope.Wait = $scope.Blood_group = $scope.Education = $scope.email162 = $scope.Business = $scope.Income = $scope.Intrested = $scope.Important_details = $scope.Father_name = $scope.Father_mobile_number = $scope.Mother_name_work = $scope.gotter_soyam = $scope.gotter_mama = $scope.gotter_dadi = $scope.gotter_nani = $scope.manglik = $scope.Patrika_milan = $scope.other = $scope.Dharmik_manyata = $scope.bhai_vivahit = $scope.bhai_avivahit = $scope.bahan_vivahit = $scope.bahan_avivahit = $scope.residentsinc = $scope.vahan_2wheeler = $scope.vahan_4wheeler = $scope.upstithiti = $scope.Other_contact = $scope.other_adderess = $scope.other_Mobile_number = $scope.Pratyashi_relationship =$scope.imgURI = '' ;
-				}
-			}, function(error) {
-			   // document.getElementById('camera_status').innerHTML = "Upload failed: Code = " + error.code;
-			   $ionicLoading.hide();
-			}, options);
-		}
-	};
+			 }, function (err) {
+				 $ionicPopup.show({
+				  template: '',
+				  title: err,
+				  scope: $scope,
+				  buttons: [
+					{ 
+					  text: 'Ok',
+					  type: 'button-positive'
+					},
+				  ]
+				});
+			 }, function (progress) {
+				 // PROGRESS HANDLING GOES HERE
+			 });
+			
+		}, function (err) {
+			// An error occured. Show a message to the user
+		});
+	}
 	// ionic Modal
 	$ionicModal.fromTemplateUrl('termsandconditions.html', {
 		scope: $scope,
@@ -936,7 +876,6 @@ angular.module('starter.controllers', [])
 	$scope.monthsarr = global_monthsarr;
 	$scope.yearsarr = global_yearsarr;
 	$scope.countryarr =  global_countryarr;
-	var alertPopup;
 	/* Get Details */
 	/* http://makerits.com/jainoswalsajnanfedration/webservice/?action=update_profile&action_1=user_deatils&user_id=123 */
 	//if(global_login_id != '' && global_login_id != undefined){
@@ -1208,184 +1147,7 @@ angular.module('starter.controllers', [])
 			});
 		}
 	};
-	//Profile Photo
-	$scope.chooseOption4ProfileS = function() {
-		alertPopup = $ionicPopup.show({
-		  template: '<div class="row text-center"><div class="col col-50"><button class="button button-royal icon ion-camera" ng-click="takePhoto4UpdateprofileS()"></button></div><div class="col col-50"><button class="button button-energized icon ion-images" ng-click="choosePhoto4UpdateprofileS()" ></button></div></div>',
-		  //templateUrl: 'templates/uploadmemberregistration.html',
-		  title: 'Choose Option',
-		  scope: $scope,
-		  buttons: [
-			{ 
-			  text: 'Cancel',
-			  type: 'button-positive'
-			},
-		  ]
-		});
-	};
-	// open PhotoLibrary
-    $scope.takePhoto4UpdateprofileS = function () {
-		alertPopup.close();
-		console.log('takePhoto');
-		var options = {
-			quality: 90,
-			destinationType: Camera.DestinationType.FILE_URI,
-			sourceType: Camera.PictureSourceType.CAMERA,
-			allowEdit: true,
-			encodingType: Camera.EncodingType.JPEG,
-			targetWidth: 300,
-			targetHeight: 300,
-			popoverOptions: CameraPopoverOptions,
-			saveToPhotoAlbum: false
-		};
-		$cordovaCamera.getPicture(options).then(function (imageData) {
-			$scope.profile_image = imageData;
-			var server = globalip;
-			var options = new FileUploadOptions();
-			options.fileKey = "profile_img";
-			options.fileName = imageData.substr(imageData.lastIndexOf('/') + 1);
-			options.mimeType = "image/jpeg";
-			options.chunkedMode = false; // Transfer picture to server
-			var params = new Object(); 
-			params.user_id = global_login_id;
-			params.action = "updateProfileImg";
-			options.params = params;
-			var ft = new FileTransfer();
-			ft.upload(imageData, server, function(r) {
-				//document.getElementById('camera_status').innerHTML = "Upload successful: " + r.bytesSent + " bytes uploaded.";
-			}, function(error) {
-			   // document.getElementById('camera_status').innerHTML = "Upload failed: Code = " + error.code;
-			}, options);
-		}, function (err) {
-			// An error occured. Show a message to the user
-		});
-	}
-	$scope.choosePhoto4UpdateprofileS = function () {
-		alertPopup.close();
-		console.log('choosePhoto');
-		var options = {
-			quality: 90,
-			destinationType: Camera.DestinationType.DATA_URI,
-			sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-			allowEdit: true,
-			encodingType: Camera.EncodingType.JPEG,
-			targetWidth: 300,
-			targetHeight: 300,
-			popoverOptions: CameraPopoverOptions,
-			saveToPhotoAlbum: false
-		};
-		$cordovaCamera.getPicture(options).then(function (imageData) {
-			$scope.profile_image = imageData;
-			var server = globalip;
-			var options = new FileUploadOptions();
-			options.fileKey = "profile_img";
-			options.fileName = imageData.substr(imageData.lastIndexOf('/') + 1);
-			options.mimeType = "image/jpeg";
-			options.chunkedMode = false; // Transfer picture to server
-			var params = new Object(); 
-			params.user_id = global_login_id;
-			params.action = "updateProfileImg";
-			options.params = params;
-			var ft = new FileTransfer();
-			ft.upload(imageData, server, function(r) {
-				//document.getElementById('camera_status').innerHTML = "Upload successful: " + r.bytesSent + " bytes uploaded.";
-			}, function(error) {
-			   // document.getElementById('camera_status').innerHTML = "Upload failed: Code = " + error.code;
-			}, options);
-		}, function (err) {
-			// An error occured. Show a message to the user
-		});
-	}
-	//Cover Photo
-	$scope.chooseOption4CoverS = function() {
-		alertPopup = $ionicPopup.show({
-		  template: '<div class="row text-center"><div class="col col-50"><button class="button button-royal icon ion-camera" ng-click="takePhoto4UpdateCoverS()"></button></div><div class="col col-50"><button class="button button-energized icon ion-images" ng-click="choosePhoto4UpdateCoverS()" ></button></div></div>',
-		  //templateUrl: 'templates/uploadmemberregistration.html',
-		  title: 'Choose Option',
-		  scope: $scope,
-		  buttons: [
-			{ 
-			  text: 'Cancel',
-			  type: 'button-positive'
-			},
-		  ]
-		});
-	};
-	// open PhotoLibrary
-    $scope.takePhoto4UpdateCoverS = function () {
-		alertPopup.close();
-		console.log('takePhoto');
-		var options = {
-			quality: 90,
-			destinationType: Camera.DestinationType.FILE_URI,
-			sourceType: Camera.PictureSourceType.CAMERA,
-			allowEdit: true,
-			encodingType: Camera.EncodingType.JPEG,
-			targetWidth: 800,
-			targetHeight: 300,
-			popoverOptions: CameraPopoverOptions,
-			saveToPhotoAlbum: false
-		};
-		$cordovaCamera.getPicture(options).then(function (imageData) {
-			$scope.cover_image = imageData;
-			var server = globalip;
-			var options = new FileUploadOptions();
-			options.fileKey = "cover_img";
-			options.fileName = imageData.substr(imageData.lastIndexOf('/') + 1);
-			options.mimeType = "image/jpeg";
-			options.chunkedMode = false; // Transfer picture to server
-			var params = new Object(); 
-			params.user_id = global_login_id;
-			params.action = "updateCoverImg";
-			options.params = params;
-			var ft = new FileTransfer();
-			ft.upload(imageData, server, function(r) {
-				//document.getElementById('camera_status').innerHTML = "Upload successful: " + r.bytesSent + " bytes uploaded.";
-			}, function(error) {
-			   // document.getElementById('camera_status').innerHTML = "Upload failed: Code = " + error.code;
-			}, options);
-		}, function (err) {
-			// An error occured. Show a message to the user
-		});
-	}
-	$scope.choosePhoto4UpdateCoverS = function () {
-		alertPopup.close();
-		console.log('choosePhoto');
-		var options = {
-			quality: 90,
-			destinationType: Camera.DestinationType.DATA_URI,
-			sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-			allowEdit: true,
-			encodingType: Camera.EncodingType.JPEG,
-			targetWidth: 800,
-			targetHeight: 300,
-			popoverOptions: CameraPopoverOptions,
-			saveToPhotoAlbum: false
-		};
-		$cordovaCamera.getPicture(options).then(function (imageData) {
-			$scope.cover_image = imageData;
-			var server = globalip;
-			var options = new FileUploadOptions();
-			options.fileKey = "cover_img";
-			options.fileName = imageData.substr(imageData.lastIndexOf('/') + 1);
-			options.mimeType = "image/jpeg";
-			options.chunkedMode = false; // Transfer picture to server
-			var params = new Object(); 
-			params.user_id = global_login_id;
-			params.action = "updateCoverImg";
-			options.params = params;
-			var ft = new FileTransfer();
-			ft.upload(imageData, server, function(r) {
-				//document.getElementById('camera_status').innerHTML = "Upload successful: " + r.bytesSent + " bytes uploaded.";
-			}, function(error) {
-			   // document.getElementById('camera_status').innerHTML = "Upload failed: Code = " + error.code;
-			}, options);
-		}, function (err) {
-			// An error occured. Show a message to the user
-		});
-	}
-	
-	
+	//Aalok
 })
 /** Business Directory Controller **/
 .controller('business_directoryCtrl',function($scope,$http,$state,$ionicLoading,$ionicPopup,$cordovaCamera,$cordovaFileTransfer) {
@@ -1583,73 +1345,12 @@ angular.module('starter.controllers', [])
 	});
 })
 /** Member Registration Controller**/
-.controller('memberregistrationCtrl',function($scope,$http,$state,$ionicLoading,$ionicPopup,$cordovaCamera,$cordovaFileTransfer) {
-	/* Login */ /* http://makerites.com/wordpress/jainoswalsajnanfedration/webservice/?action=register */
+.controller('memberregistrationCtrl',function($scope,$http,$state,$ionicLoading,$ionicPopup) {
+	/* Login */ /* http://makerits.com/jainoswalsajnanfedration/webservice/?action=register */
 	$scope.daysarr = global_daysarr;
 	$scope.monthsarr = global_monthsarr;
 	$scope.yearsarr = global_yearsarr;
 	$scope.countryarr =  global_countryarr;
-	$scope.imageData = '';
-	var alertPopup; 
-	$scope.chooseOption4PPhotoMR = function() {
-		alertPopup = $ionicPopup.show({
-		  template: '<div class="row text-center"><div class="col col-50"><button class="button button-royal icon ion-camera" ng-click="takePhoto4UploadPPhotoMR()"></button></div><div class="col col-50"><button class="button button-energized icon ion-images" ng-click="choosePhoto4UploadPPhotoMR()" ></button></div></div>',
-		  //templateUrl: 'templates/uploadmemberregistration.html',
-		  title: 'Choose Option',
-		  scope: $scope,
-		  buttons: [
-			{ 
-			  text: 'Close',
-			  type: 'button-positive'
-			},
-		  ]
-		});
-	};
-	// open PhotoLibrary
-    $scope.takePhoto4UploadPPhotoMR = function () {
-		alertPopup.close();
-		console.log('takePhoto');
-		var options = {
-			quality: 75,
-			destinationType: Camera.DestinationType.FILE_URI,
-			sourceType: Camera.PictureSourceType.CAMERA,
-			allowEdit: true,
-			encodingType: Camera.EncodingType.JPEG,
-			targetWidth: 300,
-			targetHeight: 300,
-			popoverOptions: CameraPopoverOptions,
-			saveToPhotoAlbum: false
-		};
-		$cordovaCamera.getPicture(options).then(function (imageData) {
-			$scope.profile_img = imageData;
-			$scope.imageData = imageData;
-			$scope.$apply();
-		}, function (err) {
-			// An error occured. Show a message to the user
-		});
-	}
-	$scope.choosePhoto4UploadPPhotoMR = function () {
-		alertPopup.close();
-		console.log('choosePhoto');
-		var options = {
-			quality: 75,
-			destinationType: Camera.DestinationType.FILE_URI,
-			sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-			allowEdit: true,
-			encodingType: Camera.EncodingType.JPEG,
-			targetWidth: 300,
-			targetHeight: 300,
-			popoverOptions: CameraPopoverOptions,
-			saveToPhotoAlbum: false
-		};
-		$cordovaCamera.getPicture(options).then(function (imageData) {
-			$scope.profile_img = imageData;
-			$scope.imageData = imageData;
-			$scope.$apply();
-		}, function (err) {
-			// An error occured. Show a message to the user
-		});
-	}
 	/* Mother Tounge */ /* http://makerits.com/jainoswalsajnanfedration/matrimonial/matrimonial_web/?action=mother_tongue_list */
 	var action1 = "mother_tongue_list";
 	var data_parameters1 = "action="+action1;
@@ -1684,7 +1385,7 @@ angular.module('starter.controllers', [])
 		var month = $scope.month;
 		var day = $scope.day;
 		var dob = year+'-'+month+'-'+day;
-		/*var data_parameters = "action="+action+"&profile_created_by="+profile_created_by+"&firstname="+firstname+"&lastname="+lastname+"&matri_gender="+matri_gender+"&matri_Sect="+matri_Sect+"&matri_sub_sect="+matri_sub_sect+"&matri_castes="+matri_castes+"&matri_mobile="+matri_mobile+"&matri_marital_status="+matri_marital_status+"&user_email="+user_email+"&password="+password+"&description="+description+"&matri_country="+country+"&mother_tongue="+mother_tongue+"&professional="+professional+"&matri_dob="+dob;*/
+		var data_parameters = "action="+action+"&profile_created_by="+profile_created_by+"&firstname="+firstname+"&lastname="+lastname+"&matri_gender="+matri_gender+"&matri_Sect="+matri_Sect+"&matri_sub_sect="+matri_sub_sect+"&matri_castes="+matri_castes+"&matri_mobile="+matri_mobile+"&matri_marital_status="+matri_marital_status+"&user_email="+user_email+"&password="+password+"&description="+description+"&matri_country="+country+"&mother_tongue="+mother_tongue+"&professional="+professional+"&matri_dob="+dob;
 		if(typeof profile_created_by === "undefined" || typeof firstname === "undefined" || typeof lastname === "undefined" || typeof matri_gender === "undefined" || typeof matri_Sect === "undefined" || typeof matri_sub_sect === "undefined" || typeof matri_castes === "undefined" || typeof matri_mobile === "undefined" || typeof matri_marital_status === "undefined" || typeof country === "undefined" || typeof year === "undefined" || typeof month === "undefined" || typeof day === "undefined" || typeof user_email === "undefined" || typeof password === "undefined" || typeof con_password === "undefined" || profile_created_by == "" || firstname == "" || lastname == "" || matri_gender == "" || matri_Sect == "" || matri_sub_sect == "" || matri_castes == "" || matri_mobile == "" || matri_marital_status == "" || country == "" || country == null || year == "" || month == "" || day == "" || user_email == "" || password == "" || con_password == ""){
 			error += '<p>All (*) Marked Fields Are Compulsory</p>';
 		}
@@ -1703,9 +1404,6 @@ angular.module('starter.controllers', [])
 				error += '<p>Password & Confirm Password Not Matching</p>';
 			}
 		}
-		if($scope.imageData == undefined || $scope.imageData == ""){
-			error += '<p>Please Upload Passport Photo</p>';
-		}
 		if(error != ''){
 			$ionicPopup.show({
 			  template: '',
@@ -1720,7 +1418,7 @@ angular.module('starter.controllers', [])
 			});
 		}
 		else{
-			/*$ionicLoading.show({template: '<ion-spinner icon="crescent"></ion-spinner>'});
+			$ionicLoading.show({template: '<ion-spinner icon="crescent"></ion-spinner>'});
 			$http.post(globalip_2,data_parameters, {
 				headers: {'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'}
 			})
@@ -1741,57 +1439,7 @@ angular.module('starter.controllers', [])
 					$scope.profile_created_by = $scope.firstname = $scope.lastname = $scope.matri_gender = $scope.matri_marital_status = $scope.matri_Sect = $scope.matri_sub_sect = $scope.matri_caste = $scope.country = $scope.year = $scope.month = $scope.day = $scope.mother_tongue = $scope.matri_mobile = $scope.professional = $scope.description = $scope.user_email = $scope.password = $scope.con_password = '' ;
 				}
 				$ionicLoading.hide();
-			});*/
-			$ionicLoading.show({template: '<ion-spinner icon="crescent"></ion-spinner>'});
-			var server = globalip_2;
-			var imageData = $scope.imageData;
-			var options = new FileUploadOptions();
-			options.fileKey = "passport_photo";
-			options.fileName = imageData.substr(imageData.lastIndexOf('/') + 1);
-			options.mimeType = "image/jpeg";
-			options.chunkedMode = false; // Transfer picture to server
-			var params = new Object(); 
-			params.action = action;
-			params.profile_created_by = profile_created_by;
-			params.firstname = firstname;
-			params.lastname = lastname;
-			params.matri_gender = matri_gender;
-			params.matri_Sect = matri_Sect;
-			params.matri_sub_sect = matri_sub_sect;
-			params.matri_castes = matri_castes;
-			params.matri_mobile = matri_mobile;
-			params.matri_marital_status = matri_marital_status;
-			params.user_email = user_email;
-			params.password = password;
-			params.description = description;
-			params.matri_country = country;
-			params.mother_tongue = mother_tongue;
-			params.professional = professional;
-			params.matri_dob = dob;
-			//Send Parameters			
-			options.params = params;
-			var ft = new FileTransfer();
-			ft.upload(imageData, server, function(r) {
-				var k = JSON.parse(r.response);
-				$ionicLoading.hide();
-				$ionicPopup.show({
-				  template: '',
-				  title: k[0].msg,
-				  scope: $scope,
-				  buttons: [
-					{ 
-					  text: 'Ok',
-					  type: 'button-positive'
-					},
-				  ]
-				});
-				if(k[0].success_status == 1){
-					$scope.profile_created_by = $scope.firstname = $scope.lastname = $scope.matri_gender = $scope.matri_marital_status = $scope.matri_Sect = $scope.matri_sub_sect = $scope.matri_caste = $scope.country = $scope.year = $scope.month = $scope.day = $scope.mother_tongue = $scope.matri_mobile = $scope.professional = $scope.description = $scope.user_email = $scope.password = $scope.con_password = $scope.profile_img = '' ;
-				}
-			}, function(error) {
-			   // document.getElementById('camera_status').innerHTML = "Upload failed: Code = " + error.code;
-			   $ionicLoading.hide();
-			}, options);
+			});
 		}
 	};
 })
@@ -1818,7 +1466,6 @@ angular.module('starter.controllers', [])
 	$scope.monthsarr = global_monthsarr;
 	$scope.yearsarr = global_yearsarr;
 	$scope.countryarr =  global_countryarr;
-	var alertPopup;
 	/* Mother Tounge */ /* http://makerites.com/wordpress/jainoswalsajnanfedration/matrimonial/matrimonial_web/?action=mother_tongue_list */
 	var action1 = "mother_tongue_list";
 	var data_parameters1 = "action="+action1;
@@ -1924,8 +1571,8 @@ angular.module('starter.controllers', [])
 		}
 	};
 	$scope.chooseOption4Profile = function() {
-		alertPopup = $ionicPopup.show({
-		  template: '<div class="row text-center"><div class="col col-50"><button class="button button-royal icon ion-camera" ng-click="takePhoto4UpdateprofileM()"></button></div><div class="col col-50"><button class="button button-energized icon ion-images" ng-click="choosePhoto4UpdateprofileM()" ></button></div></div>',
+		$ionicPopup.show({
+		  template: '<div class="row text-center"><div class="col col-50"><button class="button button-royal icon ion-camera" ng-click="takePhoto()"></button></div><div class="col col-50"><button class="button button-energized icon ion-images" ng-click="choosePhoto()" ></button></div></div>',
 		  //templateUrl: 'templates/uploadmemberregistration.html',
 		  title: 'Choose Option',
 		  scope: $scope,
@@ -1936,80 +1583,73 @@ angular.module('starter.controllers', [])
 			},
 		  ]
 		});
+		
 	};
 	// open PhotoLibrary
-    $scope.takePhoto4UpdateprofileM = function () {
-		alertPopup.close();
-		console.log('takePhoto');
-		var options = {
-			quality: 75,
-			destinationType: Camera.DestinationType.FILE_URI,
-			sourceType: Camera.PictureSourceType.CAMERA,
-			allowEdit: true,
-			encodingType: Camera.EncodingType.JPEG,
-			targetWidth: 300,
-			targetHeight: 300,
-			popoverOptions: CameraPopoverOptions,
-			saveToPhotoAlbum: false
-		};
-		$cordovaCamera.getPicture(options).then(function (imageData) {
-			$scope.image_url = imageData;
-			var server = globalip_2;
-			var options = new FileUploadOptions();
-			options.fileKey = "profile_img";
-			options.fileName = imageData.substr(imageData.lastIndexOf('/') + 1);
-			options.mimeType = "image/jpeg";
-			options.chunkedMode = false; // Transfer picture to server
-			var params = new Object(); 
-			params.user_id = global_login_id_2;
-			params.action = "updateProfileImg";
-			options.params = params;
-			var ft = new FileTransfer();
-			ft.upload(imageData, server, function(r) {
-				//document.getElementById('camera_status').innerHTML = "Upload successful: " + r.bytesSent + " bytes uploaded.";
-			}, function(error) {
-			   // document.getElementById('camera_status').innerHTML = "Upload failed: Code = " + error.code;
-			}, options);
-		}, function (err) {
-			// An error occured. Show a message to the user
-		});
-	}
-	$scope.choosePhoto4UpdateprofileM = function () {
-		alertPopup.close();
-		console.log('choosePhoto');
-		var options = {
-			quality: 75,
-			destinationType: Camera.DestinationType.DATA_URI,
-			sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-			allowEdit: true,
-			encodingType: Camera.EncodingType.JPEG,
-			targetWidth: 300,
-			targetHeight: 300,
-			popoverOptions: CameraPopoverOptions,
-			saveToPhotoAlbum: false
-		};
-		$cordovaCamera.getPicture(options).then(function (imageData) {
-			$scope.image_url = imageData;
-			var server = globalip_2;
-			var options = new FileUploadOptions();
-			options.fileKey = "profile_img";
-			options.fileName = imageData.substr(imageData.lastIndexOf('/') + 1);
-			options.mimeType = "image/jpeg";
-			options.chunkedMode = false; // Transfer picture to server
-			var params = new Object(); 
-			params.user_id = global_login_id_2;
-			params.action = "updateProfileImg";
-			options.params = params;
-			var ft = new FileTransfer();
-			ft.upload(imageData, server, function(r) {
-				//document.getElementById('camera_status').innerHTML = "Upload successful: " + r.bytesSent + " bytes uploaded.";
-			}, function(error) {
-			   // document.getElementById('camera_status').innerHTML = "Upload failed: Code = " + error.code;
-			}, options);
-		}, function (err) {
-			// An error occured. Show a message to the user
-		});
-	}
+		$scope.takePhoto = function () {
+			//myPopup.close();
+			console.log('takePhoto');
+			var options = {
+				quality: 75,
+				destinationType: Camera.DestinationType.FILE_URI,
+				sourceType: Camera.PictureSourceType.CAMERA,
+				allowEdit: true,
+				encodingType: Camera.EncodingType.JPEG,
+				targetWidth: 300,
+				targetHeight: 300,
+				popoverOptions: CameraPopoverOptions,
+				saveToPhotoAlbum: false
+			};
+			$cordovaCamera.getPicture(options).then(function (imageData) {
+				$scope.image_url = "data:image/jpeg;base64," + imageData;
+				/*var server = globalip_2+"?action=updateProfileImg&user_id="+global_login_id_2;
+				var options = new FileUploadOptions();
+				options.fileKey = "profile_img";
+				options.fileName = imageData.substr(imageData.lastIndexOf('/') + 1);
+				options.mimeType = "image/jpeg";
+				options.chunkedMode = false; // Transfer picture to server
+				var ft = new FileTransfer();
+				ft.upload(imageData, server, function(r) {
+					//document.getElementById('camera_status').innerHTML = "Upload successful: " + r.bytesSent + " bytes uploaded.";
+				}, function(error) {
+				   // document.getElementById('camera_status').innerHTML = "Upload failed: Code = " + error.code;
+				}, options);*/
+			}, function (err) {
+				// An error occured. Show a message to the user
+			});
+		}
+		$scope.choosePhoto = function () {
+			//myPopup.close();
+			console.log('choosePhoto');
+			var options = {
+				quality: 75,
+				destinationType: Camera.DestinationType.FILE_URI,
+				sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+				allowEdit: true,
+				encodingType: Camera.EncodingType.JPEG,
+				targetWidth: 300,
+				targetHeight: 300,
+				popoverOptions: CameraPopoverOptions,
+				saveToPhotoAlbum: false
+			};
+			$cordovaCamera.getPicture(options).then(function (imageData) {
+				$scope.image_url = "data:image/jpeg;base64," + imageData;
+				/*var server = globalip_2+"?action=updateProfileImg&user_id="+global_login_id_2;
+				var options = new FileUploadOptions();
+				options.fileKey = "profile_img";
+				options.fileName = imageData.substr(imageData.lastIndexOf('/') + 1);
+				options.mimeType = "image/jpeg";
+				options.chunkedMode = false; // Transfer picture to server
+				var ft = new FileTransfer();
+				ft.upload(imageData, server, function(r) {
+					//document.getElementById('camera_status').innerHTML = "Upload successful: " + r.bytesSent + " bytes uploaded.";
+				}, function(error) {
+				   // document.getElementById('camera_status').innerHTML = "Upload failed: Code = " + error.code;
+				}, options);*/
+			}, function (err) {
+				// An error occured. Show a message to the user
+			});
+		}
 })
 /** Forgot Password Member Controller**/
 .controller('forgotpasswordmemberCtrl',function($scope,$http,$ionicLoading,$state,$ionicPopup) {

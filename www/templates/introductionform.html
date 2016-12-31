@@ -45,7 +45,7 @@
                      	Month
                     </div>
                     <select name="month" ng-model="month">
-                    	<option ng-repeat="m in monthsarr" value="{{ m.m1 }}">{{ m.M }}</option>
+                    	<option ng-repeat="m in monthsarr" value="{{ m.m1 }}">{{ m.M1 }}</option>
                     </select>
                   </label>
               </div>
@@ -192,7 +192,10 @@
 			  Upload Photo
 		  </a>
           <p class="primary" style="width:80%;margin-top:5px;">All the information given by me are absolutely true.The entire responsibility on me.</p>
-          <a style="cursor:pointer;" ng-click="openModal();">Terms & Conditions</a>
+		  <ion-list>
+			<ion-checkbox ng-model="termsandconditions" color="positive" checked="false">Accept Terms & Conditions</ion-checkbox>
+		  </ion-list>
+		  <a style="cursor:pointer;" class="calm" ng-click="openModal();">Terms & Conditions</a>
           <button class="button button-positive button-block" >
               Submit
           </button>

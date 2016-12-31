@@ -19,6 +19,9 @@
 		  <div class="item item-divider">
 			General Information
 		  </div>
+		  <a class="item " ng-if="memberdata.profile_created_by">
+			<span class="datatitle">Created By</span> <b class="datavalue">{{ memberdata.profile_created_by }}</b>
+		  </a>
 		  <a class="item " ng-if="memberdata.fname">
 			<span class="datatitle">Firstname</span> <b class="datavalue">{{ memberdata.fname }}</b>
 		  </a>
@@ -28,11 +31,23 @@
 		  <a class="item" ng-if="memberdata.dob">
 			<span class="datatitle">Date Of Birth</span> <b class="datavalue">{{ memberdata.dob }}</b>
 		  </a>
-		  <a class="item" ng-if="memberdata.Professional">
-			<span class="datatitle">Professional</span> <b class="datavalue">{{ memberdata.Professional }}</b>
+		  <a class="item" ng-if="memberdata.matri_gender">
+			<span class="datatitle">Gender</span> <b class="datavalue">{{ memberdata.matri_gender }}</b>
 		  </a>
 		  <a class="item" ng-if="memberdata.mother_tongue">
 			<span class="datatitle">Mother Tongue</span> <b class="datavalue">{{ memberdata.mother_tongue }}</b>
+		  </a>
+		  <a class="item" ng-if="memberdata.matri_marital_status">
+			<span class="datatitle">Marital Status</span> <b class="datavalue">{{ memberdata.matri_marital_status }}</b>
+		  </a>
+		  <a class="item" ng-if="memberdata.matri_Sect">
+			<span class="datatitle">Sect</span> <b class="datavalue">{{ memberdata.matri_Sect }}</b>
+		  </a>
+		  <a class="item" ng-if="memberdata.matri_sub_sect">
+			<span class="datatitle">Sub Sect</span> <b class="datavalue">{{ memberdata.matri_sub_sect }}</b>
+		  </a>
+		  <a class="item" ng-if="memberdata.matri_castes">
+			<span class="datatitle">Caste</span> <b class="datavalue">{{ memberdata.matri_castes }}</b>
 		  </a>
 		  <div class="item item-divider">
 			Contact Info
@@ -43,12 +58,15 @@
 		  <a class="item" ng-if="memberdata.email">
 			<span class="datatitle">E-Mail</span> <b class="datavalue">{{ memberdata.email }}</b>
 		  </a>
-		  <div class="item item-divider">
+		  <a class="item" ng-if="memberdata.matri_mobile">
+			<span class="datatitle">Mobile</span> <b class="datavalue">{{ memberdata.matri_mobile }}</b>
+		  </a>
+		  <!--<div class="item item-divider">
 			About Yourself
 		  </div>
 		  <a class="item" style="white-space: initial;" ng-if="memberdata.description">
 			{{ memberdata.description }}
-		  </a>
+		  </a>-->
 		</div>
         <div class="row">
             <div class="col col-100 text-center" style="margin-bottom:60px;">
