@@ -605,7 +605,7 @@ angular.module('starter.controllers', [])
 	});
 })
 /** Ekal-Khidki Controller**/
-.controller('ekal_khidkiCtrl',function($scope,$http,$state,$ionicLoading) {
+.controller('ekal_khidkiCtrl',function($scope,$http,$state,$ionicLoading,$ionicScrollDelegate) {
 	/* Ekal-Khidki */ /* http://makerits.com/jainoswalsajnanfedration/webservice/?action=single_window */
 	$ionicLoading.show({template: '<ion-spinner icon="crescent"></ion-spinner>'});
 	var action = "single_window";
@@ -628,6 +628,9 @@ angular.module('starter.controllers', [])
         });
 		$ionicLoading.hide();
 	});
+	$scope.scrollTop = function() {
+		$ionicScrollDelegate.scrollTop();
+	};
 })
 /** Introduction Form Controller **/
 .controller('introductionformCtrl',function($scope,$http,$state,$ionicLoading,$ionicPopup,$ionicModal,$cordovaCamera,$cordovaFileTransfer) {
@@ -2068,7 +2071,7 @@ angular.module('starter.controllers', [])
 	};
 })
 /** Member List Controller**/
-.controller('memberlistCtrl',function($scope,$ionicSlideBoxDelegate,$ionicLoading,$http,$state) {
+.controller('memberlistCtrl',function($scope,$ionicSlideBoxDelegate,$ionicLoading,$http,$state,$ionicScrollDelegate) {
 	/* Member List */ /* http://makerits.com/jainoswalsajnanfedration/matrimonial/matrimonial_web/?action=users_list */
 	$ionicLoading.show({template: '<ion-spinner icon="crescent"></ion-spinner>'});
 	var action = "users_list";
@@ -2080,6 +2083,9 @@ angular.module('starter.controllers', [])
 		$scope.members = response;
 		$ionicLoading.hide();
 	});
+	$scope.scrollTop = function() {
+		$ionicScrollDelegate.scrollTop();
+	};
 })
 /** Menu **/
 .controller('MenuController', function($scope, $ionicSideMenuDelegate,$state,$ionicHistory,$rootScope) {
