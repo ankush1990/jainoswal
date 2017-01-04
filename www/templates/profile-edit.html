@@ -47,7 +47,7 @@
 							Day
 						</div>
 						<select name="day" ng-model="day">
-							<option ng-repeat="d in daysarr" ng-selected = "day == d" value="{{ d }}">{{ d }}</option>
+							<option ng-repeat="d in daysarr" value="{{ d }}">{{ d }}</option>
 						</select>
 					  </label>
 				  </div>
@@ -59,7 +59,7 @@
 							Month
 						</div>
 						<select name="month" ng-model="month">
-							<option ng-repeat="m in monthsarr" ng-selected = "month == m.m1" value="{{ m.m1 }}">{{ m.M1 }}</option>
+							<option ng-repeat="m in monthsarr" value="{{ m.m1 }}">{{ m.M1 }}</option>
 						</select>
 					  </label>
 				  </div>
@@ -71,7 +71,7 @@
 							Year 
 						</div>
 						<select name="year" ng-model="year">
-							<option ng-repeat="y in yearsarr" ng-selected = "year == y" value="{{ y }}">{{ y }}</option>
+							<option ng-repeat="y in yearsarr" value="{{ y }}">{{ y }}</option>
 						</select>
 					  </label>
 				  </div>
@@ -128,16 +128,16 @@
 					</div>
 					<select name="matri_castes" ng-model="matri_castes">
 					  <option value="">Select</option>
-					  <option value="Jain-Agarwal">Jain - Agarwal</option>
-					  <option value="Jain-Bania">Jain - Bania</option>
-					  <option value="Jain-Intercaste">Jain - Intercaste</option>
-					  <option value="Jain-Jaiswal">Jain - Jaiswal</option>
-					  <option value="Jain-Khandelwal">Jain - Khandelwal</option>
-					  <option value="Jain-Kutchi">Jain - Kutchi</option>
-					  <option value="Jain-Oswal">Jain - Oswal</option>
-					  <option value="Jain-Porwal">Jain - Porwal</option>
-					  <option value="Jain-Vaishya">Jain - Vaishya</option>
-					  <option value="Jain-Chaturth">Jain - Chaturth</option>
+					  <option value="Jain - Agarwal">Jain - Agarwal</option>
+					  <option value="Jain - Bania">Jain - Bania</option>
+					  <option value="Jain - Intercaste">Jain - Intercaste</option>
+					  <option value="Jain - Jaiswal">Jain - Jaiswal</option>
+					  <option value="Jain - Khandelwal">Jain - Khandelwal</option>
+					  <option value="Jain - Kutchi">Jain - Kutchi</option>
+					  <option value="Jain - Oswal">Jain - Oswal</option>
+					  <option value="Jain - Porwal">Jain - Porwal</option>
+					  <option value="Jain - Vaishya">Jain - Vaishya</option>
+					  <option value="Jain - Chaturth">Jain - Chaturth</option>
 					  <option value="Others">Others</option>
 					  <option value="Don't wish to specify">Don't wish to specify</option>
 					  <option value="Don't know my sub-caste">Don't know my sub-caste</option>

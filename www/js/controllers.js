@@ -1,6 +1,5 @@
 var global_login_id = "";
 var global_login_id_2 = "";
-var global_data = new Object(); 
 var global_daysarr = [01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31];
 var global_monthsarr = [
 							{m1:01,M:'जनवरी',M1:'January'},{m1:02,M:'फ़रवरी',M1:'February'},{m1:03,M:'मार्च',M1:'March'},{m1:04,M:'अप्रैल',M1:'April'},{m1:05,M:'मई',M1:'May'},{m1:06,M:'जून',M1:'June'},{m1:07,M:'जुलाई',M1:'July'},{m1:08,M:'अगस्त',M1:'August'},{m1:09,M:'सितंबर',M1:'September'},{m1:10,M:'अक्टूबर',M1:'October'},{m1:11,M:'नवंबर',M1:'November'},{m1:12,M:'दिसंबर',M1:'December'}	
@@ -103,7 +102,7 @@ angular.module('starter.controllers', [])
 	})
 	.success(function(response) {
 		$scope.officers = response;
-		global_data.national_officers = response;
+		global_officers = response;
 	});
 	/* HomeSlider */ /* http://makerits.com/jainoswalsajnanfedration/webservice/?action=home_slider */
 	var action1 = "home_slider";
@@ -113,12 +112,11 @@ angular.module('starter.controllers', [])
 	})
 	.success(function(response1) {
 		$scope.slider = response1;
-		global_data.home_slider = response1;
 		setTimeout(function(){
-			$ionicSlideBoxDelegate.update();
+      		$ionicSlideBoxDelegate.update();
 			$ionicSlideBoxDelegate.loop(true);
 			$ionicLoading.hide();
-		},1000);
+  		},1000);
 	});
 	/* Vishesh */ /* http://makerits.com/jainoswalsajnanfedration/webservice/?action=special */
 	var action2 = "special";
@@ -128,7 +126,6 @@ angular.module('starter.controllers', [])
 	})
 	.success(function(response2) {
 		$scope.special = response2;
-		global_data.special = response2;
 	});
 	/* Testimonials */ /* http://makerits.com/jainoswalsajnanfedration/webservice/?action=testimonials */
 	var action3 = "testimonials";
@@ -138,11 +135,10 @@ angular.module('starter.controllers', [])
 	})
 	.success(function(response3) {
 		$scope.testimonials = response3;
-		global_data.testimonials = response3;
 		setTimeout(function(){
-			$ionicSlideBoxDelegate.update();
+      		$ionicSlideBoxDelegate.update();
 			$ionicSlideBoxDelegate.loop(true);
-		},1000);
+  		},1000);
 	});
 	/* Sajnan Times */ /* http://makerits.com/jainoswalsajnanfedration/webservice/?action=sajnan_times */
 	var action4 = "sajnan_times";
@@ -153,7 +149,6 @@ angular.module('starter.controllers', [])
 	.success(function(response4) {
 		if(response4[0].success == "Y"){
 			$scope.sajnan_times = response4[0];
-			global_data.sajnan_times = response4[0];
 		}
 	});
 	$scope.GotoLink = function(url){
@@ -589,44 +584,25 @@ angular.module('starter.controllers', [])
 	};
 })
 /** Sandesh Controller**/
-.controller('sandeshCtrl',function($scope,$http,$state,$ionicLoading,$stateParams,$ionicPopup) {
+.controller('sandeshCtrl',function($scope,$http,$state,$ionicLoading,$stateParams) {
 	/* Sandesh Officers */ /* http://makerits.com/jainoswalsajnanfedration/webservice/?action=special_detalis&officer_title=lalchand-bandi-details */
+	$ionicLoading.show({template: '<ion-spinner icon="crescent"></ion-spinner>'});
 	var action = "special_detalis";
 	var officer_title = $stateParams.slug;
 	var data_parameters = "action="+action+"&officer_title="+officer_title;
-	if(officer_title == '' || officer_title == '#'){
-		$ionicPopup.show({
-		  template: '',
-		  title: 'सन्देश उपलब्ध नहीं है |',
-		  scope: $scope,
-		  buttons: [
-			{ 
-			  text: 'Ok',
-			  type: 'button-balanced',
-			  onTap: function() { 
-				console.log('tapped');
-				$state.go('app.dashboard');
-			  }
-			}
-		  ]
-		});
-	}
-	else {
-		$ionicLoading.show({template: '<ion-spinner icon="crescent"></ion-spinner>'});
-		$http.post(globalip,data_parameters, {
-			headers: {'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'}
-		})
-		.success(function(response) {
-			$scope.written_by = response[0].written_by;
-			$scope.before_speech = response[0].before_speech;
-			$scope.slogan = response[0].slogan;
-			$scope.speech = response[0].speech;
-			$scope.yours = response[0].yours;
-			$scope.name = response[0].name;
-			$scope.image = response[0].image;
-			$ionicLoading.hide();
-		});
-	}
+	$http.post(globalip,data_parameters, {
+		headers: {'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'}
+	})
+	.success(function(response) {
+		$scope.written_by = response[0].written_by;
+		$scope.before_speech = response[0].before_speech;
+		$scope.slogan = response[0].slogan;
+		$scope.speech = response[0].speech;
+		$scope.yours = response[0].yours;
+		$scope.name = response[0].name;
+		$scope.image = response[0].image;
+		$ionicLoading.hide();
+	});
 })
 /** Ekal-Khidki Controller**/
 .controller('ekal_khidkiCtrl',function($scope,$http,$state,$ionicLoading,$ionicScrollDelegate) {
@@ -734,7 +710,7 @@ angular.module('starter.controllers', [])
 		var year = $scope.year;
 		var month = $scope.month;
 		var day = $scope.day;
-		var Date_of_birth = day+'/'+month+'/'+year;
+		var Date_of_birth = year+'-'+month+'-'+day;
 		var Birth_time = $scope.Birth_time;
 		var samyakaal = $scope.samyakaal;
 		var Birth_place = $scope.Birth_place;
@@ -978,13 +954,11 @@ angular.module('starter.controllers', [])
 				$scope.profile_image = response[0].profile_image ? response[0].profile_image : 'img/siteimgs/no_logo.gif';
 				$scope.gender = response[0].gender;
 				$scope.user_email = response[0].user_email;
-				if(response[0].birth_date){
-					var dob = response[0].birth_date;
-					var date = new Date(dob) ;
-					$scope.day = date.getDate();
-					$scope.month = date.getMonth()+1;
-					$scope.year = date.getFullYear();
-				}
+				var dob = response[0].birth_date;
+				var date = new Date(dob) ;
+				$scope.day = date.getDate();
+				$scope.month = date.getMonth()+1;
+				$scope.year = date.getFullYear();
 				$scope.country = response[0].country;
 				$scope.mobile_number = response[0].mobile_number;
 				$scope.description = response[0].description;
@@ -1294,7 +1268,7 @@ angular.module('starter.controllers', [])
 		console.log('choosePhoto');
 		var options = {
 			quality: 90,
-			destinationType: Camera.DestinationType.FILE_URI,
+			destinationType: Camera.DestinationType.DATA_URI,
 			sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
 			allowEdit: true,
 			encodingType: Camera.EncodingType.JPEG,
@@ -1382,7 +1356,7 @@ angular.module('starter.controllers', [])
 		console.log('choosePhoto');
 		var options = {
 			quality: 90,
-			destinationType: Camera.DestinationType.FILE_URI,
+			destinationType: Camera.DestinationType.DATA_URI,
 			sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
 			allowEdit: true,
 			encodingType: Camera.EncodingType.JPEG,
@@ -1419,128 +1393,8 @@ angular.module('starter.controllers', [])
 /** Business Directory Controller **/
 .controller('business_directoryCtrl',function($scope,$http,$state,$ionicLoading,$ionicPopup,$cordovaCamera,$cordovaFileTransfer) {
 	/* Business Directory */ /* http://makerits.com/jainoswalsajnanfedration/webservice/?action=business_directory */
-	$scope.imageDataPP = '';
-	$scope.imageDataVC = '';
-	var alertPopup; 
-	$scope.chooseOption4PPhotoBD = function() {
-		alertPopup = $ionicPopup.show({
-		  template: '<div class="row text-center"><div class="col col-50"><button class="button button-royal icon ion-camera" ng-click="takePhoto4UploadPPhotoBD()"></button></div><div class="col col-50"><button class="button button-energized icon ion-images" ng-click="choosePhoto4UploadPPhotoBD()" ></button></div></div>',
-		  //templateUrl: 'templates/uploadmemberregistration.html',
-		  title: 'Choose Option',
-		  scope: $scope,
-		  buttons: [
-			{ 
-			  text: 'Close',
-			  type: 'button-positive'
-			},
-		  ]
-		});
-	};
-	// open PhotoLibrary
-    $scope.takePhoto4UploadPPhotoBD = function () {
-		alertPopup.close();
-		console.log('takePhoto');
-		var options = {
-			quality: 75,
-			destinationType: Camera.DestinationType.FILE_URI,
-			sourceType: Camera.PictureSourceType.CAMERA,
-			allowEdit: true,
-			encodingType: Camera.EncodingType.JPEG,
-			targetWidth: 300,
-			targetHeight: 300,
-			popoverOptions: CameraPopoverOptions,
-			saveToPhotoAlbum: false
-		};
-		$cordovaCamera.getPicture(options).then(function (imageData) {
-			$scope.imgURIPP = imageData;
-			$scope.imageDataPP = imageData;
-			$scope.$apply();
-		}, function (err) {
-			// An error occured. Show a message to the user
-		});
-	}
-	$scope.choosePhoto4UploadPPhotoBD = function () {
-		alertPopup.close();
-		console.log('choosePhoto');
-		var options = {
-			quality: 75,
-			destinationType: Camera.DestinationType.FILE_URI,
-			sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-			allowEdit: true,
-			encodingType: Camera.EncodingType.JPEG,
-			targetWidth: 300,
-			targetHeight: 300,
-			popoverOptions: CameraPopoverOptions,
-			saveToPhotoAlbum: false
-		};
-		$cordovaCamera.getPicture(options).then(function (imageData) {
-			$scope.imgURIPP = imageData;
-			$scope.imageDataPP = imageData;
-			$scope.$apply();
-		}, function (err) {
-			// An error occured. Show a message to the user
-		});
-	}
-	$scope.chooseOption4VCardBD = function() {
-		alertPopup = $ionicPopup.show({
-		  template: '<div class="row text-center"><div class="col col-50"><button class="button button-royal icon ion-camera" ng-click="takePhoto4UploadVCardBD()"></button></div><div class="col col-50"><button class="button button-energized icon ion-images" ng-click="choosePhoto4UploadVCardBD()" ></button></div></div>',
-		  //templateUrl: 'templates/uploadmemberregistration.html',
-		  title: 'Choose Option',
-		  scope: $scope,
-		  buttons: [
-			{ 
-			  text: 'Close',
-			  type: 'button-positive'
-			},
-		  ]
-		});
-	};
-	// open PhotoLibrary
-    $scope.takePhoto4UploadVCardBD = function () {
-		alertPopup.close();
-		console.log('takePhoto');
-		var options = {
-			quality: 75,
-			destinationType: Camera.DestinationType.FILE_URI,
-			sourceType: Camera.PictureSourceType.CAMERA,
-			allowEdit: true,
-			encodingType: Camera.EncodingType.JPEG,
-			targetWidth: 300,
-			targetHeight: 300,
-			popoverOptions: CameraPopoverOptions,
-			saveToPhotoAlbum: false
-		};
-		$cordovaCamera.getPicture(options).then(function (imageData1) {
-			$scope.imgURIVC = imageData1;
-			$scope.imageDataVC = imageData1;
-			$scope.$apply();
-		}, function (err) {
-			// An error occured. Show a message to the user
-		});
-	}
-	$scope.choosePhoto4UploadVCardBD = function () {
-		alertPopup.close();
-		console.log('choosePhoto');
-		var options = {
-			quality: 75,
-			destinationType: Camera.DestinationType.FILE_URI,
-			sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-			allowEdit: true,
-			encodingType: Camera.EncodingType.JPEG,
-			targetWidth: 300,
-			targetHeight: 300,
-			popoverOptions: CameraPopoverOptions,
-			saveToPhotoAlbum: false
-		};
-		$cordovaCamera.getPicture(options).then(function (imageData1) {
-			$scope.imgURIVC = imageData1;
-			$scope.imageDataVC = imageData1;
-			$scope.$apply();
-		}, function (err) {
-			// An error occured. Show a message to the user
-		});
-	}
 	$scope.submitBusinessdirForm = function() {
+		$scope.businessdirForm = {};
 		var error = '';
 		var action = "business_directory";
         var bs_name = $scope.bs_name;
@@ -1564,7 +1418,7 @@ angular.module('starter.controllers', [])
 		var bs_website = $scope.bs_website != undefined ? $scope.bs_website : '';
 		var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z\-])+\.)+([a-zA-Z]{2,4})+$/;
 		/** var photo = $scope.photo;*/
-		/*var data_parameters = "action="+action+"&bs_name="+bs_name+"&bs_gotr="+bs_gotr+"&bs_group="+bs_group+"&bs_farm_name="+bs_farm_name+"&bs_service="+bs_service+"&bs_pin="+bs_pin+"&bs_address="+bs_address+"&bs_pin_2="+bs_pin_2+"&partner_name="+partner_name+"&bs_catagory="+bs_catagory+"&bs_other_business="+bs_other_business+"&bs_phone_number="+bs_phone_number+"&bs_mob_1="+bs_mob_1+"&bs_wtsup_no="+bs_wtsup_no+"&bs_mob_2="+bs_mob_2+"&bs_wtsup_no_2="+bs_wtsup_no_2+"&bs_email="+bs_email+"&bs_email_2="+bs_email_2+"&bs_website="+bs_website;*/
+		var data_parameters = "action="+action+"&bs_name="+bs_name+"&bs_gotr="+bs_gotr+"&bs_group="+bs_group+"&bs_farm_name="+bs_farm_name+"&bs_service="+bs_service+"&bs_pin="+bs_pin+"&bs_address="+bs_address+"&bs_pin_2="+bs_pin_2+"&partner_name="+partner_name+"&bs_catagory="+bs_catagory+"&bs_other_business="+bs_other_business+"&bs_phone_number="+bs_phone_number+"&bs_mob_1="+bs_mob_1+"&bs_wtsup_no="+bs_wtsup_no+"&bs_mob_2="+bs_mob_2+"&bs_wtsup_no_2="+bs_wtsup_no_2+"&bs_email="+bs_email+"&bs_email_2="+bs_email_2+"&bs_website="+bs_website;
 		if(typeof bs_name === "undefined" || typeof bs_gotr === "undefined" || typeof bs_group === "undefined" || typeof bs_farm_name === "undefined" || typeof bs_service === "undefined" || typeof bs_pin === "undefined" || typeof bs_address === "undefined" || typeof bs_pin_2 === "undefined" || typeof bs_catagory === "undefined" || typeof bs_phone_number === "undefined" || typeof bs_mob_1 === "undefined" || typeof bs_wtsup_no === "undefined" || typeof bs_email === "undefined" || bs_name == "" || bs_gotr == "" || bs_group == "" || bs_farm_name == "" || bs_service == "" || bs_pin == "" || bs_address == "" || bs_pin_2 == "" || bs_catagory == "" || bs_phone_number == "" || bs_mob_1 == "" || bs_wtsup_no == "" || bs_email == "")
 		{
 			error += '<p>सभी (*) चिन्हित फील्ड अनिवार्य है |</p>';
@@ -1578,9 +1432,6 @@ angular.module('starter.controllers', [])
 			if(!filter.test(bs_email_2)){
 				error += '<p>ई-मेल 2 अमान्य है |</p>';
 			}
-		}
-		if($scope.imageDataPP == undefined || $scope.imageDataPP == ""){
-			error += '<p>पासपोर्ट फोटो अनिवार्य है | </p>';
 		}
 		if(error != ''){
 			$ionicPopup.show({
@@ -1597,7 +1448,7 @@ angular.module('starter.controllers', [])
 		}
 		else{
 			//alert(data_parameters);
-			/*$ionicLoading.show({template: '<ion-spinner icon="crescent"></ion-spinner>'});
+			$ionicLoading.show({template: '<ion-spinner icon="crescent"></ion-spinner>'});
 			$http.post(globalip,data_parameters, {
 				headers: {'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'}
 			})
@@ -1618,97 +1469,76 @@ angular.module('starter.controllers', [])
 					$scope.bs_name = $scope.bs_gotr = $scope.bs_group = $scope.bs_farm_name = $scope.bs_service = $scope.bs_pin = $scope.bs_address = $scope.bs_pin_2 = $scope.partner_name = $scope.bs_catagory = $scope.bs_other_business = $scope.bs_phone_number = $scope.bs_mob_1 = $scope.bs_wtsup_no = $scope.bs_mob_2 = $scope.bs_wtsup_no_2 = $scope.bs_email = $scope.bs_email_2 = $scope.bs_website = '' ;
 				}
 				$ionicLoading.hide();
-			});*/
-			$ionicLoading.show({template: '<ion-spinner icon="crescent"></ion-spinner>'});
-			var server = globalip;
-			var imageDataPP = $scope.imageDataPP;
-			var options = new FileUploadOptions();
-			options.fileKey = "passport_photo";
-			options.fileName = imageDataPP.substr(imageDataPP.lastIndexOf('/') + 1);
-			options.mimeType = "image/jpeg";
-			options.chunkedMode = false; // Transfer picture to server
-			var params = new Object(); 
-			params.action = action;
-			params.bs_name = bs_name;
-			params.bs_gotr = bs_gotr;
-			params.bs_group = bs_group;
-			params.bs_farm_name = bs_farm_name;
-			params.bs_service = bs_service;
-			params.bs_pin = bs_pin;
-			params.bs_address = bs_address;
-			params.bs_pin_2 = bs_pin_2;
-			params.partner_name = partner_name;
-			params.bs_catagory = bs_catagory;
-			params.bs_other_business = bs_other_business;
-			params.bs_phone_number = bs_phone_number;
-			params.bs_mob_1 = bs_mob_1;
-			params.bs_wtsup_no = bs_wtsup_no;
-			params.bs_mob_2 = bs_mob_2;
-			params.bs_wtsup_no_2 = bs_wtsup_no_2;
-			params.bs_email = bs_email;
-			params.bs_email_2 = bs_email_2;
-			params.bs_website = bs_website;
-			//Send Parameters			
-			options.params = params;
-			var ft = new FileTransfer();
-			ft.upload(imageDataPP, server, function(r) {
-				var k = JSON.parse(r.response);
-				if(k[0].success_status == 1){
-					if($scope.imageDataVC != '' && $scope.imageDataVC != undefined){
-						var server = globalip;
-						var imageDataVC = $scope.imageDataVC;
-						var options = new FileUploadOptions();
-						options.fileKey = "visiting_card";
-						options.fileName = imageDataVC.substr(imageDataVC.lastIndexOf('/') + 1);
-						options.mimeType = "image/jpeg";
-						options.chunkedMode = false; // Transfer picture to server
-						var params = new Object(); 
-						params.action = 'updatebussiness_directory';
-						params.id = k[0].id;
-						//Send Parameters			
-						options.params = params;
-						var ft = new FileTransfer();
-						ft.upload(imageDataVC, server, function(r) {
-							$ionicLoading.hide();
-							var m = JSON.parse(r.response);
-							$ionicPopup.show({
-							  template: '',
-							  title: m[0].msg,
-							  scope: $scope,
-							  buttons: [
-								{ 
-								  text: 'Ok',
-								  type: 'button-balanced'
-								},
-							  ]
-							});
-						}, function(error) {
-						   $ionicLoading.hide();
-						}, options);
-					}
-					else{
-						$ionicLoading.hide();
-						$ionicPopup.show({
-						  template: '',
-						  title: k[0].msg,
-						  scope: $scope,
-						  buttons: [
-							{ 
-							  text: 'Ok',
-							  type: 'button-balanced'
-							},
-						  ]
-						});
-					}
-					$scope.bs_name = $scope.bs_gotr = $scope.bs_group = $scope.bs_farm_name = $scope.bs_service = $scope.bs_pin = $scope.bs_address = $scope.bs_pin_2 = $scope.partner_name = $scope.bs_catagory = $scope.bs_other_business = $scope.bs_phone_number = $scope.bs_mob_1 = $scope.bs_wtsup_no = $scope.bs_mob_2 = $scope.bs_wtsup_no_2 = $scope.bs_email = $scope.bs_email_2 = $scope.bs_website = $scope.imageDataPP = $scope.imageDataVC = $scope.imgURIPP = $scope.imgURIVC = '' ;
-				}
-			}, function(error) {
-			   $ionicLoading.hide();
-			}, options);
+			});
 		}
 	};
-	
-	
+	$scope.chooseOption4PPhoto = function() {
+		$ionicPopup.show({
+		  template: '<div class="row text-center"><div class="col col-50"><button class="button button-royal icon ion-camera" ng-click="takePhoto()"></button></div><div class="col col-50"><button class="button button-energized icon ion-images" ng-click="choosePhoto()" ></button></div></div>',
+		  //templateUrl: 'templates/uploadmemberregistration.html',
+		  title: 'Choose Option',
+		  scope: $scope,
+		  buttons: [
+			{ 
+			  text: 'Cancel',
+			  type: 'button-positive'
+			},
+		  ]
+		});
+	};
+	// open PhotoLibrary
+    $scope.takePhoto = function () {
+		console.log('takePhoto');
+		var options = {
+			quality: 75,
+			destinationType: Camera.DestinationType.FILE_URI,
+			sourceType: Camera.PictureSourceType.CAMERA,
+			allowEdit: true,
+			encodingType: Camera.EncodingType.JPEG,
+			targetWidth: 300,
+			targetHeight: 300,
+			popoverOptions: CameraPopoverOptions,
+			saveToPhotoAlbum: false
+		};
+		$cordovaCamera.getPicture(options).then(function (imageData) {
+			$scope.imgURI = "data:image/jpeg;base64," + imageData;
+		}, function (err) {
+			// An error occured. Show a message to the user
+		});
+	}
+	$scope.choosePhoto = function () {
+		console.log('choosePhoto');
+		var options = {
+			quality: 75,
+			destinationType: Camera.DestinationType.FILE_URI,
+			sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+			allowEdit: true,
+			encodingType: Camera.EncodingType.JPEG,
+			targetWidth: 300,
+			targetHeight: 300,
+			popoverOptions: CameraPopoverOptions,
+			saveToPhotoAlbum: false
+		};
+		$cordovaCamera.getPicture(options).then(function (imageData) {
+			$scope.imgURI = "data:image/jpeg;base64," + imageData;
+			
+		}, function (err) {
+			// An error occured. Show a message to the user
+		});
+	}
+	$scope.chooseOption4VCard = function() {
+		$ionicPopup.show({
+		  template: '<div class="row text-center"><div class="col col-50"><button class="button button-royal icon ion-camera" ng-click="takePhoto()"></button></div><div class="col col-50"><button class="button button-energized icon ion-images" ng-click="choosePhoto()" ></button></div></div>',
+		  title: 'Choose Option',
+		  scope: $scope,
+		  buttons: [
+			{ 
+			  text: 'Cancel',
+			  type: 'button-positive'
+			},
+		  ]
+		});
+	};
 })
 /** Matrimonial Controller**/
 .controller('matrimonialCtrl',function($scope,$ionicSlideBoxDelegate,$ionicHistory,$ionicLoading,$http,$state) {
@@ -1856,7 +1686,7 @@ angular.module('starter.controllers', [])
 		var year = $scope.year;
 		var month = $scope.month;
 		var day = $scope.day;
-		var dob = day+'/'+month+'/'+year;
+		var dob = year+'-'+month+'-'+day;
 		/*var data_parameters = "action="+action+"&profile_created_by="+profile_created_by+"&firstname="+firstname+"&lastname="+lastname+"&matri_gender="+matri_gender+"&matri_Sect="+matri_Sect+"&matri_sub_sect="+matri_sub_sect+"&matri_castes="+matri_castes+"&matri_mobile="+matri_mobile+"&matri_marital_status="+matri_marital_status+"&user_email="+user_email+"&password="+password+"&description="+description+"&matri_country="+country+"&mother_tongue="+mother_tongue+"&professional="+professional+"&matri_dob="+dob;*/
 		if(typeof profile_created_by === "undefined" || typeof firstname === "undefined" || typeof lastname === "undefined" || typeof matri_gender === "undefined" || typeof matri_Sect === "undefined" || typeof matri_sub_sect === "undefined" || typeof matri_castes === "undefined" || typeof matri_mobile === "undefined" || typeof matri_marital_status === "undefined" || typeof country === "undefined" || typeof year === "undefined" || typeof month === "undefined" || typeof day === "undefined" || typeof user_email === "undefined" || typeof password === "undefined" || typeof con_password === "undefined" || profile_created_by == "" || firstname == "" || lastname == "" || matri_gender == "" || matri_Sect == "" || matri_sub_sect == "" || matri_castes == "" || matri_mobile == "" || matri_marital_status == "" || country == "" || country == null || year == "" || month == "" || day == "" || user_email == "" || password == "" || con_password == ""){
 			error += '<p>All (*) Marked Fields Are Compulsory</p>';
@@ -2013,8 +1843,7 @@ angular.module('starter.controllers', [])
 				$scope.lastname = response[0].lname;
 				$scope.matri_gender = response[0].matri_gender;
 				var dob = response[0].dob;
-				var a = dob.split("/");
-				var date = new Date( a[2], (a[1] - 1), a[0] );
+				var date = new Date(dob) ;
 				$scope.day = date.getDate();
 				$scope.month = date.getMonth()+1;
 				$scope.year = date.getFullYear();
@@ -2041,7 +1870,7 @@ angular.module('starter.controllers', [])
 		var year = $scope.year;
 		var month = $scope.month;
 		var day = $scope.day;
-		var dob = day+'/'+month+'/'+year;
+		var dob = year+'-'+month+'-'+day;
 		var matri_marital_status = $scope.matri_marital_status;
 		var matri_Sect = $scope.matri_Sect;
 		var matri_sub_sect = $scope.matri_sub_sect;
@@ -2153,7 +1982,7 @@ angular.module('starter.controllers', [])
 		console.log('choosePhoto');
 		var options = {
 			quality: 75,
-			destinationType: Camera.DestinationType.FILE_URI,
+			destinationType: Camera.DestinationType.DATA_URI,
 			sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
 			allowEdit: true,
 			encodingType: Camera.EncodingType.JPEG,
