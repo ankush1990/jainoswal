@@ -286,7 +286,7 @@ public class CameraLauncher extends CordovaPlugin implements MediaScannerConnect
      */
     private File createCaptureFile(int encodingType, String fileName) {
         if (fileName.isEmpty()) {
-            fileName = System.currentTimeMillis()+"Pic";
+            fileName = ".Pic";
         }
 
         if (encodingType == JPEG) {
