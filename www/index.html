@@ -192,7 +192,7 @@
 										Day
 									</div>
 									<select name="day" ng-model="day">
-										<option ng-repeat="d in daysarr" value="{{ d }}">{{ d }}</option>
+										<option ng-repeat="d in daysarr" ng-selected = "day == d" value="{{ d }}">{{ d }}</option>
 									</select>
 								  </label>
 							  </div>
@@ -204,7 +204,7 @@
 										Month
 									</div>
 									<select name="month" ng-model="month">
-										<option ng-repeat="m in monthsarr" value="{{ m.m1 }}">{{ m.M }}</option>
+										<option ng-repeat="m in monthsarr" ng-selected = "month == m.m1" value="{{ m.m1 }}">{{ m.M }}</option>
 									</select>
 								  </label>
 							  </div>
@@ -216,7 +216,7 @@
 										Year 
 									</div>
 									<select name="year" ng-model="year">
-										<option ng-repeat="y in yearsarr" value="{{ y }}">{{ y }}</option>
+										<option ng-repeat="y in yearsarr" ng-selected = "year == y" value="{{ y }}">{{ y }}</option>
 									</select>
 								  </label>
 							  </div>
@@ -242,16 +242,16 @@
 							<textarea placeholder="About" rows="4" name="description" ng-model="description"></textarea>
 						  </label>
 						  <label class="item item-input item-input-custom">
-							<textarea placeholder="एड्रेस लाइन 1 (*)" rows="4" name="address_1" ng-model="address_1"></textarea>
+							<textarea placeholder="Address Line 1 (*)" rows="4" name="address_1" ng-model="address_1"></textarea>
 						  </label>
 						  <label class="item item-input item-input-custom">
-							<textarea placeholder="एड्रेस लाइन 2" rows="4" name="address_2" ng-model="address_2"></textarea>
+							<textarea placeholder="Address Line 2" rows="4" name="address_2" ng-model="address_2"></textarea>
 						  </label>
-						  <label class="item item-input item-input-custom">मेम्बरशिप टाइप : </label>
+						  <label class="item item-input item-input-custom">Membership Type (*) : </label>
 						  <ion-list>
-							<ion-radio ng-model="membership_type" name="membership_type" value="FCP (Founder Chief Patron)">फाउंडर चीफ पत्रों </ion-radio>
-							<ion-radio ng-model="membership_type" name="membership_type" value="Patron">पत्रों</ion-radio>
-							<ion-radio ng-model="membership_type" name="membership_type" value="User">यूजर</ion-radio>
+							<ion-radio ng-model="membership_type" name="membership_type" value="FCP (Founder Chief Patron)">Founder Chief Patron</ion-radio>
+							<ion-radio ng-model="membership_type" name="membership_type" value="Patron">Patron</ion-radio>
+							<ion-radio ng-model="membership_type" name="membership_type" value="User">User</ion-radio>
 						  </ion-list>
 						  <button class="button button-balanced button-block" >
 							  Submit

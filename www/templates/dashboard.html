@@ -19,17 +19,13 @@
 		<div ng-repeat="data in officers">
 			<div class="row" ng-if="$even">
 				<div ng-if="officers[$index].officer_name" class="col col-50 text-center">
-					<a ng-if="officers[$index].slug && officers[$index].slug != '#'" ui-sref="app.sandesh({slug:officers[$index].slug})"><img src="{{ officers[$index].image_url }}" alt="sliderimg" style="height:140px;width:100%;"></a>
-					<a ng-if="officers[$index].slug == '' || officers[$index].slug == '#'"><img src="{{ officers[$index].image_url }}" alt="sliderimg" style="height:140px;width:100%;"></a>
-					<a ng-if="officers[$index].slug && officers[$index].slug != '#'" ui-sref="app.sandesh({slug:officers[$index].slug})">{{ officers[$index].officer_name }}</a>
-					<a ng-if="officers[$index].slug == '' || officers[$index].slug == '#'">{{ officers[$index].officer_name }}</a>
+					<a ui-sref="app.sandesh({slug:officers[$index].slug})"><img src="{{ officers[$index].image_url }}" alt="sliderimg" style="height:140px;width:100%;"></a>
+					<a ui-sref="app.sandesh({slug:officers[$index].slug})">{{ officers[$index].officer_name }}</a>
 					<p style="font-size:10px;">{{ officers[$index].designation }}</p>
 				</div>
 				<div ng-if="officers[$index + 1].officer_name"  class="col col-50 text-center">
-					<a ng-if="officers[$index + 1].slug && officers[$index + 1].slug != '#'" ui-sref="app.sandesh({slug:officers[$index + 1].slug})"><img src="{{  officers[$index + 1].image_url }}" alt="sliderimg" style="height:140px;width:100%;"></a>
-					<a ng-if="officers[$index + 1].slug == '' || officers[$index + 1].slug == '#'"><img src="{{  officers[$index + 1].image_url }}" alt="sliderimg" style="height:140px;width:100%;"></a>
-					<a ng-if="officers[$index + 1].slug && officers[$index + 1].slug != '#'" ui-sref="app.sandesh({slug:officers[$index + 1].slug})">{{ officers[$index + 1].officer_name }}</a>
-					<a ng-if="officers[$index + 1].slug == '' || officers[$index + 1].slug == '#'">{{ officers[$index + 1].officer_name }}</a>
+					<a ui-sref="app.sandesh({slug:officers[$index + 1].slug})"><img src="{{  officers[$index + 1].image_url }}" alt="sliderimg" style="height:140px;width:100%;"></a>
+					<a ui-sref="app.sandesh({slug:officers[$index + 1].slug})">{{ officers[$index + 1].officer_name }}</a>
 					<p style="font-size:10px;">{{ officers[$index + 1].designation }}</p>
 				</div>
 			</div>

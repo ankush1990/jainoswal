@@ -34,7 +34,7 @@
 			<div class="item item-custom" ng-init="showSub2 = false" ng-click="showSub2 = !showSub2"><span style="float:left"><i class="icon ion-android-calendar my" ></i> गतिविधियाँ </span> <i class="ion-chevron-right" style="float:right" ng-show="!showSub2"></i> <i class="ion-chevron-down" style="float:right" ng-show="showSub2" ></i></div>
 			<a href="" ng-click="GotoBusiness_directory();"><div class="item child-item" ng-show="showSub2" >बिजनेस डायरेक्ट्री</div></a>
 			<a href="" ng-click="GotoMatrimonial();"><div class="item child-item" ng-show="showSub2">वैवाहिक परिचय</div></a>
-			<a href="" ng-click="GotoLink('http://makerits.com/jainoswalsajnanfedration/wp-content/uploads/2016/11/003.jpg')"><div class="item child-item" ng-show="showSub2">अल्पसंख्यक प्रमाण पत्र</div></a>
+			<a href="" ng-click="GotoLink('http://makerites.com/wordpress/jainoswalsajnanfedration/wp-content/uploads/2016/11/003.jpg')"><div class="item child-item" ng-show="showSub2">अल्पसंख्यक प्रमाण पत्र</div></a>
 			<a href=""><div class="item child-item" ng-show="showSub2">जाने संघ के बारे में</div></a>
 			<a href="" ng-click="GotoEkal_khidki();"><div class="item child-item" ng-show="showSub2">एकल खिड़की</div></a>
 			<a href=""><div class="item child-item" ng-show="showSub2">साजनान टाइम्स</div></a>
@@ -42,20 +42,11 @@
 		<ion-item menu-close class="item item-icon-left" href="#/app/jain-thirth-yatra" ng-show="site_view == 'site'"> 
           <i class="icon ion-ios-book"></i>एकल खिड़की
         </ion-item>
-        <!--<ion-item menu-close class="item item-icon-left" ng-if="site_view == 'matrimonial'" href="#/app/parichaypatra">
-          <i class="icon ion-clipboard"></i>परिचय-पत्र
-        </ion-item>-->
-        <ion-item menu-close class="item item-icon-left" href="#/app/myprofile" ng-controller="LogoutCtrl" ng-show="login != '' && site_view == 'site'"> 
-          <i class="icon ion-person"></i>प्रोफाइल
-        </ion-item>
-		<ion-item menu-close class="item item-icon-left" href="#/app/profile-edit" ng-controller="LogoutCtrl_2" ng-show="login_2 != '' && site_view == 'matrimonial'"> 
-          <i class="icon ion-person"></i>Profile
-        </ion-item>
-		<ion-item menu-close class="item item-icon-left" ng-if="site_view == 'matrimonial'" href="#/app/introductionform">
+		<ion-item menu-close class="item item-icon-left" ng-controller="LogoutCtrl_2" ng-show="login_2 != '' && site_view == 'matrimonial'" href="#/app/introductionform">
           <i class="icon ion-ios-paper"></i>Introduction Form
         </ion-item>
-		<ion-item menu-close class="item item-icon-left" ng-if="site_view == 'matrimonial'" href="#/app/member-list">
-          <i class="icon ion-person-stalker"></i>Member List
+		<ion-item menu-close class="item item-icon-left" ng-controller="LogoutCtrl_2" ng-show="login_2 != '' && site_view == 'matrimonial'" href="#/app/member-list">
+          <i class="icon ion-person-stalker"></i>Candidate List
         </ion-item>
 		<ion-item menu-close class="item item-icon-left" ng-if="site_view == 'site'"  href="#/app/contact">
           <i class="icon ion-location"></i>संपर्क
@@ -63,11 +54,23 @@
 		<ion-item menu-close class="item item-icon-left" ng-if="site_view == 'matrimonial'" href="#/app/matrimonial_contact">
           <i class="icon ion-location"></i>Contact Us
         </ion-item>
+		<ion-item menu-close class="item item-icon-left" ng-if="site_view == 'site'" ng-click="switch_site('matrimonial');">
+          <i class="icon ion-heart"></i>मैट्रिमोनियल
+        </ion-item>
+		<ion-item menu-close class="item item-icon-left" ng-if="site_view == 'matrimonial'" ng-click="switch_site('site');">
+          <i class="icon ion-home"></i>JOS Fedration
+        </ion-item>
+		<ion-item menu-close class="item item-icon-left" href="#/app/profile-edit" ng-controller="LogoutCtrl_2" ng-show="login_2 != '' && site_view == 'matrimonial'"> 
+          <i class="icon ion-person"></i>Profile
+        </ion-item>
 		<ion-item menu-close class="item item-icon-left" href="#/app/member-login" ng-controller="LogoutCtrl_2" ng-click='logout();' ng-show="login_2 != '' && site_view == 'matrimonial'"> 
           <i class="icon ion-log-out"></i>Logout
         </ion-item>
 		<ion-item menu-close class="item item-icon-left" href="#/app/member-login" ng-controller="LogoutCtrl_2" ng-show="login_2 == '' && site_view == 'matrimonial'">
           <i class="icon ion-log-in"></i>Login
+        </ion-item>
+		<ion-item menu-close class="item item-icon-left" href="#/app/myprofile" ng-controller="LogoutCtrl" ng-show="login != '' && site_view == 'site'"> 
+          <i class="icon ion-person"></i>प्रोफाइल
         </ion-item>
 		<ion-item menu-close class="item item-icon-left" href="#/app/login" ng-controller="LogoutCtrl" ng-click='logout();' ng-show="login != '' && site_view == 'site'"> 
           <i class="icon ion-log-out"></i>लॉगआउट 
@@ -75,16 +78,10 @@
         <ion-item menu-close class="item item-icon-left" href="#/app/login" ng-controller="LogoutCtrl" ng-show="login == '' && site_view == 'site'">
           <i class="icon ion-log-in"></i>लॉगिन
         </ion-item>
-		<ion-item menu-close class="item item-icon-left" ng-if="site_view == 'site'" ng-click="switch_site('matrimonial');">
-          <i class="icon ion-heart"></i>मैट्रिमोनियल
-        </ion-item>
-		<ion-item menu-close class="item item-icon-left" ng-if="site_view == 'matrimonial'" ng-click="switch_site('site');">
-          <i class="icon ion-home"></i>JOS Fedration
-        </ion-item>
       </ion-list>
     </ion-content>
   </ion-side-menu>
 </ion-side-menus>
 <div class="bar bar-footer bar-light">
-  <div class="title" style="text-align:center;margin-top:5px;"><img src="http://makerits.com/jainoswalsajnanfedration/wp-content/uploads/2016/11/Oswal-Jain-sajnan-jos-logjo-2.png" alt="logo" style="height:30px;width:30px;"></div>
+  <div class="title" style="text-align:center;margin-top:5px;"><img src="http://makerites.com/wordpress/jainoswalsajnanfedration/wp-content/uploads/2016/11/Oswal-Jain-sajnan-jos-logjo-2.png" alt="logo" style="height:30px;width:30px;"></div>
 </div>
