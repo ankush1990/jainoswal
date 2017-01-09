@@ -1,5 +1,6 @@
 var global_login_id = "";
 var global_login_id_2 = "";
+var global_data = new Object(); 
 var global_daysarr = [01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31];
 var global_monthsarr = [
 							{m1:01,M:'जनवरी',M1:'January'},{m1:02,M:'फ़रवरी',M1:'February'},{m1:03,M:'मार्च',M1:'March'},{m1:04,M:'अप्रैल',M1:'April'},{m1:05,M:'मई',M1:'May'},{m1:06,M:'जून',M1:'June'},{m1:07,M:'जुलाई',M1:'July'},{m1:08,M:'अगस्त',M1:'August'},{m1:09,M:'सितंबर',M1:'September'},{m1:10,M:'अक्टूबर',M1:'October'},{m1:11,M:'नवंबर',M1:'November'},{m1:12,M:'दिसंबर',M1:'December'}	
@@ -81,7 +82,7 @@ angular.module('starter.controllers', [])
 
 /** Dashboard Controller**/
 .controller('dashboardCtrl',function($scope,$ionicSlideBoxDelegate,$ionicHistory,$ionicLoading,$http,$state,$rootScope,$window,$timeout) {
-	/* National Officers */ /* http://makerits.com/jainoswalsajnanfedration/webservice/?action=national_officers */
+	/* National Officers */ /* http://jainoswalfederation.com/webservice/?action=national_officers */
 	$timeout(function(){
 		var login_var_local = window.localStorage.getItem("login_var_local");
 		var login_var_2_local = window.localStorage.getItem("login_var_2_local");
@@ -102,9 +103,9 @@ angular.module('starter.controllers', [])
 	})
 	.success(function(response) {
 		$scope.officers = response;
-		global_officers = response;
+		global_data.national_officers = response;
 	});
-	/* HomeSlider */ /* http://makerits.com/jainoswalsajnanfedration/webservice/?action=home_slider */
+	/* HomeSlider */ /* http://jainoswalfederation.com/webservice/?action=home_slider */
 	var action1 = "home_slider";
 	var data_parameters1 = "action="+action1;
 	$http.post(globalip,data_parameters1, {
@@ -112,13 +113,14 @@ angular.module('starter.controllers', [])
 	})
 	.success(function(response1) {
 		$scope.slider = response1;
+		global_data.home_slider = response1;
 		setTimeout(function(){
-      		$ionicSlideBoxDelegate.update();
+			$ionicSlideBoxDelegate.update();
 			$ionicSlideBoxDelegate.loop(true);
 			$ionicLoading.hide();
-  		},1000);
+		},1000);
 	});
-	/* Vishesh */ /* http://makerits.com/jainoswalsajnanfedration/webservice/?action=special */
+	/* Vishesh */ /* http://jainoswalfederation.com/webservice/?action=special */
 	var action2 = "special";
 	var data_parameters2 = "action="+action2;
 	$http.post(globalip,data_parameters2, {
@@ -126,8 +128,9 @@ angular.module('starter.controllers', [])
 	})
 	.success(function(response2) {
 		$scope.special = response2;
+		global_data.special = response2;
 	});
-	/* Testimonials */ /* http://makerits.com/jainoswalsajnanfedration/webservice/?action=testimonials */
+	/* Testimonials */ /* http://jainoswalfederation.com/webservice/?action=testimonials */
 	var action3 = "testimonials";
 	var data_parameters3 = "action="+action3;
 	$http.post(globalip,data_parameters3, {
@@ -135,12 +138,13 @@ angular.module('starter.controllers', [])
 	})
 	.success(function(response3) {
 		$scope.testimonials = response3;
+		global_data.testimonials = response3;
 		setTimeout(function(){
-      		$ionicSlideBoxDelegate.update();
+			$ionicSlideBoxDelegate.update();
 			$ionicSlideBoxDelegate.loop(true);
-  		},1000);
+		},1000);
 	});
-	/* Sajnan Times */ /* http://makerits.com/jainoswalsajnanfedration/webservice/?action=sajnan_times */
+	/* Sajnan Times */ /* http://jainoswalfederation.com/webservice/?action=sajnan_times */
 	var action4 = "sajnan_times";
 	var data_parameters4 = "action="+action4;
 	$http.post(globalip,data_parameters4, {
@@ -149,6 +153,7 @@ angular.module('starter.controllers', [])
 	.success(function(response4) {
 		if(response4[0].success == "Y"){
 			$scope.sajnan_times = response4[0];
+			global_data.sajnan_times = response4[0];
 		}
 	});
 	$scope.GotoLink = function(url){
@@ -165,7 +170,7 @@ angular.module('starter.controllers', [])
 })
 /** Contact Controller**/
 .controller('contactCtrl',function($scope,$http,$state,$ionicLoading,$ionicPopup) {
-	/* Contact Us */ /* http://makerites.com/wordpress/jainoswalsajnanfedration/webservice/?action=contact_us */
+	/* Contact Us */ /* http://jainoswalfederation.com/webservice/?action=contact_us */
 	$scope.submit = function() {
 		var action = "contact_us";
         var Name = $scope.Name;
@@ -232,7 +237,7 @@ angular.module('starter.controllers', [])
 })
 /** Matrimonial Contact Controller**/
 .controller('matrimonial_contactCtrl',function($scope,$http,$state,$ionicLoading,$ionicPopup) {
-	/* Contact Us */ /* http://makerits.com/jainoswalsajnanfedration/webservice/?action=contact_us */
+	/* Contact Us */ /* http://jainoswalfederation.com/webservice/?action=contact_us */
 	$scope.submit = function() {
 		var action = "contact_us";
         var Name = $scope.Name;
@@ -299,7 +304,7 @@ angular.module('starter.controllers', [])
 })
 /** Jankaari Controller**/
 .controller('jankariCtrl',function($scope,$http,$state,$ionicLoading) {
-	/* Ekal-Khidki */ /* http://makerits.com/jainoswalsajnanfedration/webservice/?action=single_window */
+	/* Ekal-Khidki */ /* http://jainoswalfederation.com/webservice/?action=single_window */
 	$ionicLoading.show({template: '<ion-spinner icon="crescent"></ion-spinner>'});
 	var action = "jaankari";
 	var data_parameters = "action="+action;
@@ -313,7 +318,7 @@ angular.module('starter.controllers', [])
 })
 /** Login Controller**/
 .controller('loginCtrl',function($scope,$http,$state,$ionicLoading,$ionicPopup,$ionicHistory,$rootScope,$window) {
-	/* Login */ /* http://makerits.com/jainoswalsajnanfedration/webservice/?action=login */
+	/* Login */ /* http://jainoswalfederation.com/webservice/?action=login */
 	$scope.submitloginForm = function() {
 		var action = "login";
         var email = $scope.email;
@@ -382,7 +387,7 @@ angular.module('starter.controllers', [])
 })
 /** Member Login Controller**/
 .controller('memberloginCtrl',function($scope,$http,$state,$ionicLoading,$ionicPopup,$ionicHistory,$rootScope,$window) {
-	/* Member Login */ /* http://makerits.com/jainoswalsajnanfedration/matrimonial/matrimonial_web/?action=login&username=gautam&password=41014101@rG */
+	/* Member Login */ /* http://jainoswalfederation.com/matrimonial/matrimonial_web/?action=login&username=gautam&password=41014101@rG */
 	$scope.submitmemberloginForm = function() {
 		var action = "login";
         var email = $scope.email;
@@ -451,7 +456,7 @@ angular.module('starter.controllers', [])
 })
 /** Registration Controller**/
 .controller('registrationCtrl',function($scope,$http,$state,$ionicLoading,$ionicPopup) {
-	/* Login */ /* http://makerits.com/jainoswalsajnanfedration/webservice/?action=register */
+	/* Login */ /* http://jainoswalfederation.com/webservice/?action=register */
 	$scope.countryarr =  global_countryarr;
 	$scope.submitregistrationForm = function() {
 		var error = '';
@@ -529,7 +534,7 @@ angular.module('starter.controllers', [])
 })
 /** Forgot Password Controller**/
 .controller('forgotpasswordCtrl',function($scope,$http,$ionicLoading,$state,$ionicPopup) {
-	/* Forgot Password */ /* http://makerits.com/jainoswalsajnanfedration/webservice/?action=Forgot */
+	/* Forgot Password */ /* http://jainoswalfederation.com/webservice/?action=Forgot */
 	$scope.forgotpasswordsubmit = function() {
 		var error = '';
 		var action = "Forgot";
@@ -584,29 +589,177 @@ angular.module('starter.controllers', [])
 	};
 })
 /** Sandesh Controller**/
-.controller('sandeshCtrl',function($scope,$http,$state,$ionicLoading,$stateParams) {
-	/* Sandesh Officers */ /* http://makerits.com/jainoswalsajnanfedration/webservice/?action=special_detalis&officer_title=lalchand-bandi-details */
-	$ionicLoading.show({template: '<ion-spinner icon="crescent"></ion-spinner>'});
+.controller('sandeshCtrl',function($scope,$http,$state,$ionicLoading,$stateParams,$ionicPopup) {
+	/* Sandesh Officers */ /* http://jainoswalfederation.com/webservice/?action=special_detalis&officer_title=lalchand-bandi-details */
 	var action = "special_detalis";
 	var officer_title = $stateParams.slug;
 	var data_parameters = "action="+action+"&officer_title="+officer_title;
+	if(officer_title == '' || officer_title == '#'){
+		$ionicPopup.show({
+		  template: '',
+		  title: 'सन्देश उपलब्ध नहीं है |',
+		  scope: $scope,
+		  buttons: [
+			{ 
+			  text: 'Ok',
+			  type: 'button-balanced',
+			  onTap: function() { 
+				console.log('tapped');
+				$state.go('app.dashboard');
+			  }
+			}
+		  ]
+		});
+	}
+	else {
+		$ionicLoading.show({template: '<ion-spinner icon="crescent"></ion-spinner>'});
+		$http.post(globalip,data_parameters, {
+			headers: {'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'}
+		})
+		.success(function(response) {
+			$scope.written_by = response[0].written_by;
+			$scope.before_speech = response[0].before_speech;
+			$scope.slogan = response[0].slogan;
+			$scope.speech = response[0].speech;
+			$scope.yours = response[0].yours;
+			$scope.name = response[0].name;
+			$scope.image = response[0].image;
+			$ionicLoading.hide();
+		});
+	}
+})
+/** Sangh N Groups Controller **/
+.controller('sanghngroupCtrl',function($scope,$http,$state,$ionicLoading) {
+	/* Sangh N Groups */ /* http://jainoswalfederation.com/webservice/?action=group */
+	$ionicLoading.show({template: '<ion-spinner icon="crescent"></ion-spinner>'});
+	var action = "group";
+	var data_parameters = "action="+action;
 	$http.post(globalip,data_parameters, {
 		headers: {'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'}
 	})
 	.success(function(response) {
-		$scope.written_by = response[0].written_by;
-		$scope.before_speech = response[0].before_speech;
-		$scope.slogan = response[0].slogan;
-		$scope.speech = response[0].speech;
-		$scope.yours = response[0].yours;
-		$scope.name = response[0].name;
-		$scope.image = response[0].image;
+		$scope.sanghs = response;
 		$ionicLoading.hide();
 	});
 })
+/** Sangh Members Controller**/
+.controller('sanghmembersCtrl',function($scope,$http,$state,$ionicLoading,$stateParams) {
+	/* http://jainoswalfederation.com/webservice/?action=group_details&group_name=%E0%A4%B6%E0%A5%8D%E0%A4%B0%E0%A5%80-%E0%A4%B8%E0%A4%82%E0%A4%98 */
+	var action = "group_details";
+	var group_name = $stateParams.slug;
+	var data_parameters = "action="+action+"&group_name="+group_name;
+	$ionicLoading.show({template: '<ion-spinner icon="crescent"></ion-spinner>'});
+	$http.post(globalip,data_parameters, {
+		headers: {'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'}
+	})
+	.success(function(response) {
+		$scope.sanghmembers = response.list;
+		$scope.page_title = response.sangh.page_title;
+		$ionicLoading.hide();
+	});
+})
+/** Employment Controller **/
+.controller('employmentCtrl',function($scope,$http,$state,$ionicLoading,$ionicHistory,$ionicPopup) {
+	/* Employment */ /* http://jainoswalfederation.com/web_service/?action=employment_list */
+	$ionicLoading.show({template: '<ion-spinner icon="crescent"></ion-spinner>'});
+	var action = "employment_list";
+	var data_parameters = "action="+action;
+	$http.post(globalip,data_parameters, {
+		headers: {'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'}
+	})
+	.success(function(response) {
+		$scope.emps = response;
+		$ionicLoading.hide();
+	});
+	$scope.empform = function(){ 
+		$ionicHistory.nextViewOptions({
+			disableBack: true
+		});
+		if(global_login_id == ""){
+			$ionicPopup.show({
+			  template: '',
+			  title: 'कृपया पहले लॉगिन करे |',
+			  scope: $scope,
+			  buttons: [
+				{ 
+				  text: 'Ok',
+				  type: 'button-balanced',
+				  onTap: function() { 
+					console.log('tapped');
+					$state.go('app.employment');
+				  }
+				}
+			  ]
+			});
+		}
+		else{
+			$state.go('app.create-emp');
+		}
+	}	
+})
+/** Emp Details Controller**/
+.controller('empdetailsCtrl',function($scope,$http,$state,$ionicLoading,$stateParams) {
+	/* http://jainoswalfederation.com/?action=employment_fulldata&emp_id=61 */
+	var action = "employment_fulldata";
+	var emp_id = $stateParams.emp_id;
+	var data_parameters = "action="+action+"&emp_id="+emp_id;
+	$ionicLoading.show({template: '<ion-spinner icon="crescent"></ion-spinner>'});
+	$http.post(globalip,data_parameters, {
+		headers: {'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'}
+	})
+	.success(function(response) {
+		$scope.empdetails = response[0];
+		$ionicLoading.hide();
+	});
+})
+/** Create Employment Controller**/
+.controller('create_empCtrl',function($scope,$http,$state,$ionicLoading,$ionicPopup) {
+	/* http://jainoswalfederation.com/web_service/?action=employment_create&detail=test%20detail%20by%20webservice&post_by=163 */
+	$scope.submitcreate_empForm = function() {
+		var action = "employment_create";
+        var detail = $scope.detail;
+		var data_parameters = "action="+action+"&detail="+detail+"&post_by="+global_login_id;
+		if(typeof detail === "undefined" || typeof global_login_id === "undefined" || detail == ""  || global_login_id == ""){
+			$ionicPopup.show({
+			  template: '',
+			  title: 'एम्प्लॉयमेंट के बारे में जानकारी भरे |',
+			  scope: $scope,
+			  buttons: [
+				{ 
+				  text: 'Ok',
+				  type: 'button-balanced'
+				},
+			  ]
+			});
+		}
+		else{
+			$ionicLoading.show({template: '<ion-spinner icon="crescent"></ion-spinner>'});
+			$http.post(globalip,data_parameters, {
+				headers: {'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'}
+			})
+			.success(function(response) {
+				if(response[0].success == 'Y'){
+					$scope.detail = '' ;
+					$ionicPopup.show({
+					  template: '',
+					  title: response[0].msg,
+					  scope: $scope,
+					  buttons: [
+						{ 
+						  text: 'Ok',
+						  type: 'button-balanced'
+						},
+					  ]
+					});
+				}
+				$ionicLoading.hide();
+			});
+		}
+	};
+})
 /** Ekal-Khidki Controller**/
 .controller('ekal_khidkiCtrl',function($scope,$http,$state,$ionicLoading,$ionicScrollDelegate) {
-	/* Ekal-Khidki */ /* http://makerits.com/jainoswalsajnanfedration/webservice/?action=single_window */
+	/* Ekal-Khidki */ /* http://jainoswalfederation.com/webservice/?action=single_window */
 	$ionicLoading.show({template: '<ion-spinner icon="crescent"></ion-spinner>'});
 	var action = "single_window";
 	var data_parameters = "action="+action;
@@ -634,7 +787,7 @@ angular.module('starter.controllers', [])
 })
 /** Introduction Form Controller **/
 .controller('introductionformCtrl',function($scope,$http,$state,$ionicLoading,$ionicPopup,$ionicModal,$cordovaCamera,$cordovaFileTransfer) {
-	/* Parichay Patra */ /* http://makerites.com/wordpress/jainoswalsajnanfedration/matrimonial/matrimonial_web */
+	/* Parichay Patra */ /* http://jainoswalfederation.com/matrimonial/matrimonial_web */
 	$scope.daysarr = global_daysarr;
 	$scope.monthsarr = global_monthsarr;
 	$scope.yearsarr = global_yearsarr;
@@ -664,8 +817,8 @@ angular.module('starter.controllers', [])
 			sourceType: Camera.PictureSourceType.CAMERA,
 			allowEdit: true,
 			encodingType: Camera.EncodingType.JPEG,
-			targetWidth: 300,
-			targetHeight: 300,
+			targetWidth: 800,
+			targetHeight: 500,
 			popoverOptions: CameraPopoverOptions,
 			saveToPhotoAlbum: false
 		};
@@ -686,8 +839,8 @@ angular.module('starter.controllers', [])
 			sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
 			allowEdit: true,
 			encodingType: Camera.EncodingType.JPEG,
-			targetWidth: 300,
-			targetHeight: 300,
+			targetWidth: 800,
+			targetHeight: 500,
 			popoverOptions: CameraPopoverOptions,
 			saveToPhotoAlbum: false
 		};
@@ -710,7 +863,7 @@ angular.module('starter.controllers', [])
 		var year = $scope.year;
 		var month = $scope.month;
 		var day = $scope.day;
-		var Date_of_birth = year+'-'+month+'-'+day;
+		var Date_of_birth = day+'/'+month+'/'+year;
 		var Birth_time = $scope.Birth_time;
 		var samyakaal = $scope.samyakaal;
 		var Birth_place = $scope.Birth_place;
@@ -934,14 +1087,14 @@ angular.module('starter.controllers', [])
 /** Profile Controller **/
 .controller('profileCtrl',function($scope,$http,$state,$ionicLoading,$ionicPopup,$rootScope,$ionicHistory,$cordovaCamera,$cordovaFileTransfer) {
 	/* User Profile */ 
-	/* http://makerits.com/jainoswalsajnanfedration/webservice/?action=update_profile&action_1=update_user_profile&ID=115&description=helloheretimepass&gender=Male&birth_date=1995/01/11&country=Aruba&mobile_number=9165679898&user_email=timepass10237@gmail.com */
+	/* http://jainoswalfederation.com/webservice/?action=update_profile&action_1=update_user_profile&ID=115&description=helloheretimepass&gender=Male&birth_date=1995/01/11&country=Aruba&mobile_number=9165679898&user_email=timepass10237@gmail.com */
 	$scope.daysarr = global_daysarr;
 	$scope.monthsarr = global_monthsarr;
 	$scope.yearsarr = global_yearsarr;
 	$scope.countryarr =  global_countryarr;
 	var alertPopup;
 	/* Get Details */
-	/* http://makerits.com/jainoswalsajnanfedration/webservice/?action=update_profile&action_1=user_deatils&user_id=123 */
+	/* http://jainoswalfederation.com/webservice/?action=update_profile&action_1=user_deatils&user_id=123 */
 	//if(global_login_id != '' && global_login_id != undefined){
 		var data_parameters12 = "action=update_profile&action_1=user_deatils&user_id="+global_login_id+"";
 		$ionicLoading.show({template: '<ion-spinner icon="crescent"></ion-spinner>'});
@@ -954,11 +1107,13 @@ angular.module('starter.controllers', [])
 				$scope.profile_image = response[0].profile_image ? response[0].profile_image : 'img/siteimgs/no_logo.gif';
 				$scope.gender = response[0].gender;
 				$scope.user_email = response[0].user_email;
-				var dob = response[0].birth_date;
-				var date = new Date(dob) ;
-				$scope.day = date.getDate();
-				$scope.month = date.getMonth()+1;
-				$scope.year = date.getFullYear();
+				if(response[0].birth_date){
+					var dob = response[0].birth_date;
+					var date = new Date(dob) ;
+					$scope.day = date.getDate();
+					$scope.month = date.getMonth()+1;
+					$scope.year = date.getFullYear();
+				}
 				$scope.country = response[0].country;
 				$scope.mobile_number = response[0].mobile_number;
 				$scope.description = response[0].description;
@@ -1099,7 +1254,7 @@ angular.module('starter.controllers', [])
 		}
 	};
 	/* Change Password */
-	/* http://makerits.com/jainoswalsajnanfedration/webservice/?action=update_profile&action_1=change_password&ID=115&current_pass=test@123&new_pass=test@1234 */
+	/* http://jainoswalfederation.com/webservice/?action=update_profile&action_1=change_password&ID=115&current_pass=test@123&new_pass=test@1234 */
 	$scope.submitchgpasswordForm = function() {
 		var error = '';
 		var action = "update_profile";
@@ -1161,7 +1316,7 @@ angular.module('starter.controllers', [])
 		}
 	};
 	/* Privacy */
-	/* http://makerits.com/jainoswalsajnanfedration/webservice/?action=update_profile&action_1=Privacy&ID=115&profile_privacy=Everyone&hide_in_members=No */
+	/* http://jainoswalfederation.com/webservice/?action=update_profile&action_1=Privacy&ID=115&profile_privacy=Everyone&hide_in_members=No */
 	$scope.submitprivacyForm = function() {
 		var error = '';
 		var action = "update_profile";
@@ -1268,7 +1423,7 @@ angular.module('starter.controllers', [])
 		console.log('choosePhoto');
 		var options = {
 			quality: 90,
-			destinationType: Camera.DestinationType.DATA_URI,
+			destinationType: Camera.DestinationType.FILE_URI,
 			sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
 			allowEdit: true,
 			encodingType: Camera.EncodingType.JPEG,
@@ -1356,7 +1511,7 @@ angular.module('starter.controllers', [])
 		console.log('choosePhoto');
 		var options = {
 			quality: 90,
-			destinationType: Camera.DestinationType.DATA_URI,
+			destinationType: Camera.DestinationType.FILE_URI,
 			sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
 			allowEdit: true,
 			encodingType: Camera.EncodingType.JPEG,
@@ -1392,9 +1547,70 @@ angular.module('starter.controllers', [])
 })
 /** Business Directory Controller **/
 .controller('business_directoryCtrl',function($scope,$http,$state,$ionicLoading,$ionicPopup,$cordovaCamera,$cordovaFileTransfer) {
-	/* Business Directory */ /* http://makerits.com/jainoswalsajnanfedration/webservice/?action=business_directory */
+	/* Business Directory */ /* http://jainoswalfederation.com/webservice/?action=business_directory */
+	$scope.imageDataPP = '';
+	$scope.imageDataVC = '';
+	var alertPopup; 
+	$scope.chooseOption4PPhotoBD = function() {
+		alertPopup = $ionicPopup.show({
+		  template: '<div class="row text-center"><div class="col col-50"><button class="button button-royal icon ion-camera" ng-click="takePhoto4UploadPPhotoBD()"></button></div><div class="col col-50"><button class="button button-energized icon ion-images" ng-click="choosePhoto4UploadPPhotoBD()" ></button></div></div>',
+		  //templateUrl: 'templates/uploadmemberregistration.html',
+		  title: 'Choose Option',
+		  scope: $scope,
+		  buttons: [
+			{ 
+			  text: 'Close',
+			  type: 'button-positive'
+			},
+		  ]
+		});
+	};
+	// open PhotoLibrary
+    $scope.takePhoto4UploadPPhotoBD = function () {
+		alertPopup.close();
+		console.log('takePhoto');
+		var options = {
+			quality: 75,
+			destinationType: Camera.DestinationType.FILE_URI,
+			sourceType: Camera.PictureSourceType.CAMERA,
+			allowEdit: true,
+			encodingType: Camera.EncodingType.JPEG,
+			targetWidth: 300,
+			targetHeight: 300,
+			popoverOptions: CameraPopoverOptions,
+			saveToPhotoAlbum: false
+		};
+		$cordovaCamera.getPicture(options).then(function (imageData) {
+			$scope.imgURIPP = imageData;
+			$scope.imageDataPP = imageData;
+			$scope.$apply();
+		}, function (err) {
+			// An error occured. Show a message to the user
+		});
+	}
+	$scope.choosePhoto4UploadPPhotoBD = function () {
+		alertPopup.close();
+		console.log('choosePhoto');
+		var options = {
+			quality: 75,
+			destinationType: Camera.DestinationType.FILE_URI,
+			sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+			allowEdit: true,
+			encodingType: Camera.EncodingType.JPEG,
+			targetWidth: 300,
+			targetHeight: 300,
+			popoverOptions: CameraPopoverOptions,
+			saveToPhotoAlbum: false
+		};
+		$cordovaCamera.getPicture(options).then(function (imageData) {
+			$scope.imgURIPP = imageData;
+			$scope.imageDataPP = imageData;
+			$scope.$apply();
+		}, function (err) {
+			// An error occured. Show a message to the user
+		});
+	}
 	$scope.submitBusinessdirForm = function() {
-		$scope.businessdirForm = {};
 		var error = '';
 		var action = "business_directory";
         var bs_name = $scope.bs_name;
@@ -1418,7 +1634,7 @@ angular.module('starter.controllers', [])
 		var bs_website = $scope.bs_website != undefined ? $scope.bs_website : '';
 		var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z\-])+\.)+([a-zA-Z]{2,4})+$/;
 		/** var photo = $scope.photo;*/
-		var data_parameters = "action="+action+"&bs_name="+bs_name+"&bs_gotr="+bs_gotr+"&bs_group="+bs_group+"&bs_farm_name="+bs_farm_name+"&bs_service="+bs_service+"&bs_pin="+bs_pin+"&bs_address="+bs_address+"&bs_pin_2="+bs_pin_2+"&partner_name="+partner_name+"&bs_catagory="+bs_catagory+"&bs_other_business="+bs_other_business+"&bs_phone_number="+bs_phone_number+"&bs_mob_1="+bs_mob_1+"&bs_wtsup_no="+bs_wtsup_no+"&bs_mob_2="+bs_mob_2+"&bs_wtsup_no_2="+bs_wtsup_no_2+"&bs_email="+bs_email+"&bs_email_2="+bs_email_2+"&bs_website="+bs_website;
+		/*var data_parameters = "action="+action+"&bs_name="+bs_name+"&bs_gotr="+bs_gotr+"&bs_group="+bs_group+"&bs_farm_name="+bs_farm_name+"&bs_service="+bs_service+"&bs_pin="+bs_pin+"&bs_address="+bs_address+"&bs_pin_2="+bs_pin_2+"&partner_name="+partner_name+"&bs_catagory="+bs_catagory+"&bs_other_business="+bs_other_business+"&bs_phone_number="+bs_phone_number+"&bs_mob_1="+bs_mob_1+"&bs_wtsup_no="+bs_wtsup_no+"&bs_mob_2="+bs_mob_2+"&bs_wtsup_no_2="+bs_wtsup_no_2+"&bs_email="+bs_email+"&bs_email_2="+bs_email_2+"&bs_website="+bs_website;*/
 		if(typeof bs_name === "undefined" || typeof bs_gotr === "undefined" || typeof bs_group === "undefined" || typeof bs_farm_name === "undefined" || typeof bs_service === "undefined" || typeof bs_pin === "undefined" || typeof bs_address === "undefined" || typeof bs_pin_2 === "undefined" || typeof bs_catagory === "undefined" || typeof bs_phone_number === "undefined" || typeof bs_mob_1 === "undefined" || typeof bs_wtsup_no === "undefined" || typeof bs_email === "undefined" || bs_name == "" || bs_gotr == "" || bs_group == "" || bs_farm_name == "" || bs_service == "" || bs_pin == "" || bs_address == "" || bs_pin_2 == "" || bs_catagory == "" || bs_phone_number == "" || bs_mob_1 == "" || bs_wtsup_no == "" || bs_email == "")
 		{
 			error += '<p>सभी (*) चिन्हित फील्ड अनिवार्य है |</p>';
@@ -1432,6 +1648,9 @@ angular.module('starter.controllers', [])
 			if(!filter.test(bs_email_2)){
 				error += '<p>ई-मेल 2 अमान्य है |</p>';
 			}
+		}
+		if($scope.imageDataPP == undefined || $scope.imageDataPP == ""){
+			error += '<p>पासपोर्ट फोटो अनिवार्य है | </p>';
 		}
 		if(error != ''){
 			$ionicPopup.show({
@@ -1448,7 +1667,7 @@ angular.module('starter.controllers', [])
 		}
 		else{
 			//alert(data_parameters);
-			$ionicLoading.show({template: '<ion-spinner icon="crescent"></ion-spinner>'});
+			/*$ionicLoading.show({template: '<ion-spinner icon="crescent"></ion-spinner>'});
 			$http.post(globalip,data_parameters, {
 				headers: {'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'}
 			})
@@ -1469,80 +1688,166 @@ angular.module('starter.controllers', [])
 					$scope.bs_name = $scope.bs_gotr = $scope.bs_group = $scope.bs_farm_name = $scope.bs_service = $scope.bs_pin = $scope.bs_address = $scope.bs_pin_2 = $scope.partner_name = $scope.bs_catagory = $scope.bs_other_business = $scope.bs_phone_number = $scope.bs_mob_1 = $scope.bs_wtsup_no = $scope.bs_mob_2 = $scope.bs_wtsup_no_2 = $scope.bs_email = $scope.bs_email_2 = $scope.bs_website = '' ;
 				}
 				$ionicLoading.hide();
-			});
+			});*/
+			$ionicLoading.show({template: '<ion-spinner icon="crescent"></ion-spinner>'});
+			var server = globalip;
+			var imageDataPP = $scope.imageDataPP;
+			var options = new FileUploadOptions();
+			options.fileKey = "passport_photo";
+			options.fileName = imageDataPP.substr(imageDataPP.lastIndexOf('/') + 1);
+			options.mimeType = "image/jpeg";
+			options.chunkedMode = false; // Transfer picture to server
+			var params = new Object(); 
+			params.action = action;
+			params.bs_name = bs_name;
+			params.bs_gotr = bs_gotr;
+			params.bs_group = bs_group;
+			params.bs_farm_name = bs_farm_name;
+			params.bs_service = bs_service;
+			params.bs_pin = bs_pin;
+			params.bs_address = bs_address;
+			params.bs_pin_2 = bs_pin_2;
+			params.partner_name = partner_name;
+			params.bs_catagory = bs_catagory;
+			params.bs_other_business = bs_other_business;
+			params.bs_phone_number = bs_phone_number;
+			params.bs_mob_1 = bs_mob_1;
+			params.bs_wtsup_no = bs_wtsup_no;
+			params.bs_mob_2 = bs_mob_2;
+			params.bs_wtsup_no_2 = bs_wtsup_no_2;
+			params.bs_email = bs_email;
+			params.bs_email_2 = bs_email_2;
+			params.bs_website = bs_website;
+			//Send Parameters			
+			options.params = params;
+			var ft = new FileTransfer();
+			ft.upload(imageDataPP, server, function(r) {
+				var k = JSON.parse(r.response);
+				if(k[0].success_status == 1){
+					$ionicLoading.hide();
+					alertPopup = $ionicPopup.show({
+					  template: '<p class="text-center">'+k[0].msg+'</p><p class="text-center"> आपका विजिटिंग कार्ड यहां फ्लिप करें </p><div class="row text-center"><div class="col col-50"><button class="button button-royal icon ion-camera" ng-click="takePhoto4UploadVCardBD()"></button></div><div class="col col-50"><button class="button button-energized icon ion-images" ng-click="choosePhoto4UploadVCardBD()" ></button></div></div>',
+					  title: 'Choose Option',
+					  scope: $scope,
+					  buttons: [
+						{ 
+						  text: 'Close',
+						  type: 'button-positive'
+						},
+					  ]
+					});
+					// open PhotoLibrary
+					$scope.takePhoto4UploadVCardBD = function () {
+						alertPopup.close();
+						console.log('takePhoto');
+						var options = {
+							quality: 75,
+							destinationType: Camera.DestinationType.FILE_URI,
+							sourceType: Camera.PictureSourceType.CAMERA,
+							allowEdit: true,
+							encodingType: Camera.EncodingType.JPEG,
+							targetWidth: 800,
+							targetHeight: 500,
+							popoverOptions: CameraPopoverOptions,
+							saveToPhotoAlbum: false
+						};
+						$cordovaCamera.getPicture(options).then(function (imageData) {
+							$ionicLoading.show({template: '<ion-spinner icon="crescent"></ion-spinner>'});
+							var server = globalip;
+							var options = new FileUploadOptions();
+							options.fileKey = "visiting_card";
+							options.fileName = imageData.substr(imageData.lastIndexOf('/') + 1);
+							options.mimeType = "image/jpeg";
+							options.chunkedMode = false; // Transfer picture to server
+							var params = new Object(); 
+							params.action = 'updatebussiness_directory';
+							params.id = k[0].id;
+							//Send Parameters			
+							options.params = params;
+							var ft = new FileTransfer();
+							ft.upload(imageData, server, function(r) {
+								$ionicLoading.hide();
+								var m = JSON.parse(r.response);
+								$ionicPopup.show({
+								  template: '',
+								  title: m[0].msg,
+								  scope: $scope,
+								  buttons: [
+									{ 
+									  text: 'Ok',
+									  type: 'button-balanced'
+									},
+								  ]
+								});
+							}, function(error) {
+							   $ionicLoading.hide();
+							}, options);
+						}, function (err) {
+							// An error occured. Show a message to the user
+						});
+					}
+					$scope.choosePhoto4UploadVCardBD = function () {
+						alertPopup.close();
+						console.log('choosePhoto');
+						var options = {
+							quality: 75,
+							destinationType: Camera.DestinationType.FILE_URI,
+							sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+							allowEdit: true,
+							encodingType: Camera.EncodingType.JPEG,
+							targetWidth: 800,
+							targetHeight: 500,
+							popoverOptions: CameraPopoverOptions,
+							saveToPhotoAlbum: false
+						};
+						$cordovaCamera.getPicture(options).then(function (imageData) {
+							$ionicLoading.show({template: '<ion-spinner icon="crescent"></ion-spinner>'});
+							var server = globalip;
+							var options = new FileUploadOptions();
+							options.fileKey = "visiting_card";
+							options.fileName = imageData.substr(imageData.lastIndexOf('/') + 1);
+							options.mimeType = "image/jpeg";
+							options.chunkedMode = false; // Transfer picture to server
+							var params = new Object(); 
+							params.action = 'updatebussiness_directory';
+							params.id = k[0].id;
+							//Send Parameters			
+							options.params = params;
+							var ft = new FileTransfer();
+							ft.upload(imageData, server, function(r) {
+								$ionicLoading.hide();
+								var m = JSON.parse(r.response);
+								$ionicPopup.show({
+								  template: '',
+								  title: m[0].msg,
+								  scope: $scope,
+								  buttons: [
+									{ 
+									  text: 'Ok',
+									  type: 'button-balanced'
+									},
+								  ]
+								});
+							}, function(error) {
+							   $ionicLoading.hide();
+							}, options);
+						}, function (err) {
+							// An error occured. Show a message to the user
+						});
+					}
+					$scope.bs_name = $scope.bs_gotr = $scope.bs_group = $scope.bs_farm_name = $scope.bs_service = $scope.bs_pin = $scope.bs_address = $scope.bs_pin_2 = $scope.partner_name = $scope.bs_catagory = $scope.bs_other_business = $scope.bs_phone_number = $scope.bs_mob_1 = $scope.bs_wtsup_no = $scope.bs_mob_2 = $scope.bs_wtsup_no_2 = $scope.bs_email = $scope.bs_email_2 = $scope.bs_website = $scope.imageDataPP = $scope.imageDataVC = $scope.imgURIPP = $scope.imgURIVC = '' ;
+				}
+			}, function(error) {
+			   $ionicLoading.hide();
+			}, options);
 		}
 	};
-	$scope.chooseOption4PPhoto = function() {
-		$ionicPopup.show({
-		  template: '<div class="row text-center"><div class="col col-50"><button class="button button-royal icon ion-camera" ng-click="takePhoto()"></button></div><div class="col col-50"><button class="button button-energized icon ion-images" ng-click="choosePhoto()" ></button></div></div>',
-		  //templateUrl: 'templates/uploadmemberregistration.html',
-		  title: 'Choose Option',
-		  scope: $scope,
-		  buttons: [
-			{ 
-			  text: 'Cancel',
-			  type: 'button-positive'
-			},
-		  ]
-		});
-	};
-	// open PhotoLibrary
-    $scope.takePhoto = function () {
-		console.log('takePhoto');
-		var options = {
-			quality: 75,
-			destinationType: Camera.DestinationType.FILE_URI,
-			sourceType: Camera.PictureSourceType.CAMERA,
-			allowEdit: true,
-			encodingType: Camera.EncodingType.JPEG,
-			targetWidth: 300,
-			targetHeight: 300,
-			popoverOptions: CameraPopoverOptions,
-			saveToPhotoAlbum: false
-		};
-		$cordovaCamera.getPicture(options).then(function (imageData) {
-			$scope.imgURI = "data:image/jpeg;base64," + imageData;
-		}, function (err) {
-			// An error occured. Show a message to the user
-		});
-	}
-	$scope.choosePhoto = function () {
-		console.log('choosePhoto');
-		var options = {
-			quality: 75,
-			destinationType: Camera.DestinationType.FILE_URI,
-			sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-			allowEdit: true,
-			encodingType: Camera.EncodingType.JPEG,
-			targetWidth: 300,
-			targetHeight: 300,
-			popoverOptions: CameraPopoverOptions,
-			saveToPhotoAlbum: false
-		};
-		$cordovaCamera.getPicture(options).then(function (imageData) {
-			$scope.imgURI = "data:image/jpeg;base64," + imageData;
-			
-		}, function (err) {
-			// An error occured. Show a message to the user
-		});
-	}
-	$scope.chooseOption4VCard = function() {
-		$ionicPopup.show({
-		  template: '<div class="row text-center"><div class="col col-50"><button class="button button-royal icon ion-camera" ng-click="takePhoto()"></button></div><div class="col col-50"><button class="button button-energized icon ion-images" ng-click="choosePhoto()" ></button></div></div>',
-		  title: 'Choose Option',
-		  scope: $scope,
-		  buttons: [
-			{ 
-			  text: 'Cancel',
-			  type: 'button-positive'
-			},
-		  ]
-		});
-	};
+	
+	
 })
 /** Matrimonial Controller**/
 .controller('matrimonialCtrl',function($scope,$ionicSlideBoxDelegate,$ionicHistory,$ionicLoading,$http,$state) {
-	/* MatrimonialSlider */ /* //http://makerits.com/jainoswalsajnanfedration/matrimonial/matrimonial_web?action=home_slider */
+	/* MatrimonialSlider */ /* //http://jainoswalfederation.com/matrimonial/matrimonial_web?action=home_slider */
 	$ionicLoading.show({template: '<ion-spinner icon="crescent"></ion-spinner>'});
 	var action = "home_slider";
 	var data_parameters = "action="+action;
@@ -1557,7 +1862,7 @@ angular.module('starter.controllers', [])
 			$ionicLoading.hide();
   		},500);
 	});
-	/* Second Section */ /* http://makerits.com/jainoswalsajnanfedration/matrimonial/matrimonial_web?action=second_section */
+	/* Second Section */ /* http://jainoswalfederation.com/matrimonial/matrimonial_web?action=second_section */
 	var action1 = "second_section";
 	var data_parameters1 = "action="+action1;
 	$http.post(globalip_2,data_parameters1, {
@@ -1566,7 +1871,7 @@ angular.module('starter.controllers', [])
 	.success(function(response1) {
 		$scope.reviews = response1;
 	});
-	/* Our Wedding Gallery */ /* http://makerits.com/jainoswalsajnanfedration/matrimonial/matrimonial_web?action=home_gallery */
+	/* Our Wedding Gallery */ /* http://jainoswalfederation.com/matrimonial/matrimonial_web?action=home_gallery */
 	var action2 = "home_gallery";
 	var data_parameters2 = "action="+action2;
 	$http.post(globalip_2,data_parameters2, {
@@ -1575,7 +1880,7 @@ angular.module('starter.controllers', [])
 	.success(function(response2) {
 		$scope.gallery = response2;
 	});
-	/* Creative Ideas */ /* http://makerits.com/jainoswalsajnanfedration/matrimonial/matrimonial_web/?action=creative_ideas */
+	/* Creative Ideas */ /* http://jainoswalfederation.com/matrimonial/matrimonial_web/?action=creative_ideas */
 	var action3 = "creative_ideas";
 	var data_parameters3 = "action="+action3;
 	$http.post(globalip_2,data_parameters3, {
@@ -1587,7 +1892,7 @@ angular.module('starter.controllers', [])
 })
 /** Member Registration Controller**/
 .controller('memberregistrationCtrl',function($scope,$http,$state,$ionicLoading,$ionicPopup,$cordovaCamera,$cordovaFileTransfer) {
-	/* Login */ /* http://makerites.com/wordpress/jainoswalsajnanfedration/webservice/?action=register */
+	/* Login */ /* http://jainoswalfederation.com/webservice/?action=register */
 	$scope.daysarr = global_daysarr;
 	$scope.monthsarr = global_monthsarr;
 	$scope.yearsarr = global_yearsarr;
@@ -1618,8 +1923,8 @@ angular.module('starter.controllers', [])
 			sourceType: Camera.PictureSourceType.CAMERA,
 			allowEdit: true,
 			encodingType: Camera.EncodingType.JPEG,
-			targetWidth: 300,
-			targetHeight: 300,
+			targetWidth: 800,
+			targetHeight: 500,
 			popoverOptions: CameraPopoverOptions,
 			saveToPhotoAlbum: false
 		};
@@ -1640,8 +1945,8 @@ angular.module('starter.controllers', [])
 			sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
 			allowEdit: true,
 			encodingType: Camera.EncodingType.JPEG,
-			targetWidth: 300,
-			targetHeight: 300,
+			targetWidth: 800,
+			targetHeight: 500,
 			popoverOptions: CameraPopoverOptions,
 			saveToPhotoAlbum: false
 		};
@@ -1653,7 +1958,7 @@ angular.module('starter.controllers', [])
 			// An error occured. Show a message to the user
 		});
 	}
-	/* Mother Tounge */ /* http://makerits.com/jainoswalsajnanfedration/matrimonial/matrimonial_web/?action=mother_tongue_list */
+	/* Mother Tounge */ /* http://jainoswalfederation.com/matrimonial/matrimonial_web/?action=mother_tongue_list */
 	var action1 = "mother_tongue_list";
 	var data_parameters1 = "action="+action1;
 	$http.post(globalip_2,data_parameters1, {
@@ -1686,7 +1991,7 @@ angular.module('starter.controllers', [])
 		var year = $scope.year;
 		var month = $scope.month;
 		var day = $scope.day;
-		var dob = year+'-'+month+'-'+day;
+		var dob = day+'/'+month+'/'+year;
 		/*var data_parameters = "action="+action+"&profile_created_by="+profile_created_by+"&firstname="+firstname+"&lastname="+lastname+"&matri_gender="+matri_gender+"&matri_Sect="+matri_Sect+"&matri_sub_sect="+matri_sub_sect+"&matri_castes="+matri_castes+"&matri_mobile="+matri_mobile+"&matri_marital_status="+matri_marital_status+"&user_email="+user_email+"&password="+password+"&description="+description+"&matri_country="+country+"&mother_tongue="+mother_tongue+"&professional="+professional+"&matri_dob="+dob;*/
 		if(typeof profile_created_by === "undefined" || typeof firstname === "undefined" || typeof lastname === "undefined" || typeof matri_gender === "undefined" || typeof matri_Sect === "undefined" || typeof matri_sub_sect === "undefined" || typeof matri_castes === "undefined" || typeof matri_mobile === "undefined" || typeof matri_marital_status === "undefined" || typeof country === "undefined" || typeof year === "undefined" || typeof month === "undefined" || typeof day === "undefined" || typeof user_email === "undefined" || typeof password === "undefined" || typeof con_password === "undefined" || profile_created_by == "" || firstname == "" || lastname == "" || matri_gender == "" || matri_Sect == "" || matri_sub_sect == "" || matri_castes == "" || matri_mobile == "" || matri_marital_status == "" || country == "" || country == null || year == "" || month == "" || day == "" || user_email == "" || password == "" || con_password == ""){
 			error += '<p>All (*) Marked Fields Are Compulsory</p>';
@@ -1800,7 +2105,7 @@ angular.module('starter.controllers', [])
 })
 /** Member Profile Controller**/
 .controller('memberprofileCtrl',function($scope,$http,$state,$ionicLoading,$stateParams) {
-	/* Member Profile */ /* http://makerites.com/wordpress/jainoswalsajnanfedration/matrimonial/matrimonial_web?action=single_user&user_id=41 */
+	/* Member Profile */ /* http://jainoswalfederation.com/matrimonial/matrimonial_web?action=single_user&user_id=41 */
 	$ionicLoading.show({template: '<ion-spinner icon="crescent"></ion-spinner>'});
 	var action = "single_user";
 	var user_id = $stateParams.user_id;
@@ -1815,14 +2120,14 @@ angular.module('starter.controllers', [])
 })
 /** Member Profile Update Controller**/
 .controller('memberupdateCtrl',function($scope,$http,$state,$ionicLoading,$ionicPopup,$cordovaCamera,$cordovaFileTransfer) {
-	/* Update */ /* http://makerites.com/wordpress/jainoswalsajnanfedration/matrimonial/matrimonial_web/?action=single_user&user_id=58 */
-	/* http://makerites.com/wordpress/jainoswalsajnanfedration/matrimonial/matrimonial_web/?action=update_profile&user_id=50&user_email=gautammakerits@gmail.com&firstname=gautam&lastname=raghuwanshi&description=i%20am%20pghp%20developer&country=France&dob=10/10/1995&mother_tongue=Gujrati&professiona=Sales%20Manager */
+	/* Update */ /* http://jainoswalfederation.com/matrimonial/matrimonial_web/?action=single_user&user_id=58 */
+	/* http://jainoswalfederation.com/matrimonial/matrimonial_web/?action=update_profile&user_id=50&user_email=gautammakerits@gmail.com&firstname=gautam&lastname=raghuwanshi&description=i%20am%20pghp%20developer&country=France&dob=10/10/1995&mother_tongue=Gujrati&professiona=Sales%20Manager */
 	$scope.daysarr = global_daysarr;
 	$scope.monthsarr = global_monthsarr;
 	$scope.yearsarr = global_yearsarr;
 	$scope.countryarr =  global_countryarr;
 	var alertPopup;
-	/* Mother Tounge */ /* http://makerites.com/wordpress/jainoswalsajnanfedration/matrimonial/matrimonial_web/?action=mother_tongue_list */
+	/* Mother Tounge */ /* http://jainoswalfederation.com/matrimonial/matrimonial_web/?action=mother_tongue_list */
 	var action1 = "mother_tongue_list";
 	var data_parameters1 = "action="+action1;
 	$http.post(globalip_2,data_parameters1, {
@@ -1843,7 +2148,8 @@ angular.module('starter.controllers', [])
 				$scope.lastname = response[0].lname;
 				$scope.matri_gender = response[0].matri_gender;
 				var dob = response[0].dob;
-				var date = new Date(dob) ;
+				var a = dob.split("/");
+				var date = new Date( a[2], (a[1] - 1), a[0] );
 				$scope.day = date.getDate();
 				$scope.month = date.getMonth()+1;
 				$scope.year = date.getFullYear();
@@ -1870,7 +2176,7 @@ angular.module('starter.controllers', [])
 		var year = $scope.year;
 		var month = $scope.month;
 		var day = $scope.day;
-		var dob = year+'-'+month+'-'+day;
+		var dob = day+'/'+month+'/'+year;
 		var matri_marital_status = $scope.matri_marital_status;
 		var matri_Sect = $scope.matri_Sect;
 		var matri_sub_sect = $scope.matri_sub_sect;
@@ -1950,8 +2256,8 @@ angular.module('starter.controllers', [])
 			sourceType: Camera.PictureSourceType.CAMERA,
 			allowEdit: true,
 			encodingType: Camera.EncodingType.JPEG,
-			targetWidth: 300,
-			targetHeight: 300,
+			targetWidth: 800,
+			targetHeight: 500,
 			popoverOptions: CameraPopoverOptions,
 			saveToPhotoAlbum: false
 		};
@@ -1982,12 +2288,12 @@ angular.module('starter.controllers', [])
 		console.log('choosePhoto');
 		var options = {
 			quality: 75,
-			destinationType: Camera.DestinationType.DATA_URI,
+			destinationType: Camera.DestinationType.FILE_URI,
 			sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
 			allowEdit: true,
 			encodingType: Camera.EncodingType.JPEG,
-			targetWidth: 300,
-			targetHeight: 300,
+			targetWidth: 800,
+			targetHeight: 500,
 			popoverOptions: CameraPopoverOptions,
 			saveToPhotoAlbum: false
 		};
@@ -2016,7 +2322,7 @@ angular.module('starter.controllers', [])
 })
 /** Forgot Password Member Controller**/
 .controller('forgotpasswordmemberCtrl',function($scope,$http,$ionicLoading,$state,$ionicPopup) {
-	/* Forgot Password Member */ /* http://makerits.com/jainoswalsajnanfedration/matrimonial/matrimonial_web??action=Forgot&user_email=vivek.makerit@gmail.com */
+	/* Forgot Password Member */ /* http://jainoswalfederation.com/matrimonial/matrimonial_web??action=Forgot&user_email=vivek.makerit@gmail.com */
 	$scope.forgotpasswordmembersubmit = function() {
 		var error = '';
 		var action = "Forgot";
@@ -2072,7 +2378,7 @@ angular.module('starter.controllers', [])
 })
 /** Member List Controller**/
 .controller('memberlistCtrl',function($scope,$ionicSlideBoxDelegate,$ionicLoading,$http,$state,$ionicScrollDelegate) {
-	/* Member List */ /* http://makerits.com/jainoswalsajnanfedration/matrimonial/matrimonial_web/?action=users_list */
+	/* Member List */ /* http://jainoswalfederation.com/matrimonial/matrimonial_web/?action=users_list */
 	$ionicLoading.show({template: '<ion-spinner icon="crescent"></ion-spinner>'});
 	var action = "users_list";
 	var data_parameters = "action="+action;
@@ -2088,7 +2394,7 @@ angular.module('starter.controllers', [])
 	};
 })
 /** Menu **/
-.controller('MenuController', function($scope, $ionicSideMenuDelegate,$state,$ionicHistory,$rootScope) {
+.controller('MenuController', function($scope,$ionicSideMenuDelegate,$state,$ionicHistory,$rootScope,$ionicPopup) {
 	$scope.site_view = '';
 	$scope.switch_site = function(site){
 		$rootScope.$broadcast('site_view',{global_site_view:site});
@@ -2155,6 +2461,58 @@ angular.module('starter.controllers', [])
 			disableBack: true
 		});
 		$state.go('app.jain-thirth-yatra');
+		$ionicSideMenuDelegate.toggleLeft();
+	}
+	$scope.GotoIntroform = function(){ 
+		$ionicHistory.nextViewOptions({
+			disableBack: true
+		});
+		if(global_login_id_2 == ""){
+			$ionicPopup.show({
+			  template: '',
+			  title: 'Please Login First',
+			  scope: $scope,
+			  buttons: [
+				{ 
+				  text: 'Ok',
+				  type: 'button-balanced',
+				  onTap: function() { 
+					console.log('tapped');
+					$state.go('app.matrimonial');
+				  }
+				}
+			  ]
+			});
+		}
+		else{
+			$state.go('app.introductionform');
+		}
+		$ionicSideMenuDelegate.toggleLeft();
+	}
+	$scope.GotoCandidatelist = function(){ 
+		$ionicHistory.nextViewOptions({
+			disableBack: true
+		});
+		if(global_login_id_2 == ""){
+			$ionicPopup.show({
+			  template: '',
+			  title: 'Please Login First',
+			  scope: $scope,
+			  buttons: [
+				{ 
+				  text: 'Ok',
+				  type: 'button-balanced',
+				  onTap: function() { 
+					console.log('tapped');
+					$state.go('app.matrimonial');
+				  }
+				}
+			  ]
+			});
+		}
+		else{
+			$state.go('app.member-list');
+		}
 		$ionicSideMenuDelegate.toggleLeft();
 	}
 });

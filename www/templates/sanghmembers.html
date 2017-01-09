@@ -1,0 +1,37 @@
+<ion-view view-title="अ. भा. जैन ओसवाल साजनान फेडरेशन ( रजि. )">
+	<div class="bar bar-subheader bar-secondary">
+      <h2 class="title secondary">{{ page_title }} सदस्य</h2>
+    </div>
+	<ion-content>
+        <!-- संघ/ग्रुप  -->
+        <div class="row pagesubheader">
+        	<div class="col col-100">
+            	
+            </div>
+        </div>
+		<div ng-repeat="sanghmember in sanghmembers">
+			<div class="row" ng-if="$even">
+				<div ng-if="sanghmembers[$index].member_name" class="col col-50 text-center">
+					<div class="icon-box-high">
+						<img src="{{ sanghmembers[$index].image_url }}" alt="memberimg" style="height:100px;width:100%;">
+						<h4 style="margin:0px;font-size:16px;font-weight:bold;">{{ sanghmembers[$index].member_name }}</h4>
+						<p style="margin:0px;">{{ sanghmembers[$index].designation }}</p>
+						<p style="margin:0px;">{{ sanghmembers[$index].phone }}</p>
+					</div>
+				</div>
+				<div ng-if="sanghmembers[$index + 1].member_name" class="col col-50 text-center">
+					<div class="icon-box-high">
+						<img src="{{ sanghmembers[$index + 1].image_url }}" alt="memberimg" style="height:100px;width:100%;">
+						<h4 style="margin:0px;font-size:16px;font-weight:bold;">{{ sanghmembers[$index + 1].member_name }}</h4>
+						<p style="margin:0px;">{{ sanghmembers[$index + 1].designation }}</p>
+						<p style="margin:0px;">{{ sanghmembers[$index + 1].phone }}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+        <div class="row">
+            <div class="col col-100" style="margin-bottom:90px;">
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

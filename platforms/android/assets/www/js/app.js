@@ -1,6 +1,6 @@
 // Ionic Starter App
-var globalip = "http://makerites.com/wordpress/jainoswalsajnanfedration/webservice/";
-var globalip_2 = "http://makerites.com/wordpress/jainoswalsajnanfedration/matrimonial/matrimonial_web";
+var globalip = "http://jainoswalfederation.com/webservice/";
+var globalip_2 = "http://jainoswalfederation.com/matrimonial/matrimonial_web/";
 
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
@@ -142,15 +142,50 @@ angular.module('starter', ['ionic', 'starter.controllers','ngCordova'])
       }
     }
   })
-  /**.state('app.parichaypatra', {
-    url: '/parichaypatra',
+  .state('app.sanghngroup', {
+    url: '/sanghngroup',
     views: {
       'menuContent': {
-        templateUrl: 'templates/parichaypatra.html',
-		controller: 'parichaypatraCtrl'
+        templateUrl: 'templates/sanghngroup.html',
+		controller: 'sanghngroupCtrl'
       }
     }
-  })*/
+  })
+  .state('app.sanghmembers', {
+    url: '/sanghmembers/:slug',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/sanghmembers.html',
+		controller: 'sanghmembersCtrl'
+      }
+    }
+  })
+  .state('app.employment', {
+    url: '/employment',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/employment.html',
+		controller: 'employmentCtrl'
+      }
+    }
+  })
+  .state('app.empdetails', {
+    url: '/empdetails/:emp_id',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/empdetails.html',
+		controller: 'empdetailsCtrl'
+      }
+    }
+  })
+  .state('app.create-emp', {
+    url: '/create-emp',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/create-emp.html',
+      }
+    }
+  })
   .state('app.business_directory', {
     url: '/business_directory',
     views: {

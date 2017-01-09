@@ -1,0 +1,24 @@
+<ion-view view-title="अ. भा. जैन ओसवाल साजनान फेडरेशन ( रजि. )">
+	<div class="bar bar-subheader bar-secondary">
+      <h2 class="title secondary">लॉगिन</h2>
+    </div>
+	<ion-content>
+    	<div class="row pagesubheader">
+          <div class="col col-100 text-center">
+          </div>
+       	</div>
+        <div class="row">
+          <div class="col col-100">
+			<h3>क्रिएट एम्प्लॉयमेंट<h3>
+            <form ng-submit="submitcreate_empForm();" ng-controller="create_empCtrl" name="loginForm" novalidate>
+              <label class="item item-input item-input-custom">
+				<textarea placeholder="एम्प्लॉयमेंट के बारे में जानकारी (*)" rows="12" name="detail" ng-model="detail"></textarea>
+			  </label>
+              <button class="button button-balanced button-block">
+              	Submit
+              </button>
+            </form>
+          </div>
+       	</div>
+    </ion-content>
+</ion-view>

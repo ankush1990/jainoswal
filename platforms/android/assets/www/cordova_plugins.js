@@ -350,7 +350,6 @@ module.exports = [
 module.exports.metadata = 
 // TOP OF METADATA
 {
-    "cordova-plugin-console": "1.0.5",
     "cordova-plugin-device": "1.1.4",
     "cordova-plugin-statusbar": "2.1.3",
     "cordova-plugin-whitelist": "1.2.2",
@@ -367,6 +366,6 @@ module.exports.metadata =
     "cordova-plugin-media-capture": "1.4.1",
     "cordova-plugin-network-information": "1.3.1",
     "cordova-plugin-splashscreen": "4.0.1"
-};
+}
 // BOTTOM OF METADATA
 });

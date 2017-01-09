@@ -1,0 +1,30 @@
+<ion-view view-title="अ. भा. जैन ओसवाल साजनान फेडरेशन ( रजि. )">
+	<div class="bar bar-subheader bar-secondary">
+      <h2 class="title secondary">संघ/ग्रुप</h2>
+    </div>
+	<ion-content>
+        <!-- संघ/ग्रुप  -->
+        <div class="row pagesubheader">
+        	<div class="col col-100">
+            	
+            </div>
+        </div>
+        <div class="row" ng-repeat="sangh in sanghs">
+          <div class="col col-100 text-center">
+			<a ui-sref="app.sanghmembers({slug:sangh.slug})">
+				<div class="icon-box-high">
+					<h4>{{ sangh.main_heading }}</h4>
+					<img src="{{ sangh.group_image }}" class="icon-box-high" style=" height:175px; width:100%;">
+					<button class="button button-full" style="background-color:#800000;color:#fff;margin-top:0px;">
+					  {{ sangh.title }}
+					</button>
+				</div>
+			</a>
+          </div>
+         </div>
+        <div class="row">
+            <div class="col col-100" style="margin-bottom:90px;">
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
